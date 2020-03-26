@@ -97,13 +97,13 @@ Jenny.on('message', msg => {
     }
     
 	// support text
-	if (msg.content.match(/^?[Ss]upport/)) {
+	if (msg.content.match(/^\?[Ss]upport/)) {
 	var say=new Array(Mbr(msg.member,0)+", Sorry, but I can't help you just yet. Hang on, and the boss will be with you soon. (Trouble ticket open)");
 	msg.channel.send(say[Math.floor(Math.random()*say.length)]);
 	}
 
 	// help text
-	if (msg.content.match(/^?[Hh]elp/)||msg.content.match(/^[Hh]elp.*[Jj]enny.*/)) {
+	if (msg.content.match(/^\?[Hh]elp/)||msg.content.match(/^[Hh]elp.*[Jj]enny.*/)) {
 	var say=new Array(Mbr(msg.member,0)+", here's a quick help list!\r\n\r\n?ping - Asks me to check if you're online.\r\n?support - Opens a trouble ticket (Not available).\r\n!help - Tells me to display this message.\r\n\r\nIf you need assistance or have a suggestion for my service, let a member of our Casting staff know in "+HelpRef+".");
 	msg.channel.send(say[Math.floor(Math.random()*say.length)]);
 	}
