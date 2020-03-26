@@ -91,7 +91,7 @@ Jenny.on('message', msg => {
 
     //// Programatic triggers
     // ping reply
-	if (msg.content.match(/?[Pp]ing/)) {
+	if (msg.content.match(/^\?[Pp]ing/)) {
         var say=new Array("Any time!","Not a problem!","It's what I'm here for!");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
