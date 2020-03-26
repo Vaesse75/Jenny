@@ -91,6 +91,7 @@ Jenny.on('ready', () => {
     SupportRef=Usr.ref("support");
 
 //support Array
+	fixedbreak="Great! I'll close your ticket. If you need more help, come see me again!"; //close ticket
 	breakpoint="I can't help you with this just yet. "+SupportRef+", someone needs your assistance!"; //close ticket
 	breakpoint2="The service is down, sorry. "+CastingRef+", service appears to be down!"; //close ticket
 	question1="What are you trying to do?\r\nView the **library**, watch a **video**, listen to **music**, or look at **pictures**? You can also tell me to go **back**, or close your ticket by telling me it's **fixed**."
@@ -161,11 +162,11 @@ Jenny.on('message', msg => {
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
     if(input.match(/morning.* jenny.*/)) {
-        var say=new Array("Need coffee!","Hey look! It's "+Mbr(msg.member,0)+"!");
+        var say=new Array("Need coffee!","Hey look! It's "+Mbr(msg.member,0)+"!","It's still morning? Why do I not have coffee?");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
     if(input.match(/thank(s.*| ?you.*) jenny.*/)) {
-        var say=new Array("Any time!","Not a problem!","It's what I'm here for!");
+        var say=new Array("Any time!","Not a problem!","It's what I'm here for!","You betcha!");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
 
@@ -231,7 +232,7 @@ Jenny.on('message', msg => {
             suppconn.send(level[0]);
         }
         else if (said=="fixed") {
-         suppconn.send("Good to hear, closing ticket.");
+         suppconn.send("Good to hear, closing ticket."); //var for this is 'fixedbreak' at the top of the support array block
          ticket[msg.author.id]=null;
         }
     }
