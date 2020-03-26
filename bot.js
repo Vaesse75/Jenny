@@ -30,6 +30,13 @@ Usr.set=function(id,val) {
     this[id.toLowerCase()]=val;
 };
 
+function Mbr(mem,leadcap) {
+    if (leadcap) {
+        return mem||"Friend";
+    }
+    else return mem||"friend";
+}
+
 // acknowledge ready state
 Jenny.on('ready', () => {
     // console.log('Logged in as ${Jenny.user.tag)!');
