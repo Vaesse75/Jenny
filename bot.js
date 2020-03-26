@@ -149,36 +149,35 @@ Jenny.on('ready', () => {
 
 // Reply to messages
 Jenny.on('message', msg => {
-    
+    var input=msg.content.toLowerCase();
     //Plain text social responses
-	if (msg.content.match(/^[Hh](e(llo)?|i|y)a?.* [Jj]enny.*/)) {
+	if (input.match(/^[Hh](e(llo)?|i|y)a?.* [Jj]enny.*/)) {
         var say=new Array("Hi there, "+Mbr(msg.member,0)+"! What's up?");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
-    if (msg.content.match(/^([Gg]ood ?)?([Bb]ye|[Nn](ight|ite)).* [Jj]enny.*/)) {
+    if (input.match(/^([Gg]ood ?)?([Bb]ye|[Nn](ight|ite)).* [Jj]enny.*/)) {
         var say=new Array("See ya later!","Come back soon, "+Mbr(msg.member,0)+".");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
-    if(msg.content.match(/[Mm]orning.* [Jj]enny.*/)) {
+    if(input.match(/[Mm]orning.* [Jj]enny.*/)) {
         var say=new Array("Need coffee!","Hey look! It's "+Mbr(msg.member,0)+"!");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
-    if(msg.content.match(/[Tt]hank(s.*| ?you.*) [Jj]enny.*/)) {
+    if(input.match(/[Tt]hank(s.*| ?you.*) [Jj]enny.*/)) {
         var say=new Array("Any time!","Not a problem!","It's what I'm here for!");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
 
     //// Programatic triggers
     // ping reply
-	if (msg.content.match(/^\?[Pp]ing/)) {
+	if (input.match(/^\?[Pp]ing/)) {
         var say=new Array("Yup! You're here!");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
     
     // support text
-	if (msg.content.match(/^\?[Ss]upport/)) {
-        var args=msg.content.toLowerCase().substr(9).split(" ");
-        console.log(args);
+	if (input.match(/^\?[Ss]upport/)) {
+        var args=input.substr(9).split(" ");
         ticket[msg.author.id]=args;
         var level=support;
         if (args.length>0 && args[0] != "") {
@@ -202,10 +201,8 @@ Jenny.on('message', msg => {
 
     // If author has an open ticket
 	if (ticket[msg.author.id]) {
-        var said=msg.content.toLowerCase().split(" ")[0];
-        if (ticket[msg.author.id].length==1 && said != "?support") {
-            suppconn.send("!ping "+ticket[msg.author.id][0]);
-        }
+        var arr=ticket[msg.author.id];
+        var said=input.split(" ")[0];
         var level=walkSupport(ticket[msg.author.id]);
         var keys="";
         for (var key in level) {
@@ -215,15 +212,26 @@ Jenny.on('message', msg => {
         if (keys.indexOf(said) >= 0) {
             arr.push(said);
             level=walkSupport(arr);
-                
         }
         if (said == "?support" || keys.indexOf(said) >= 0) {
+            if (ticket[msg.author.id].length==1 && said != "?support") {
+                suppconn.send("!ping "+ticket[msg.author.id][0]);
+            }
             if (keys.indexOf(0) < 0) {
                 console.log(keys.indexOf(0)+"breakpoint");
             }
             else  {
                 suppconn.send(level[0]);
             }
+        }
+        else if (said=="back") {
+            arr.pop();
+            level=walkSupport(arr);
+            suppconn.send(level[0]);
+        }
+        else if (said=="fixed") {
+         suppconn.send("Good to hear, closing ticket.");
+         ticket[msg.author.id]=null;
         }
     }
         
