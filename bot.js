@@ -12,12 +12,89 @@ const Ch = {};
 //const Em = {};
 const Usr = {};
 //Recs = {"list":[]};
+ticket=[];
+
+// Define Functions
+Ch.get=function(id) {
+    return Jenny.channels.get(this[id.toLowerCase()]||id.toLowerCase());
+};
+Ch.ref=function(id) {
+    return "<#"+(this[id.toLowerCase()]||id.toLowerCase())+">";
+};
+Ch.set=function(id,val) {
+    this[id.toLowerCase()]=val;
+};
+Usr.ref=function(id) {
+    return "<@&"+(this[id.toLowerCase()]||id.toLowerCase())+">";
+};
+Usr.set=function(id,val) {
+    this[id.toLowerCase()]=val;
+};
+
+function Mbr(mem,leadcap) {
+    if (leadcap) {
+        return mem||"Friend";
+    }
+    else return mem||"friend";
+}
+
+function walkSupport(arr) {
+    var level=support;
+    for (var a in arr) {
+        var keys="";
+        for (var key in level) {
+            if (keys != "") keys+=",";
+            keys+=key;
+        }
+        if (keys.indexOf(arr[a]) >= 0) {
+            level=level[arr[a]];
+        }
+        else {
+            console.log(a+" is invalid.");
+            return level;
+        }
+    }
+    return level;
+}
+
+// acknowledge ready state
+Jenny.on('ready', () => {
+    // console.log('Logged in as ${Jenny.user.tag)!');
+    
+    //define Ch and Usr objects.
+    Ch.set("bot","675864898617606184");
+    Ch.set("help","583979972578770945");
+    Ch.set("test","681380531493142533");
+    Ch.set("welcome","581340165520359424");
+    Ch.set("plex","581346715852865547");
+    Ch.set("calibre","590195078765608961");
+    Ch.set("rules","581352180355694603");
+    Usr.set("casting","581334517151825920");
+    Usr.set("support","692818837736915054");
+    
+    // define frequently used channels.
+    onconn = Ch.get("bot");
+    suppconn = Ch.get("help");
+    offconn = Ch.get("test");
+    newconn = Ch.get("welcome");
+
+    // uncomment below to set Jenny to send to testing channel. (Ushers/Producer only)
+    onconn=offconn;
+    suppconn=offconn
+
+    // Links to roles and channels.
+    CastingRef=Usr.ref("CaStInG");
+    RulesRef=Ch.ref("rules");
+    CalibreRef=Ch.ref("calibre");
+    PlexRef=Ch.ref("plex");
+	HelpRef=Ch.ref("help");
+    SupportRef=Usr.ref("support");
 
 //support Array
-	breakpoint="I can't help you with this just yet. "+User.get("casting")+", someone needs your assistance!"; //close ticket
-	breakpoint2="The service is down, sorry. "User.get("casting")+", someone needs your assistance!"; //close ticket
+	breakpoint="I can't help you with this just yet. "+SupportRef+", someone needs your assistance!"; //close ticket
+	breakpoint2="The service is down, sorry. "+CastingRef+", service appears to be down!"; //close ticket
 	support=[];
-    support[0]="Hi,"+Mbr(msg.member,0)+"! The boss isn't here right now, but maybe I can help.\r\n\r\nIs your problem with **Plex**, **Calibre**, or **FTP**? You can also tell me that it's **fixed** to close your trouble ticket.";
+    support[0]="Hi! The boss isn't here right now, but maybe I can help.\r\n\r\nIs your problem with **Plex**, **Calibre**, or **FTP**? You can also tell me that it's **fixed** to close your trouble ticket.";
 	support["calibre"]=breakpoint;
 	support["ftp"]=breakpoint;
     support["plex"]=[]; //!ping plex, down=breakpoint2;
@@ -25,7 +102,7 @@ const Usr = {};
     support["plex"]["no"]=breakpoint;
 	support["plex"]["yes"]=[];
     support["plex"]["yes"][0]="Ok, so everything seems to be working here. What device are you using plex on?\r\nYou can say **Windows**, **Web**, **Android**, **Apple** (for iPads, and iPhones), **Amazon** (for Fire Stick/TV), or **Console**. You can also tell me to go **back**, or close your ticket by saying it's **fixed**.";
-	breakpoint="I can't help you with this just yet. "+User.get("casting")+", someone needs your assistance!";
+	breakpoint="I can't help you with this just yet. "+Usr.ref("casting")+", someone needs your assistance!";
 	support["plex"]["yes"]["windows"]=[];
 	support["plex"]["yes"]["windows"][0]="What are you trying to do?\r\nView the **library**, watch a **video**, listen to **music**, or look at **pictures**? You can also tell me to go **back**, or close your ticket by telling me it's **fixed**.";
 	support["plex"]["yes"]["windows"]["library"]=breakpoint;
@@ -64,64 +141,6 @@ const Usr = {};
 	support["plex"]["yes"]["console"]["pictures"]=breakpoint;
 // End support array
 
-
-
-// Define Functions
-Ch.get=function(id) {
-    return Jenny.channels.get(this[id.toLowerCase()]||id.toLowerCase());
-};
-Ch.ref=function(id) {
-    return "<#"+(this[id.toLowerCase()]||id.toLowerCase())+">";
-};
-Ch.set=function(id,val) {
-    this[id.toLowerCase()]=val;
-};
-Usr.ref=function(id) {
-    return "<@&"+(this[id.toLowerCase()]||id.toLowerCase())+">";
-};
-Usr.set=function(id,val) {
-    this[id.toLowerCase()]=val;
-};
-
-function Mbr(mem,leadcap) {
-    if (leadcap) {
-        return mem||"Friend";
-    }
-    else return mem||"friend";
-}
-
-// acknowledge ready state
-Jenny.on('ready', () => {
-    // console.log('Logged in as ${Jenny.user.tag)!');
-    
-    //define Ch and Usr objects.
-    Ch.set("bot","675864898617606184");
-    Ch.set("help","583979972578770945");
-    Ch.set("test","681380531493142533");
-    Ch.set("welcome","581340165520359424");
-    Ch.set("plex","581346715852865547");
-    Ch.set("calibre","590195078765608961");
-    Ch.set("rules","581352180355694603");
-    Usr.set("casting","581334517151825920");
-    
-    // define frequently used channels.
-    onconn = Ch.get("bot");
-    suppconn = Ch.get("help");
-    offconn = Ch.get("test");
-    newconn = Ch.get("welcome");
-
-    // uncomment below to set Jenny to send to testing channel. (Ushers/Producer only)
-    //onconn=offconn;
-    //suppconn=offconn
-
-    // Links to roles and channels.
-    CastingRef=Usr.ref("CaStInG");
-    RulesRef=Ch.ref("rules");
-    CalibreRef=Ch.ref("calibre");
-    PlexRef=Ch.ref("plex");
-	HelpRef=Ch.ref("help");
-
-
     // Wakeup message.
     var say=new Array("Ok ok! I'm up already!","Have no fear, Jenny's here!","Sorry, I was doing some uhh... nerdy stuff.");
 	onconn.send(say[Math.floor(Math.random()*say.length)]);
@@ -156,12 +175,48 @@ Jenny.on('message', msg => {
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
     
-	// support text
+    // support text
 	if (msg.content.match(/^\?[Ss]upport/)) {
-	var say=new Array(""+Mbr(msg.member,0)+" Sorry, but I can't help you just yet. Hang on, and the boss will be with you soon. (Trouble ticket open)");
-	suppconn.send(say[Math.floor(Math.random()*say.length)]);
+        var args=msg.content.toLowerCase().substr(9).split(" ");
+        ticket[msg.author.id]=args;
+        var level=support;
+        if (args.length>0 ) {
+            var keys="";
+            for (var key in level) {
+                if (keys != "") keys+=",";
+            keys+=key;
+            }
+            if (keys.indexOf(args[0]) >= 0) {
+                suppconn.send("!ping "+args[0]);
+            }
+        }
+        else {
+            suppconn.send(support[0]);
+        }
 	}
 
+    // If author has an open ticket
+	if (arr = ticket[msg.author.id]) {
+        var said=msg.content.toLowerCase().split(" ")[0];
+        var level=walkSupport(ticket[msg.author.id]);
+        var keys="";
+        for (var key in level) {
+            if (keys != "") keys+=",";
+            keys+=key;
+        }
+        if (keys.indexOf(said) >= 0) {
+            if (said != "?support") {
+                arr.push(said);
+            }
+        }
+        else if (keys.indexOf(0) < 0) {
+            console.log(keys.indexOf(0)+"breakpoint");
+        }
+        else {
+            suppconn.send(level[0]);
+        }
+        
+    }
 	// help text
 	if (msg.content.match(/^\?[Hh]elp/)||msg.content.match(/^[Hh]elp.*[Jj]enny.*/)) {
 	var say=new Array(""+Mbr(msg.member,0)+", here's a quick help list!"+"\r\n\r\n"+"?ping - Asks me to check if you're online."+"\r\n"+"?support - Opens a trouble ticket (Automated support not available)."+"\r\n"+"?help - Tells me to display this message."+"\r\n\r\n"+"If you need assistance or have a suggestion for my service, let a member of our Casting staff know in "+HelpRef+".");
