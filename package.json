@@ -1,0 +1,15 @@
+{
+  "name": "Carl",
+  "version": "1.1.1",
+  "description": "Discord Plex Bot",
+  "main": "bot.js",
+  "readmeFilename": "changelog.txt",
+  "dependencies": {
+    "@discordjs/uws": "^10.149.0",
+    "discord": "^0.8.2",
+    "discord.js": "^11.5.1",
+    "fs": "0.0.1-security",
+    "linux-shell-command": "0.0.6"
+  },
+  "author": "jasoncollege24 & caseyomah & vaesse"
+}

@@ -1,0 +1,37 @@
+Change package.json line 3 to match the version listed, before restarting Carl with final (Add new versions to the top of the list)
+
+1.1.1 [jasoncollege24]
+Corrected a small typo in the tips area
+Fixed several incorrect references to the help channel in the tips area
+
+
+1.1.0 [vaesse]
+Added !tips
+
+1.0.4 [caseyomah]
+Added support for randomization to ALL Carl messages (except new member join and !help response)
+!ping now accepts any capitalization of valid services as valid
+Added support for !tips with coming soon message
+Added `Mbr(object mem,boolean leadcap)` function to return @ or "Friend"/"friend"
+Added `Em(string id)` placeholder for Carl emoting
+Added comment of !emote command for future emote lookups
+
+1.0.3 [vaesse]
+Typo fix in !help msg
+Randomization to other social messages
+
+1.0.2 [caseyomah]
+Optimized channel, and role references, making future changes simpler
+Added randomization to "wakeup" message(s)
+
+1.0.1 [jasoncollege24]
+Added reference for the help channel
+Changed wording of !help command to use the reference to the help channel.
+Changed wording of the new member greeting to more closely match bot personality, and use the help reference
+Corrected a typo that prevented Carl from starting
+
+1.0.0 [caseyomah]
+Added social responses
+Completely overhauled service checking to allow single/listed service pings
+Included accounting for user randomness into the above overhaul (concatenated responses)
+Added a new member greeting feature
