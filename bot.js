@@ -1,6 +1,6 @@
 /*
     Future Plans:
-	Create support tickets
+	Create automated support tickets
 */
 
 // Set constants
@@ -58,8 +58,8 @@ Jenny.on('ready', () => {
     newconn = Ch.get("welcome");
 
     // uncomment below to set Jenny to send to testing channel. (Ushers/Producer only)
-    onconn=offconn;
-    suppconn=offconn
+    //onconn=offconn;
+    //suppconn=offconn
 
     // Links to roles and channels.
     CastingRef=Usr.ref("CaStInG");
@@ -105,13 +105,13 @@ Jenny.on('message', msg => {
     
 	// support text
 	if (msg.content.match(/^\?[Ss]upport/)) {
-	var say=new Array(""+Mbr(msg.member,0)+", Sorry, but I can't help you just yet. Hang on, and the boss will be with you soon. (Trouble ticket open)");
+	var say=new Array(""+Mbr(msg.member,0)+" Sorry, but I can't help you just yet. Hang on, and the boss will be with you soon. (Trouble ticket open)");
 	suppconn.send(say[Math.floor(Math.random()*say.length)]);
 	}
 
 	// help text
 	if (msg.content.match(/^\?[Hh]elp/)||msg.content.match(/^[Hh]elp.*[Jj]enny.*/)) {
-	var say=new Array(""+Mbr(msg.member,0)+", here's a quick help list!"+"\r\n\r\n"+"?ping - Asks me to check if you're online."+"\r\n"+"?support - Opens a trouble ticket (Not available)."+"\r\n"+"?help - Tells me to display this message."+"\r\n\r\n"+"If you need assistance or have a suggestion for my service, let a member of our Casting staff know in "+HelpRef+".");
+	var say=new Array(""+Mbr(msg.member,0)+", here's a quick help list!"+"\r\n\r\n"+"?ping - Asks me to check if you're online."+"\r\n"+"?support - Opens a trouble ticket (Automated support not available)."+"\r\n"+"?help - Tells me to display this message."+"\r\n\r\n"+"If you need assistance or have a suggestion for my service, let a member of our Casting staff know in "+HelpRef+".");
 	msg.channel.send(say[Math.floor(Math.random()*say.length)]);
 	}
 	
