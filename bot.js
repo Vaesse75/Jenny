@@ -15,7 +15,7 @@ const Usr = {};
 
 // Define Functions
 Ch.get=function(id) {
-    return Carl.channels.get(this[id.toLowerCase()]||id.toLowerCase());
+    return Jenny.channels.get(this[id.toLowerCase()]||id.toLowerCase());
 };
 Ch.ref=function(id) {
     return "<#"+(this[id.toLowerCase()]||id.toLowerCase())+">";
