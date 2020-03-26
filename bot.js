@@ -104,7 +104,7 @@ Jenny.on('message', msg => {
 
 	// help text
 	if (msg.content.match(/^\?[Hh]elp/)||msg.content.match(/^[Hh]elp.*[Jj]enny.*/)) {
-	var say=new Array(""+Mbr(msg.member,0)+", here's a quick help list!\r\n\r\n?ping - Asks me to check if you're online.\r\n?support - Opens a trouble ticket (Not available).\r\n!help - Tells me to display this message.\r\n\r\nIf you need assistance or have a suggestion for my service, let a member of our Casting staff know in "+HelpRef+".");
+	var say=new Array(""+Mbr(msg.member,0)+", here's a quick help list!"+"\r\n\r\n"+"?ping - Asks me to check if you're online."+"\r\n"+"?support - Opens a trouble ticket (Not available)."+"\r\n"+"?help - Tells me to display this message."+"\r\n\r\n"+"If you need assistance or have a suggestion for my service, let a member of our Casting staff know in "+HelpRef+".");
 	msg.channel.send(say[Math.floor(Math.random()*say.length)]);
 	}
 	
