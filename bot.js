@@ -152,37 +152,32 @@ Jenny.on('ready', () => {
 Jenny.on('message', msg => {
     var input=msg.content.toLowerCase();
     //Plain text social responses
-	if (input.match(/^[Hh](e(llo)?|i|y)a?.* [Jj]enny.*/)) {
+	if (input.match(/^h(e(llo)?|i|y)a?.* jenny.*/)) {
         var say=new Array("Hi there, "+Mbr(msg.member,0)+"! What's up?");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
-    if (input.match(/^([Gg]ood ?)?([Bb]ye|[Nn](ight|ite)).* [Jj]enny.*/)) {
+    if (input.match(/^(good ?)?(bye|n(ight|ite)).* jenny.*/)) {
         var say=new Array("See ya later!","Come back soon, "+Mbr(msg.member,0)+".");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
-<<<<<<< HEAD
-    if(input.match(/[Mm]orning.* [Jj]enny.*/)) {
+    if(input.match(/morning.* jenny.*/)) {
         var say=new Array("Need coffee!","Hey look! It's "+Mbr(msg.member,0)+"!");
-=======
-    if(msg.content.match(/[Mm]orning.* [Jj]enny.*/)) {
-        var say=new Array("Need coffee!","Hey look! It's "+Mbr(msg.member,0)+"!","It's still morning? Why do I not have coffee?");
->>>>>>> f189e3bd76c591c01b1c14a64d600a950a7b7762
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
-    if(input.match(/[Tt]hank(s.*| ?you.*) [Jj]enny.*/)) {
+    if(input.match(/thank(s.*| ?you.*) jenny.*/)) {
         var say=new Array("Any time!","Not a problem!","It's what I'm here for!");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
 
     //// Programatic triggers
     // ping reply
-	if (input.match(/^\?[Pp]ing/)) {
+	if (input.match(/^\?ping/)) {
         var say=new Array("Yup! You're here!");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
     
     // support text
-	if (input.match(/^\?[Ss]upport/)) {
+	if (input.match(/^\?support/)) {
         var args=input.substr(9).split(" ");
         ticket[msg.author.id]=args;
         var level=support;
@@ -242,7 +237,7 @@ Jenny.on('message', msg => {
     }
         
     // help text
-	if (msg.content.match(/^\?[Hh]elp/)||msg.content.match(/^[Hh]elp.*[Jj]enny.*/)) {
+	if (input.match(/^\?help/)) {
         var say=new Array(""+Mbr(msg.member,0)+", here's a quick help list!"+"\r\n\r\n"+"?ping - Asks me to check if you're online."+"\r\n"+"?support - Opens a trouble ticket (Automated support not available)."+"\r\n"+"?help - Tells me to display this message."+"\r\n\r\n"+"If you need assistance or have a suggestion for my service, let a member of our Casting staff know in "+HelpRef+".");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
 	}
