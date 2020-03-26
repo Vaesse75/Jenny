@@ -178,16 +178,21 @@ Jenny.on('message', msg => {
     // support text
 	if (msg.content.match(/^\?[Ss]upport/)) {
         var args=msg.content.toLowerCase().substr(9).split(" ");
+        console.log(args);
         ticket[msg.author.id]=args;
         var level=support;
-        if (args.length>0 ) {
+        if (args.length>0 && args[0] != "") {
             var keys="";
             for (var key in level) {
                 if (keys != "") keys+=",";
-            keys+=key;
-            }
-            if (keys.indexOf(args[0]) >= 0) {
-                suppconn.send("!ping "+args[0]);
+                keys+=key;
+                }
+                if (args.length > 0 && keys.indexOf(args[0]) >= 0) {
+                    suppconn.send("!ping "+args[0]);
+                }
+            else {
+                ticket[msg.author.id]=[];
+                suppconn.send(support[0]);
             }
         }
         else {
@@ -196,8 +201,11 @@ Jenny.on('message', msg => {
 	}
 
     // If author has an open ticket
-	if (arr = ticket[msg.author.id]) {
+	if (ticket[msg.author.id]) {
         var said=msg.content.toLowerCase().split(" ")[0];
+        if (ticket[msg.author.id].length==1 && said != "?support") {
+            suppconn.send("!ping "+ticket[msg.author.id][0]);
+        }
         var level=walkSupport(ticket[msg.author.id]);
         var keys="";
         for (var key in level) {
@@ -205,22 +213,24 @@ Jenny.on('message', msg => {
             keys+=key;
         }
         if (keys.indexOf(said) >= 0) {
-            if (said != "?support") {
-                arr.push(said);
+            arr.push(said);
+            level=walkSupport(arr);
+                
+        }
+        if (said == "?support" || keys.indexOf(said) >= 0) {
+            if (keys.indexOf(0) < 0) {
+                console.log(keys.indexOf(0)+"breakpoint");
+            }
+            else  {
+                suppconn.send(level[0]);
             }
         }
-        else if (keys.indexOf(0) < 0) {
-            console.log(keys.indexOf(0)+"breakpoint");
-        }
-        else {
-            suppconn.send(level[0]);
-        }
-        
     }
-	// help text
+        
+    // help text
 	if (msg.content.match(/^\?[Hh]elp/)||msg.content.match(/^[Hh]elp.*[Jj]enny.*/)) {
-	var say=new Array(""+Mbr(msg.member,0)+", here's a quick help list!"+"\r\n\r\n"+"?ping - Asks me to check if you're online."+"\r\n"+"?support - Opens a trouble ticket (Automated support not available)."+"\r\n"+"?help - Tells me to display this message."+"\r\n\r\n"+"If you need assistance or have a suggestion for my service, let a member of our Casting staff know in "+HelpRef+".");
-	msg.channel.send(say[Math.floor(Math.random()*say.length)]);
+        var say=new Array(""+Mbr(msg.member,0)+", here's a quick help list!"+"\r\n\r\n"+"?ping - Asks me to check if you're online."+"\r\n"+"?support - Opens a trouble ticket (Automated support not available)."+"\r\n"+"?help - Tells me to display this message."+"\r\n\r\n"+"If you need assistance or have a suggestion for my service, let a member of our Casting staff know in "+HelpRef+".");
+        msg.channel.send(say[Math.floor(Math.random()*say.length)]);
 	}
 	
 });
