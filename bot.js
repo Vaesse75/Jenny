@@ -13,6 +13,16 @@ const Ch = {};
 const Usr = {};
 //Recs = {"list":[]};
 
+// Define Functions
+Ch.get=function(id) {
+    return Carl.channels.get(this[id.toLowerCase()]||id.toLowerCase());
+};
+Ch.ref=function(id) {
+    return "<#"+(this[id.toLowerCase()]||id.toLowerCase())+">";
+};
+Ch.set=function(id,val) {
+    this[id.toLowerCase()]=val;
+};
 Usr.ref=function(id) {
     return "<@&"+(this[id.toLowerCase()]||id.toLowerCase())+">";
 };
