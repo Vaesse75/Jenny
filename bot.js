@@ -79,8 +79,8 @@ Jenny.on('ready', () => {
     newconn = Ch.get("welcome");
 
     // uncomment below to set Jenny to send to testing channel. (Ushers/Producer only)
-    //onconn=offconn;
-    //suppconn=offconn
+    onconn=offconn;
+    suppconn=offconn
 
     // Links to roles and channels.
     CastingRef=Usr.ref("CaStInG");
@@ -176,19 +176,24 @@ Jenny.on('message', msg => {
         }
         else if (typeof level == "string") {
             suppconn.send(breakpoint);
+			ticket[msg.author.id]=null;
         }
         else  {
             suppconn.send(level[0]);
         }
         if (said=="back") {
-            arr.pop();
-            level=walkSupport(arr);
+            ticket[msg.author.id].pop();
+            level=walkSupport(ticket[msg.author.id]);
             suppconn.send(level[0]);
         }
         else if (said=="fixed") {
-         suppconn.send(fixedbreak);
-         ticket[msg.author.id]=null;
+			suppconn.send(fixedbreak);
+			ticket[msg.author.id]=null;
         }
+		else if (said="cancel") {
+			suppconn.send(cancelbreak);
+			ticket[msg.author.id]=null;
+		}
     }
     if (input.match(/^(\w* ){2}is .*\.$/) && waitForCarl) {
         if (input.substr(input.length-5,4)=="open" || input.substr(input.length-3,2)=="up") {
@@ -196,6 +201,7 @@ Jenny.on('message', msg => {
         }
         else {
             suppconn.send(breakpoint2);
+			ticket[msg.author.id]=null;
         }
         waitForCarl=false;
     }

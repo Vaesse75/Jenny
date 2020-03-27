@@ -1,9 +1,13 @@
 //Support breakpoints
+	cancelbreak="Your ticket is closed. "+SupportRef+" will be with you soon.";
 	fixedbreak="Great! I'll close your ticket. If you need more help, come see me again!";
 	breakpoint="I can't help you with this just yet. "+SupportRef+", someone needs your assistance! (Ticket closed)"; 
 	breakpoint2="The service is down, sorry. "+CastingRef+", service appears to be down! (Ticket closed)";
 
 //Support questions
+	service1="so head on over to <https://vaesse.jasoncollege24.com/> to see if the host is up.\r\nIs the Host up? You can say **yes**, or **no**.";
+	service2="Ok, so everything seems to be working here. What device are you using?\r\n";
+	alloptions="You can also tell me to go **back**, **cancel** your ticket, or resolve your ticket by telling me it's **fixed**.";
 	question1="What are you trying to do?\r\nView the **library**, watch a **video**, listen to **music**, or look at **pictures**? You can also tell me to go **back**, or close your ticket by telling me it's **fixed**."
 	libq1="Is the library visible at all? You can say **yes**, or **no**. You can also tell me to go **back**, or close your ticket by telling me it's **fixed**."
 
@@ -25,10 +29,10 @@
 
 	//Plex section
     support["plex"]=[]; //!ping plex, down=breakpoint2;
-    support["plex"][0]="The theater is open, so head on over to <https://vaesse.jasoncollege24.com/> to see if the host is up.\r\nIs the Host up? You can say **yes**, or **no**. You can also tell me to go **back**, or close your ticket by telling me it's **fixed**.";
+    support["plex"][0]="The theater is open, "+service1+" "+alloptions+"";
     support["plex"]["no"]=breakpoint;
 	support["plex"]["yes"]=[];
-    support["plex"]["yes"][0]="Ok, so everything seems to be working here. What device are you using plex on?\r\nYou can say **Windows**, **Web**, **Android**, **Apple** (for iPads, and iPhones), **Amazon** (for Fire Stick/TV), or **Console**. You can also tell me to go **back**, or close your ticket by saying it's **fixed**.";
+    support["plex"]["yes"][0]=service2+"You can say **Windows**, **Web**, **Android**, **Apple** (for iPads, and iPhones), **Amazon** (for Fire Stick/TV), or **Console**. "+alloptions+"";
 	//web
 	support["plex"]["yes"]["web"]=[];
 	support["plex"]["yes"]["web"][0]=question1;
