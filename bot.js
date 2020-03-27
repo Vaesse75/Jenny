@@ -171,17 +171,6 @@ Jenny.on('message', msg => {
                 keys+=key;
             }
         }
-        if (ticket[msg.author.id].length==1 && said != "?support") {
-            waitForCarl=ticket[msg.author.id][0];
-            suppconn.send("!ping "+ticket[msg.author.id][0]+" for "+tag);
-        }
-        else if (typeof level == "string") {
-            suppconn.send(tag+", "+level);
-            ticket[msg.author.id]=null;
-        }
-        else  {
-            suppconn.send(tag+", "+level[0]);
-        }
         if (said=="back") {
             ticket[msg.author.id].pop();
             level=walkSupport(ticket[msg.author.id]);
@@ -195,6 +184,18 @@ Jenny.on('message', msg => {
 			suppconn.send(tag+", "+cancelbreak);
 			ticket[msg.author.id]=null;
 		}
+		else if (ticket[msg.author.id].length==1 && said != "?support") {
+            waitForCarl=ticket[msg.author.id][0];
+            suppconn.send("!ping "+ticket[msg.author.id][0]+" for "+tag);
+        }
+        else if (typeof level == "string") {
+            suppconn.send(tag+", "+level);
+            ticket[msg.author.id]=null;
+        }
+        else  {
+            suppconn.send(tag+", "+level[0]);
+        }
+ 
     }
     if (input.match(/^[^,]*, (\w* ){2}is .*\.$/) && waitForCarl) {
         tag=input.split(",")[0];
