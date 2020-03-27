@@ -18,7 +18,10 @@
 	support["calibre"]["yes"]=breakpoint;
 
 	// FTP section
-	support["ftp"]=breakpoint;
+	support["ftp"]=[];
+	support["ftp"][0]="FTP is up, so head on over to <https://vaesse.jasoncollege24.com/> to see if the host is up.\r\nIs the Host up? You can say **yes**, or **no**. You can also tell me to go **back**, or close your ticket by telling me it's **fixed**.";
+	support["ftp"]["yes"]=breakpoint;
+	support["ftp"]["no"]=breakpoint;
 
 	//Plex section
     support["plex"]=[]; //!ping plex, down=breakpoint2;
