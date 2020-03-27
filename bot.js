@@ -190,7 +190,7 @@ Jenny.on('message', msg => {
          ticket[msg.author.id]=null;
         }
     }
-    if (input.match(/^the \w* is .*\.$/) && waitForCarl) {
+    if (input.match(/^(\w* ){2}is .*\.$/) && waitForCarl) {
         if (input.substr(input.length-5,4)=="open" || input.substr(input.length-3,2)=="up") {
             suppconn.send(support[waitForCarl][0]);
         }
