@@ -78,9 +78,9 @@ Jenny.on('ready', () => {
     offconn = Ch.get("test");
     newconn = Ch.get("welcome");
 
-    // uncomment below to set Jenny to send to testing channel. (Ushers/Producer only)
-    onconn=offconn;
-    suppconn=offconn
+    // TESTING AREA uncomment below to set Jenny to send to testing channel. (Ushers/Producer only)
+    //onconn=offconn;
+    //suppconn=offconn
 
     // Links to roles and channels.
     CastingRef=Usr.ref("CaStInG");
