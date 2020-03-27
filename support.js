@@ -1,5 +1,5 @@
 //Support breakpoints
-	pingwarn="hang on, while I check with carl...";
+	pingwarn="hang on, while I check with Carl...";
 	cancelbreak="your ticket is closed. "+SupportRef+" will be with you soon.";
 	fixedbreak="I'll close your ticket, and mark it as resolved. If you need more help, come see me again!";
 	breakpoint="I can't help you with this just yet. "+SupportRef+", someone needs your assistance! (Ticket closed)"; 
