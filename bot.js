@@ -176,8 +176,8 @@ Jenny.on('message', msg => {
             suppconn.send("!ping "+ticket[msg.author.id][0]+" for "+tag);
         }
         else if (typeof level == "string") {
-            suppconn.send(tag+", "+breakpoint);
-      			ticket[msg.author.id]=null;
+            suppconn.send(tag+", "+level);
+            ticket[msg.author.id]=null;
         }
         else  {
             suppconn.send(tag+", "+level[0]);
@@ -191,8 +191,8 @@ Jenny.on('message', msg => {
          suppconn.send(tag+", "+fixedbreak);
          ticket[msg.author.id]=null;
         }
-		else if (said="cancel") {
-			suppconn.send(cancelbreak);
+		else if (said=="cancel") {
+			suppconn.send(tag+", "+cancelbreak);
 			ticket[msg.author.id]=null;
 		}
     }
@@ -201,9 +201,9 @@ Jenny.on('message', msg => {
         if (input.substr(input.length-5,4)=="open" || input.substr(input.length-3,2)=="up") {
             suppconn.send(tag+", "+support[waitForCarl][0]);
         }
-        else {
+        else if (input.substr(input.length-7,6)=="closed" || input.substr(input.length-5,4)=="down") {
             suppconn.send(tag+", "+breakpoint2);
-      			ticket[msg.author.id]=null;
+      		ticket[msg.author.id]=null;
         }
         waitForCarl=false;
     }
