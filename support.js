@@ -80,7 +80,7 @@
 	support["plex"]["yes"]["console"]=[];
 	support["plex"]["yes"]["console"][0]=question1;
 	support["plex"]["yes"]["console"]["library"]=[];
-	support["plex"]["yes"]["console"]["library"][0]=libq1'
+	support["plex"]["yes"]["console"]["library"][0]=libq1;
 	support["plex"]["yes"]["console"]["library"]["yes"]=breakpoint;
 	support["plex"]["yes"]["console"]["library"]["no"]=breakpoint;
 	support["plex"]["yes"]["console"]["video"]=breakpoint;
