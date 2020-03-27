@@ -13,7 +13,7 @@ const Ch = {};
 const Usr = {};
 //Recs = {"list":[]};
 ticket=[];
-
+waitForCarl=false;
 // Define Functions
 Ch.get=function(id) {
     return Jenny.channels.get(this[id.toLowerCase()]||id.toLowerCase());
@@ -79,8 +79,8 @@ Jenny.on('ready', () => {
     newconn = Ch.get("welcome");
 
     // uncomment below to set Jenny to send to testing channel. (Ushers/Producer only)
-    //onconn=offconn;
-    //suppconn=offconn
+    onconn=offconn;
+    suppconn=offconn
 
     // Links to roles and channels.
     CastingRef=Usr.ref("CaStInG");
@@ -104,7 +104,6 @@ Jenny.on('ready', () => {
     support["plex"]["no"]=breakpoint;
 	support["plex"]["yes"]=[];
     support["plex"]["yes"][0]="Ok, so everything seems to be working here. What device are you using plex on?\r\nYou can say **Windows**, **Web**, **Android**, **Apple** (for iPads, and iPhones), **Amazon** (for Fire Stick/TV), or **Console**. You can also tell me to go **back**, or close your ticket by saying it's **fixed**.";
-	breakpoint="I can't help you with this just yet. "+Usr.ref("casting")+", someone needs your assistance!";
 	support["plex"]["yes"]["windows"]=[];
 	support["plex"]["yes"]["windows"][0]=question1;
 	support["plex"]["yes"]["windows"]["library"]=breakpoint;
@@ -179,25 +178,26 @@ Jenny.on('message', msg => {
     
     // support text
 	if (input.match(/^\?support/)) {
-        var args=input.substr(9).split(" ");
-        ticket[msg.author.id]=args;
+        ticket[msg.author.id]=input.substr(9).split(" ");
         var level=support;
-        if (args.length>0 && args[0] != "") {
+        if (ticket[msg.author.id].length>0 && ticket[msg.author.id][0] != "") {
             var keys="";
             for (var key in level) {
                 if (keys != "") keys+=",";
                 keys+=key;
-                }
-                if (args.length > 0 && keys.indexOf(args[0]) >= 0) {
-                    suppconn.send("!ping "+args[0]);
-                }
+            }
+            if (ticket[msg.author.id].length > 0 && keys.indexOf(ticket[msg.author.id][0]) >= 0) {
+                waitForCarl=ticket[msg.author.id][0];
+                suppconn.send("!ping "+ticket[msg.author.id][0]);
+            }
             else {
                 ticket[msg.author.id]=[];
-                suppconn.send(support[0]);
+                //suppconn.send(support[0]);
             }
         }
         else {
-            suppconn.send(support[0]);
+            ticket[msg.author.id]=[];
+            //suppconn.send(support[0]);
         }
 	}
 
@@ -214,19 +214,23 @@ Jenny.on('message', msg => {
         if (keys.indexOf(said) >= 0) {
             arr.push(said);
             level=walkSupport(arr);
-        }
-        if (said == "?support" || keys.indexOf(said) >= 0) {
-            if (ticket[msg.author.id].length==1 && said != "?support") {
-                suppconn.send("!ping "+ticket[msg.author.id][0]);
-            }
-            if (keys.indexOf(0) < 0) {
-                console.log(keys.indexOf(0)+"breakpoint");
-            }
-            else  {
-                suppconn.send(level[0]);
+            var keys="";
+            for (var key in level) {
+                if (keys != "") keys+=",";
+                keys+=key;
             }
         }
-        else if (said=="back") {
+        if (ticket[msg.author.id].length==1 && said != "?support") {
+            waitForCarl=ticket[msg.author.id][0];
+            suppconn.send("!ping "+ticket[msg.author.id][0]);
+        }
+        else if (typeof level == "string") {
+            suppconn.send(breakpoint);
+        }
+        else  {
+            suppconn.send(level[0]);
+        }
+        if (said=="back") {
             arr.pop();
             level=walkSupport(arr);
             suppconn.send(level[0]);
@@ -236,13 +240,20 @@ Jenny.on('message', msg => {
          ticket[msg.author.id]=null;
         }
     }
-        
+    if (input.match(/^the \w* is .*\.$/) && waitForCarl) {
+        if (input.substr(input.length-5,4)=="open") {
+            suppconn.send(support[waitForCarl][0]);
+        }
+        else {
+            suppconn.send(breakpoint2);
+        }
+        waitForCarl=false;
+    }
     // help text
-	if (input.match(/^\?help/)) {
+	if (input.match(/^\?help/)||input.match(/^help.*jenny.*/)) {
         var say=new Array(""+Mbr(msg.member,0)+", here's a quick help list!"+"\r\n\r\n"+"?ping - Asks me to check if you're online."+"\r\n"+"?support - Opens a trouble ticket (Automated support not available)."+"\r\n"+"?help - Tells me to display this message."+"\r\n\r\n"+"If you need assistance or have a suggestion for my service, let a member of our Casting staff know in "+HelpRef+".");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
 	}
-	
 });
 
 Jenny.login(auth.token);
