@@ -3,6 +3,7 @@ Change package.json line 3 to match the version listed, before restarting Jenny 
 1.1.1 [jasoncollege24]
 Fixed an issue that prevented Jenny from knowing whether the FTP server is running during support
 Added a few more support options, and optmimized the support array
+Edited help text to reflect the added feature
 
 1.1.0 [caseyomah]
 Added working backend for interactive support
