@@ -20,7 +20,7 @@
 	// FTP section
 	support["ftp"]=breakpoint;
 
-	/Plex section
+	//Plex section
     support["plex"]=[]; //!ping plex, down=breakpoint2;
     support["plex"][0]="The theater is open, so head on over to <https://vaesse.jasoncollege24.com/> to see if the host is up.\r\nIs the Host up? You can say **yes**, or **no**. You can also tell me to go **back**, or close your ticket by telling me it's **fixed**.";
     support["plex"]["no"]=breakpoint;
