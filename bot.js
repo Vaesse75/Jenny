@@ -101,7 +101,7 @@ Jenny.on('ready', () => {
 // Reply to messages
 Jenny.on('message', msg => {
     var input=msg.content.toLowerCase();
-    var tag="<@&"+msg.author.id+">";
+    var tag="<@"+msg.author.id+">";
     //Plain text social responses
 	if (input.match(/^h(e(llo)?|i|y)a?.* jenny.*/)) {
         var say=new Array("Hi there, "+Mbr(msg.member,0)+"! What's up?");
