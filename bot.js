@@ -177,19 +177,24 @@ Jenny.on('message', msg => {
         }
         else if (typeof level == "string") {
             suppconn.send(tag+", "+breakpoint);
+      			ticket[msg.author.id]=null;
         }
         else  {
             suppconn.send(tag+", "+level[0]);
         }
         if (said=="back") {
-            arr.pop();
-            level=walkSupport(arr);
+            ticket[msg.author.id].pop();
+            level=walkSupport(ticket[msg.author.id]);
             suppconn.send(tag+", "+level[0]);
         }
         else if (said=="fixed") {
          suppconn.send(tag+", "+fixedbreak);
          ticket[msg.author.id]=null;
         }
+		else if (said="cancel") {
+			suppconn.send(cancelbreak);
+			ticket[msg.author.id]=null;
+		}
     }
     if (input.match(/^[^,]*, (\w* ){2}is .*\.$/) && waitForCarl) {
         tag=input.split(",")[0];
@@ -198,6 +203,7 @@ Jenny.on('message', msg => {
         }
         else {
             suppconn.send(tag+", "+breakpoint2);
+      			ticket[msg.author.id]=null;
         }
         waitForCarl=false;
     }
