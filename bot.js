@@ -154,7 +154,7 @@ Jenny.on('message', msg => {
 	}
 
     // If author has an open ticket
-	if (ticket[msg.author.id]) {
+	if (ticket[msg.author.id] && !input.match(' ')) {
         var arr=ticket[msg.author.id];
         var said=input.split(" ")[0];
         var level=walkSupport(ticket[msg.author.id]);
