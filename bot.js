@@ -101,6 +101,7 @@ Jenny.on('ready', () => {
 // Reply to messages
 Jenny.on('message', msg => {
     var input=msg.content.toLowerCase();
+    var tag="<@&"+msg.author.id+">";
     //Plain text social responses
 	if (input.match(/^h(e(llo)?|i|y)a?.* jenny.*/)) {
         var say=new Array("Hi there, "+Mbr(msg.member,0)+"! What's up?");
@@ -138,7 +139,7 @@ Jenny.on('message', msg => {
             }
             if (ticket[msg.author.id].length > 0 && keys.indexOf(ticket[msg.author.id][0]) >= 0) {
                 waitForCarl=ticket[msg.author.id][0];
-                suppconn.send("!ping "+ticket[msg.author.id][0]);
+                suppconn.send("!ping "+ticket[msg.author.id][0]+" for "+tag);
             }
             else {
                 ticket[msg.author.id]=[];
@@ -172,30 +173,31 @@ Jenny.on('message', msg => {
         }
         if (ticket[msg.author.id].length==1 && said != "?support") {
             waitForCarl=ticket[msg.author.id][0];
-            suppconn.send("!ping "+ticket[msg.author.id][0]);
+            suppconn.send("!ping "+ticket[msg.author.id][0]+" for "+tag);
         }
         else if (typeof level == "string") {
-            suppconn.send(breakpoint);
+            suppconn.send(tag+", "+breakpoint);
         }
         else  {
-            suppconn.send(level[0]);
+            suppconn.send(tag+", "+level[0]);
         }
         if (said=="back") {
             arr.pop();
             level=walkSupport(arr);
-            suppconn.send(level[0]);
+            suppconn.send(tag+", "+level[0]);
         }
         else if (said=="fixed") {
-         suppconn.send(fixedbreak);
+         suppconn.send(tag+", "+fixedbreak);
          ticket[msg.author.id]=null;
         }
     }
-    if (input.match(/^(\w* ){2}is .*\.$/) && waitForCarl) {
+    if (input.match(/^[^,]*, (\w* ){2}is .*\.$/) && waitForCarl) {
+        tag=input.split(",")[0];
         if (input.substr(input.length-5,4)=="open" || input.substr(input.length-3,2)=="up") {
-            suppconn.send(support[waitForCarl][0]);
+            suppconn.send(tag+", "+support[waitForCarl][0]);
         }
         else {
-            suppconn.send(breakpoint2);
+            suppconn.send(tag+", "+breakpoint2);
         }
         waitForCarl=false;
     }
