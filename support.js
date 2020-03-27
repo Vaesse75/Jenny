@@ -1,7 +1,7 @@
 //Support breakpoints
 	fixedbreak="Great! I'll close your ticket. If you need more help, come see me again!";
-	breakpoint="I can't help you with this just yet. "+SupportRef+", someone needs your assistance!"; //close ticket
-	breakpoint2="The service is down, sorry. "+CastingRef+", service appears to be down!"; //close ticket
+	breakpoint="I can't help you with this just yet. "+SupportRef+", someone needs your assistance! (Ticket closed)"; 
+	breakpoint2="The service is down, sorry. "+CastingRef+", service appears to be down! (Ticket closed)";
 
 //Support questions
 	question1="What are you trying to do?\r\nView the **library**, watch a **video**, listen to **music**, or look at **pictures**? You can also tell me to go **back**, or close your ticket by telling me it's **fixed**."
@@ -13,7 +13,9 @@
 
 	//Calibre section
 	support["calibre"]=[]; //!ping calibre, down=breakpoint2;
-	support["calibre"][0]="The library is open, so head on over to <https://vaesse.jasoncollege24.com/> to see if the host is up.\r\nIs the Host up? You can say **yes**, or **no**. You can also tell me to go **back**, or close your ticket by telling me it's **fixed**."
+	support["calibre"][0]="The library is open, so head on over to <https://vaesse.jasoncollege24.com/> to see if the host is up.\r\nIs the Host up? You can say **yes**, or **no**. You can also tell me to go **back**, or close your ticket by telling me it's **fixed**.";
+	support["calibre"]["no"]=breakpoint2;
+	support["calibre"]["yes"]=breakpoint;
 
 	// FTP section
 	support["ftp"]=breakpoint;
@@ -24,16 +26,6 @@
     support["plex"]["no"]=breakpoint;
 	support["plex"]["yes"]=[];
     support["plex"]["yes"][0]="Ok, so everything seems to be working here. What device are you using plex on?\r\nYou can say **Windows**, **Web**, **Android**, **Apple** (for iPads, and iPhones), **Amazon** (for Fire Stick/TV), or **Console**. You can also tell me to go **back**, or close your ticket by saying it's **fixed**.";
-	//Windows
-	support["plex"]["yes"]["windows"]=[];
-	support["plex"]["yes"]["windows"][0]=question1;
-	support["plex"]["yes"]["windows"]["library"]=[];
-	support["plex"]["yes"]["windows"]["library"][0]=libq1;
-	support["plex"]["yes"]["windows"]["library"]["yes"]=breakpoint;
-	support["plex"]["yes"]["windows"]["library"]["no"]=breakpoint;
-	support["plex"]["yes"]["windows"]["video"]=breakpoint;
-	support["plex"]["yes"]["windows"]["music"]=breakpoint;
-	support["plex"]["yes"]["windows"]["pictures"]=breakpoint;
 	//web
 	support["plex"]["yes"]["web"]=[];
 	support["plex"]["yes"]["web"][0]=question1;
@@ -44,6 +36,16 @@
 	support["plex"]["yes"]["web"]["video"]=breakpoint;
 	support["plex"]["yes"]["web"]["music"]=breakpoint;
 	support["plex"]["yes"]["web"]["pictures"]=breakpoint;
+	//Windows
+	support["plex"]["yes"]["windows"]=[];
+	support["plex"]["yes"]["windows"][0]=question1;
+	support["plex"]["yes"]["windows"]["library"]=[];
+	support["plex"]["yes"]["windows"]["library"][0]=libq1;
+	support["plex"]["yes"]["windows"]["library"]["yes"]=breakpoint;
+	support["plex"]["yes"]["windows"]["library"]["no"]=breakpoint;
+	support["plex"]["yes"]["windows"]["video"]=breakpoint;
+	support["plex"]["yes"]["windows"]["music"]=breakpoint;
+	support["plex"]["yes"]["windows"]["pictures"]=breakpoint;
 	//android
 	support["plex"]["yes"]["android"]=[];
 	support["plex"]["yes"]["android"][0]=question1;
