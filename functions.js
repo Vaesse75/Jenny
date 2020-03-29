@@ -10,7 +10,7 @@ underlay=function(say,cat) {
 		Color='#C70039';
 	}
 	else if (cat == "support") {
-		Color='#FFC300'
+		Color='#FFC300';
 	}
 	return new Discord.RichEmbed()
 	.setColor(Color)
