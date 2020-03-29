@@ -14,9 +14,10 @@ underlay=function(say,cat) {
 	else if (cat == "support") {
 		color='#FFC300';
 	}
-	return new Discord.RichEmbed()
+	var embed = new Discord.RichEmbed()
 	.setColor(color)
 	.setDescription(say);
+	return embed;
 }
 
 // Walk the support tree
