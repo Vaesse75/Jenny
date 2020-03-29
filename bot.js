@@ -94,11 +94,8 @@ Jenny.on('message', msg => {
     
     // Tips
 	if (input.match(/^\?tip/)) {
-		tip=require('./tips.js')(input);
-		msg.channel.send({ tip });
+		msg.channel.send({ require('./tips.js')(input) });
 	}
-
-require('./tips.js')(input);
 
 	// support text
 	if (input.match(/^\?support/)) {
