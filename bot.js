@@ -9,9 +9,9 @@ const Discord = require('discord.js');
 const Jenny = new Discord.Client();
 const auth = require('/home/plex/bots/authJenny.json');
 const fs = require('fs');
-const Ch = {};
+//const Ch = require('./ch.js');
 //const Em = {};
-const Usr = {};
+const Role = require('./role.js');
 //Recs = {"list":[]};
 ticket=[];
 waitForCarl=false;
@@ -24,7 +24,7 @@ require("./functions.js")
 Jenny.on('ready', () => {
     // console.log('Logged in as ${Jenny.user.tag)!');
     
-    //define Ch and Usr objects.
+    //define Ch and Role objects.
     Ch.set("bot","675864898617606184");
     Ch.set("help","583979972578770945");
     Ch.set("test","681380531493142533");
@@ -32,8 +32,8 @@ Jenny.on('ready', () => {
     Ch.set("plex","581346715852865547");
     Ch.set("calibre","590195078765608961");
     Ch.set("rules","581352180355694603");
-    Usr.set("casting","581334517151825920");
-    Usr.set("support","692818837736915054");
+    Role.set("casting","581334517151825920");
+    Role.set("support","692818837736915054");
     
     // define frequently used channels.
     onconn = Ch.get("bot");
@@ -46,12 +46,12 @@ Jenny.on('ready', () => {
     suppconn=offconn
 
     // Links to roles and channels.
-    CastingRef=Usr.ref("CaStInG");
+    CastingRef=Role.ref("CaStInG");
     RulesRef=Ch.ref("rules");
     CalibreRef=Ch.ref("calibre");
     PlexRef=Ch.ref("plex");
 	HelpRef=Ch.ref("help");
-    SupportRef=Usr.ref("support");
+    SupportRef=Role.ref("support");
 
 	// Support Array
 	require("./support.js");
