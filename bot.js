@@ -13,7 +13,6 @@ const Ch = require('./ch.js');
 //const Em = {};
 const Role = require('./role.js');
 //Recs = {"list":[]};
-module.exports=bot;
 ticket=[];
 waitForCarl=false;
 sayerr="Oops! I dropped something!";
@@ -113,8 +112,8 @@ Jenny.on('message', msg => {
                 keys+=key;
             }
             if (ticket[msg.author.id].length > 0 && keys.indexOf(ticket[msg.author.id][0]) >= 0) {
-                suppconn.send(underlay(tag+", "+pingwarn,"support"));
                 waitForCarl=ticket[msg.author.id][0];
+                suppconn.send(tag+", "+pingwarn);
 				suppconn.send("!ping "+ticket[msg.author.id][0]+" for "+tag);
             }
             else {
@@ -162,7 +161,7 @@ Jenny.on('message', msg => {
 		}
 		else if (ticket[msg.author.id].length==1 && said != "?support") {
             waitForCarl=ticket[msg.author.id][0];
-            suppconn.send(underlay(tag+", "+pingwarn,"support"));
+            suppconn.send(tag+", "+pingwarn);
             suppconn.send("!ping "+ticket[msg.author.id][0]+" for "+tag);
         }
         else if (typeof level == "string") {
