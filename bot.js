@@ -113,7 +113,7 @@ Jenny.on('message', msg => {
             }
             if (ticket[msg.author.id].length > 0 && keys.indexOf(ticket[msg.author.id][0]) >= 0) {
                 waitForCarl=ticket[msg.author.id][0];
-                suppconn.send(tag+", "+pingwarn);
+                suppconn.send(underlay(tag+", "+pingwarn));
 				suppconn.send("!ping "+ticket[msg.author.id][0]+" for "+tag);
             }
             else {
