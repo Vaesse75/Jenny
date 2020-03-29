@@ -189,7 +189,7 @@ Jenny.on('message', msg => {
     }
     // help text
 	if (input.match(/^\?help/)||input.match(/^help.*jenny.*/)) {
-        var say=new Array(Mbr(msg.member,0)+", here's a quick help list!\n\n?ping - Asks me to check if you're online.\n?support - Opens a trouble ticket (Automated support is in Beta, and requires Carl to be online.).\n\n?tip - tells me to give you a random support tip.\n?help - Tells me to display this message."+"\n\n"+"If you need assistance or have feedback about my service, let a member of our Casting staff know in "+HelpRef+".");
+        var say=new Array(Mbr(msg.member,0)+", here's a quick help list!\n\n?ping - Asks me to check if you're online.\n?support - Opens a trouble ticket (Automated support is in Beta, and requires Carl to be online.).\n?tip - tells me to give you a random support tip.\n?help - Tells me to display this message.\n\nNeed help from Carl? type !help to see what he can do!\n\nIf you need assistance or have feedback about my service, let a member of our Casting staff know in "+HelpRef+".");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
 	}
 });
