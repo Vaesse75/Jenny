@@ -18,7 +18,7 @@ waitForCarl=false;
 sayerr="Oops! I dropped something!";
 
 // Functions
-require("./functions.js")
+require("./functions.js");
 
 // acknowledge ready state
 Jenny.on('ready', () => {
@@ -43,7 +43,7 @@ Jenny.on('ready', () => {
 
     // TESTING AREA uncomment below to set Jenny to send to testing channel. (Ushers/Producer only)
     onconn=offconn;
-    suppconn=offconn
+    suppconn=offconn;
 
     // Links to roles and channels.
     CastingRef=Role.ref("casting");
