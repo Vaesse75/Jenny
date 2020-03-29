@@ -6,5 +6,6 @@ if (input.match(/^\?tip/)) {
 		"TIP: Did you know? It's normal to see a warning that you can't reach our Plex securely on first use (per device). Just select \"Allow always\" when prompted.",
 		"TIP: Did you know? Plex libraries always default to show \"Recommended\" items on first use. To show the entire library, change that to \"Library\", and you should be good to go."
 	];
-	msg.channel.send({ underlay(say[Math.floor(Math.random()*say.length)],tips) });
+	tip=say[Math.floor(Math.random()*say.length)];
+	msg.channel.send({ underlay(tip,tips) });
 }
