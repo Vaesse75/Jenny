@@ -46,7 +46,7 @@ Jenny.on('ready', () => {
     suppconn=offconn
 
     // Links to roles and channels.
-    CastingRef=Role.ref("CaStInG");
+    CastingRef=Role.ref("casting");
     RulesRef=Ch.ref("rules");
     CalibreRef=Ch.ref("calibre");
     PlexRef=Ch.ref("plex");
