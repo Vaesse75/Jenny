@@ -2,6 +2,9 @@
     Future Plans:
 	Finish automated support tickets
 	Add underlay for support
+	
+	Known issues:
+		If Carl's service isn't running, Jenny doesn't timeout, waiting for his ping reply.
 */
 
 // Set constants
@@ -186,7 +189,7 @@ Jenny.on('message', msg => {
     }
     // help text
 	if (input.match(/^\?help/)||input.match(/^help.*jenny.*/)) {
-        var say=new Array(""+Mbr(msg.member,0)+", here's a quick help list!"+"\r\n\r\n"+"?ping - Asks me to check if you're online."+"\r\n"+"?support - Opens a trouble ticket (Automated support is in Beta)."+"\r\n"+"?help - Tells me to display this message."+"\r\n\r\n"+"If you need assistance or have feedback about my service, let a member of our Casting staff know in "+HelpRef+".");
+        var say=new Array(Mbr(msg.member,0)+", here's a quick help list!\n\n?ping - Asks me to check if you're online.\n?support - Opens a trouble ticket (Automated support is in Beta, and requires Carl to be online.).\n\n?tip - tells me to give you a random support tip.\n?help - Tells me to display this message."+"\n\n"+"If you need assistance or have feedback about my service, let a member of our Casting staff know in "+HelpRef+".");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
 	}
 });
