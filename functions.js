@@ -39,3 +39,6 @@ module.exports.walkSupport=function(arr) {
     }
     return level;
 }
+module.exports.Mbr=function(mem,leadcap) {
+    return leadcap?mem||"Friend":mem||"friend";
+}
