@@ -1,3 +1,5 @@
+//set constants
+const Discord = require('discord.js');
 
 // Underlay function for support, and tips
 underlay=function(say,cat) {
