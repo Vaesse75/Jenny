@@ -1,19 +1,19 @@
 
 // Underlay function for support, and tips
 underlay=function(say,cat) {
-	var Color='#000000';
+	var color='#000000';
 	if (!say) {
 		var say=sayerr;
 		console.log("Oops! There's no say!");
 	}
 	else if (cat == "tips") {
-		Color='#C70039';
+		color='#C70039';
 	}
 	else if (cat == "support") {
-		Color='#FFC300';
+		color='#FFC300';
 	}
 	return new Discord.RichEmbed()
-	.setColor(Color)
+	.setColor(color)
 	.setDescription(say);
 }
 
