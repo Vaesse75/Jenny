@@ -2,7 +2,7 @@
 const Discord = require('discord.js');
 
 // Underlay function for support, and tips
-underlay=function(say,cat) {
+module.exports.underlay=function(say,cat) {
 	var color='#000000';
 	if (!say) {
 		var say=sayerr;
@@ -21,7 +21,7 @@ underlay=function(say,cat) {
 }
 
 // Walk the support tree
-function walkSupport(arr) {
+module.exports.walkSupport=function(arr) {
     var level=support;
     for (var a in arr) {
         var keys="";

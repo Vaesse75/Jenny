@@ -18,7 +18,9 @@ waitForCarl=false;
 sayerr="Oops! I dropped something!";
 
 // Functions
-require("./functions.js");
+functions=require("./functions.js");
+underlay=functions.underlay;
+walkSupport=functions.walkSupport;
 
 // acknowledge ready state
 Jenny.on('ready', () => {
