@@ -13,6 +13,7 @@ const Ch = require('./ch.js');
 //const Em = {};
 const Role = require('./role.js');
 //Recs = {"list":[]};
+module.exports=bot;
 ticket=[];
 waitForCarl=false;
 sayerr="Oops! I dropped something!";
