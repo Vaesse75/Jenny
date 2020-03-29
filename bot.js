@@ -112,8 +112,8 @@ Jenny.on('message', msg => {
                 keys+=key;
             }
             if (ticket[msg.author.id].length > 0 && keys.indexOf(ticket[msg.author.id][0]) >= 0) {
+                suppconn.send(underlay(tag+", "+pingwarn,"support"));
                 waitForCarl=ticket[msg.author.id][0];
-                suppconn.send(underlay(tag+", "+pingwarn));
 				suppconn.send("!ping "+ticket[msg.author.id][0]+" for "+tag);
             }
             else {
