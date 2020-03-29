@@ -1,4 +1,0 @@
-"Vaesse","Movies","Alice","This remake of Alice in Wonderland done by the SyFy channel is a fascinating love story."
-"Vaesse","Movies","Accepted","This is a hillarious movie about a college I'd send my son to if I could."
-"Vaesse","TV","Firefly","This space western is an absolute must see!  Brilliant characters and only 13 episodes, so it's not much of a commitment."
-"Vaesse","TV","Nikita","This reboot of 'La Femme Nikita' is an action-thriller. All the characters are amazing!"

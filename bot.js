@@ -1,61 +1,24 @@
 /*
     Future Plans:
-	Create automated support tickets (Support phrases and examples below)
+	Finish automated support tickets
+	Add underlay for support
 */
 
 // Set constants
 const Discord = require('discord.js');
 const Jenny = new Discord.Client();
 const auth = require('/home/plex/bots/authJenny.json');
-//const fs = require('fs');
+const fs = require('fs');
 const Ch = {};
 //const Em = {};
 const Usr = {};
 //Recs = {"list":[]};
 ticket=[];
 waitForCarl=false;
-// Define Functions
-Ch.get=function(id) {
-    return Jenny.channels.get(this[id.toLowerCase()]||id.toLowerCase());
-};
-Ch.ref=function(id) {
-    return "<#"+(this[id.toLowerCase()]||id.toLowerCase())+">";
-};
-Ch.set=function(id,val) {
-    this[id.toLowerCase()]=val;
-};
-Usr.ref=function(id) {
-    return "<@&"+(this[id.toLowerCase()]||id.toLowerCase())+">";
-};
-Usr.set=function(id,val) {
-    this[id.toLowerCase()]=val;
-};
+sayerr="Oops! I dropped something!";
 
-function Mbr(mem,leadcap) {
-    if (leadcap) {
-        return mem||"Friend";
-    }
-    else return mem||"friend";
-}
-
-function walkSupport(arr) {
-    var level=support;
-    for (var a in arr) {
-        var keys="";
-        for (var key in level) {
-            if (keys != "") keys+=",";
-            keys+=key;
-        }
-        if (keys.indexOf(arr[a]) >= 0) {
-            level=level[arr[a]];
-        }
-        else {
-            console.log(a+" is invalid.");
-            return level;
-        }
-    }
-    return level;
-}
+// Functions
+require("./functions.js")
 
 // acknowledge ready state
 Jenny.on('ready', () => {
@@ -79,8 +42,8 @@ Jenny.on('ready', () => {
     newconn = Ch.get("welcome");
 
     // TESTING AREA uncomment below to set Jenny to send to testing channel. (Ushers/Producer only)
-    //onconn=offconn;
-    //suppconn=offconn
+    onconn=offconn;
+    suppconn=offconn
 
     // Links to roles and channels.
     CastingRef=Usr.ref("CaStInG");
@@ -90,6 +53,7 @@ Jenny.on('ready', () => {
 	HelpRef=Ch.ref("help");
     SupportRef=Usr.ref("support");
 
+	// Support Array
 	require("./support.js");
 
     // Wakeup message.
@@ -102,6 +66,7 @@ Jenny.on('ready', () => {
 Jenny.on('message', msg => {
     var input=msg.content.toLowerCase();
     var tag="<@"+msg.author.id+">";
+
     //Plain text social responses
 	if (input.match(/^h(e(llo)?|i|y)a?.* jenny.*/)) {
         var say=new Array("Hi there, "+Mbr(msg.member,0)+"! What's up?");
@@ -127,7 +92,10 @@ Jenny.on('message', msg => {
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
     
-    // support text
+    // Tips
+	require('./tips.js');
+
+	// support text
 	if (input.match(/^\?support/)) {
         ticket[msg.author.id]=input.substr(9).split(" ");
         var level=support;

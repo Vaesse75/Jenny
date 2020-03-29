@@ -1,5 +1,10 @@
 Change package.json line 3 to match the version listed, before restarting Jenny with final (Add new versions to the top of the list)
 
+1.2.2 [jasoncollege24]
+Added tips feature with tips.js
+Added underlay for tips as a function
+Moved functions to functions.js
+
 1.2.1 [jasoncollege24]
 Added a "cancel" feature
 Fixed an issue that caused cancel, fixed, and back to repeat the previous reply.

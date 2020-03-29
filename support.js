@@ -11,6 +11,7 @@
 	alloptions="You can also tell me to go **back**, **cancel** your ticket, or resolve your ticket by telling me it's **fixed**.";
 	question1="what are you trying to do?\r\nView the **library**, watch a **video**, listen to **music**, or look at **pictures**?";
 	libq1="is the library visible at all? You can say **yes**, or **no**.";
+	browserq1="Which web browser are you using? You can say **IE** (Internet Explorer), **Edge**, **Chrome**, **Mozilla** (Firefox/Waterfox), **Safari**, or **other**.
 
 //support Array
 	support=[];
