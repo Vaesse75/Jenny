@@ -91,7 +91,13 @@ Jenny.on('message', msg => {
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
 
-    //// Programatic triggers
+   // Bot banter
+	if (input=="was that star trek or star wars?" && Math.floor(Math.random() * 10)==0) {
+		var say=new Array("Hmmm.... That's a really hard choice!","Why not both?","Today, I prefer the Firefly class!");
+		msg.channel.send(say[Math.floor(Math.random()*say.length)]);
+	}
+ 
+ //// Programatic triggers
     // ping reply
 	if (input.match(/^\?ping/)) {
         var say=new Array("Yup! You're here!");
