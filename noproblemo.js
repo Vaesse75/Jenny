@@ -36,7 +36,7 @@ module.exports=function(message) {
     const chan=message.client.guilds.get("581333387403329557").channels.get((err?"581603029263056921":"581339870790680586"));
     const mode=err?"problem report":"request";
     let deleteMsg=true,type=undefined,dmText="Oops! This channel is for media problem "+mode+"s. Conversations go in "+chatchan+".";
-    if (message.channel===chan) {
+    if (message.channel==chan) {
         let info=message.content.match(err?/^(🛑)?\s*(\S+)\s+\*\*(.*)\*\*\s+\((.*)\)\s*-?\s*S?(\d{2})?E?(\d{2})?(\s+\*(.*)\*)?$/:/^(🛑)?\s*(\S+)\s+\*\*(.*)\*\*\s+\((.*)\)(\s+on\s+(.+))?(\s+\*(.*)\*)?$/);
         if (info && info.length==9&&info[2]&&!err==!info[1]) {
             switch(info[2]) {
