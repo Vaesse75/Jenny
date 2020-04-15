@@ -1,6 +1,8 @@
 /*
     Future Plans:
 	Finish automated support tickets
+	Implement ping for support
+	write open support tickets to file (delete file on ticket close)
 	Add underlay for support
 	
 	Known issues:
