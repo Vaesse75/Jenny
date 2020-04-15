@@ -1,5 +1,10 @@
 Change package.json line 3 to match the version listed, before restarting Jenny with final (Add new versions to the top of the list)
 
+1.3.20 [jasoncollege24]
+Implemented crack down on problem report formats
+added backend for service checking in support (Not implemented yet)
+Updated bot banter
+
 1.3.18 [jasoncollege24, caseyomah]
 Added tips feature, with underlay
 Added underlay for tips as a function
