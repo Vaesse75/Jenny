@@ -2,6 +2,7 @@ const fs = require('fs');
 module.exports={
     toArray(string,a) {
         while (string.slice(-1)=="\n") string=string.slice(0,-1);
+        if (string.length==0) return [];
         arr=string.split("\n").map((line)=>{return line.slice(1,-1).split('","');});
         if (a) {
             aarr=[];
