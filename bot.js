@@ -70,6 +70,7 @@ Jenny.on('ready', () => {
 
 // Reply to messages
 Jenny.on('message', msg => {
+	require('./asyouwish.js')(msg);
     var input=msg.content.toLowerCase();
     var tag="<@"+msg.author.id+">";
 
