@@ -93,7 +93,7 @@ Jenny.on('message', msg => {
     }
 
    // Bot banter
-	if (input=="was that star trek or star wars?" && Math.floor(Math.random() * 10)==0) {
+	if (input=="was that star trek or star wars?") {
 		var say=new Array("Hmmm.... That's a really hard choice!","Why not both?","Today, I prefer the Firefly class!");
 		msg.channel.send(say[Math.floor(Math.random()*say.length)]);
 	}
