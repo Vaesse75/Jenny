@@ -21,7 +21,8 @@ module.exports={
         return this.fromArray(arr,1);
     },
     readArraySync(file,enc,a) {
-    return this.toArray(fs.readFileSync(file, (enc?enc:'utf8')),a);
+    if (fs existsSync(file)) return this.toArray(fs.readFileSync(file, (enc?enc:'utf8')),a);
+	else return a?{}:[];
     },
     readObjectSync(file,enc) {
         return this.readArraySync(file,enc,1);
