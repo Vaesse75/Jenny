@@ -15,7 +15,7 @@ module.exports=function(input,underlay,chan) {
 
 
     // Tips
-	if (input.match(/^\?tip/)) {
-		tip=require('./tips.js')(input,underlay);
-		msg.channel.send( tip );
-	}
+//	if (input.match(/^\?tip/)) {
+//		tip=require('./tips.js')(input,underlay);
+//		msg.channel.send( tip );
+//	}
