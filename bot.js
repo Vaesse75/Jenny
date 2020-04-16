@@ -82,7 +82,7 @@ Jenny.on('message', msg => {
 
     //response modules
     require('./social.js')(input,reply,msg.channel); // Social responses (Plain text)
-    require('./tips.js')(input,underlay,msg.channel); //tips module (Programmatic)
+    require('./tips.js')(input,underlay,msg.channel,msg.member); //tips module (Programmatic)
  
  //// Programatic triggers
     // ping reply

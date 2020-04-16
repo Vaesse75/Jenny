@@ -1,8 +1,8 @@
-module.exports=function(input,say,chan) {
+module.exports=function(input,say,chan,member) {
 	var text=[];
 	if (input.match(/^h(ey|ello|i)a?.* jenny.*/)) {
 		text=[
-			"Hi there, "+Mbr(msg.member,0)+"! What's up?",
+			"Hi there, "+Mbr(member,0)+"! What's up?",
 			"What's up?",
 			"Hi!",
 			"Hey there!",
@@ -12,14 +12,14 @@ module.exports=function(input,say,chan) {
 		text=[
 			"Later!",
 			"See ya later!",
-			"Come back soon, "+Mbr(msg.member,0)+".",
+			"Come back soon, "+Mbr(member,0)+".",
 		];
 	}
 	if (input.match(/^(good ?)?morning.* jenny.*/)) {
 		text=[
 			"Need coffee!",
 			"Morning.",
-			"Hey look! It's "+Mbr(msg.member,0)+"!",
+			"Hey look! It's "+Mbr(member,0)+"!",
 			"It's still morning? Why do I not have coffee?",
 		];
 	}
