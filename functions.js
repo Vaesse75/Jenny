@@ -5,8 +5,8 @@ const Discord = require('discord.js');
 module.exports.underlay=function(say,cat) {
 	var color='#000000';
 	if (!say) {
-		var say=sayerr;
-		console.log("Oops! There's no say!");
+		var say=err+" (A1)";
+		console.error("Oops! There's no say! (A1)");
 	}
 	else if (cat == "tips") {
 		color='#C70039';
@@ -41,4 +41,14 @@ module.exports.walkSupport=function(arr) {
 }
 module.exports.Mbr=function(mem,leadcap) {
     return leadcap?mem||"Friend":mem||"friend";
+}
+module.exports.reply=function(say,chan) {
+    if (say) {
+        if (!chan) {
+            chan=onconn;
+            console.error("No channel was sent! (A1)")
+            say=say+" "+err+" (A1)"
+        }
+        return chan.send(say);
+    }
 }

@@ -20,39 +20,43 @@ const Role = require('./role.js');
 //Recs = {"list":[]};
 ticket=[];
 waitForCarl=false;
-sayerr="Oops! I dropped something!";
+err="Oops! I dropped something!";
+training=true; //comment this for normal operation
 
 // Functions
 functions=require("./functions.js");
 underlay=functions.underlay;
 walkSupport=functions.walkSupport;
 Mbr=functions.Mbr;
+reply=functions.reply;
 
 // acknowledge ready state
-Jenny.on('ready', () => {
-    // console.log('Logged in as ${Jenny.user.tag)!');
+Jenny.once('ready', () => {
+    // console.warn('Logged in as ${Jenny.user.tag)!');
     
     //define Ch and Role objects.
     Ch.set("bot","675864898617606184");
     Ch.set("help","583979972578770945");
     Ch.set("test","681380531493142533");
-    Ch.set("welcome","581340165520359424");
-    Ch.set("plex","581346715852865547");
-    Ch.set("calibre","590195078765608961");
     Ch.set("rules","581352180355694603");
+    Ch.set("report","581603029263056921");
     Role.set("casting","581334517151825920");
     Role.set("support","692818837736915054");
     
     // define frequently used channels.
-    onconn = Ch.get("bot");
-    suppconn = Ch.get("help");
     offconn = Ch.get("test");
-    newconn = Ch.get("welcome");
-
-    // TESTING AREA uncomment below to set Jenny to send to testing channel. (Ushers/Producer only)
-    //onconn=offconn;
-    //suppconn=offconn;
-
+    if (training) {
+        onconn=offconn;
+        suppconn=offconn;
+        repconn=Ch.get("report"); //comment this to test report module
+        //repconn=offconn; //uncomment this to test report module
+    }
+    else {
+        onconn = Ch.get("bot");
+        suppconn = Ch.get("help");
+        repconn = Ch.get("report");
+    }
+        
     // Links to roles and channels.
     CastingRef=Role.ref("casting");
     RulesRef=Ch.ref("rules");
@@ -76,29 +80,9 @@ Jenny.on('message', msg => {
     var input=msg.content.toLowerCase();
     var tag="<@"+msg.author.id+">";
 
-    //Plain text social responses
-	if (input.match(/^h(e(llo)?|i|y)a?.* jenny.*/)) {
-        var say=new Array("Hi there, "+Mbr(msg.member,0)+"! What's up?");
-        msg.channel.send(say[Math.floor(Math.random()*say.length)]);
-    }
-    if (input.match(/^(good ?)?(bye|n(ight|ite)).* jenny.*/)) {
-        var say=new Array("See ya later!","Come back soon, "+Mbr(msg.member,0)+".");
-        msg.channel.send(say[Math.floor(Math.random()*say.length)]);
-    }
-    if(input.match(/morning.* jenny.*/)) {
-        var say=new Array("Need coffee!","Hey look! It's "+Mbr(msg.member,0)+"!","It's still morning? Why do I not have coffee?");
-        msg.channel.send(say[Math.floor(Math.random()*say.length)]);
-    }
-    if(input.match(/thank(s.*| ?you.*) jenny.*/)) {
-        var say=new Array("Any time!","Not a problem!","It's what I'm here for!","You betcha!");
-        msg.channel.send(say[Math.floor(Math.random()*say.length)]);
-    }
-
-   // Bot banter
-	if (input=="was that star trek or star wars?") {
-		var say=new Array("Hmmm.... That's a really hard choice!","Why not both?","Today, I prefer the Firefly class!");
-		msg.channel.send(say[Math.floor(Math.random()*say.length)]);
-	}
+    //response modules
+    require('./social.js')(input,reply,msg.channel); // Social responses (Plain text)
+    require('./tips.js')(input,underlay,msg.channel); //tips module (Programmatic)
  
  //// Programatic triggers
     // ping reply
@@ -108,10 +92,10 @@ Jenny.on('message', msg => {
     }
     
     // Tips
-	if (input.match(/^\?tip/)) {
-		tip=require('./tips.js')(input,underlay);
-		msg.channel.send( tip );
-	}
+	//if (input.match(/^\?tip/)) {
+	//	tip=require('./tips.js')(input,underlay);
+	//	msg.channel.send( tip );
+	//}
 
 	// support text
 	if (input.match(/^\?support/)) {
