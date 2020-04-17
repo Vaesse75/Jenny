@@ -18,7 +18,7 @@ const types={"📺":["tv","TV show"],"🎞️":["movie","movie"],"🎵":["music"
 var log={};
 Object.values(types).forEach(key=>log[key[0]]=CSV.readArraySync(filepath+key[0]+"."+ext));
 watchReacts=function(m,f,l,k,cc) {
-    const filter=(reaction,user)=>reaction.emoji.name==='✨'&&(user.roles.has("581334517151825920")||user.roles.has("581538686265589772"));
+    const filter=(reaction,user)=>{return reaction.emoji.name==='✨'&&(user.roles.has("581334517151825920")||user.roles.has("581538686265589772"))};
     m.createReactionCollector(filter).on('collect', (r,c) => {
         t=[];
         log[f].forEach((v,i)=>{if (i!==k) t.push(v)});
