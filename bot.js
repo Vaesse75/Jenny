@@ -20,7 +20,7 @@ const Role = require('./role.js');
 //Recs = {"list":[]};
 ticket=[];
 waitForCarl=false;
-err="Oops! I dropped something!";
+errs="Oops! I dropped something!";
 training=true; //comment this for normal operation
 
 // Functions

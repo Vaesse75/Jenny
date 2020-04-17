@@ -5,7 +5,7 @@ const Discord = require('discord.js');
 module.exports.underlay=function(say,cat) {
 	var color='#000000';
 	if (!say) {
-		var say=err+" (A1)";
+		var say=errs+" (A1)";
 		console.error("Oops! There's no say! (A1)");
 	}
 	else if (cat == "tips") {
@@ -46,8 +46,8 @@ module.exports.reply=function(say,chan) {
     if (say) {
         if (!chan) {
             chan=onconn;
-            console.error("No channel was sent! (A1)")
-            say=say+" "+err+" (A1)"
+            console.error("No channel was sent! (A2)")
+            say=say+" "+errs+" (A2)"
         }
         return chan.send(say);
     }
