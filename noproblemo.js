@@ -50,7 +50,7 @@ module.exports=function(message) {
     let deleteMsg=true,type=undefined,dmText="Oops! This channel is for media problem "+mode+"s. Conversations go in "+chatchan+".";
     if (!reacts) {
         reacts=true;
-        Object.keys(log).forEach(f=>log[f].forEach((l,k)=>chan.fetchMessage(l[1]).then(m=>watchReacts(m,f,l,k,chatchan)).catch()));
+        Object.keys(log).forEach(f=>log[f].forEach((l,k)=>chan.fetchMessage(l[1]).then(m=>watchReacts(m,f,l,k,chatchan)).catch(console.error)));
     }
     if (message.channel==chan) {
         info=message.content.match(err?/^(🛑)?\s*(\S+)\s+\*\*(.*)\*\*\s+\((.*)\)\s*-?\s*S?(\d{2})?E?(\d{2})?(\s+\*(.*)\*)?$/:/^(🛑)?\s*(\S+)\s+\*\*(.*)\*\*\s+\((.*)\)(\s+on\s+(.+))?(\s+\*(.*)\*)?$/);

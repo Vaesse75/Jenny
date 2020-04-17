@@ -21,7 +21,7 @@ const Role = require('./role.js');
 ticket=[];
 waitForCarl=false;
 errs="Oops! I dropped something!";
-//training=true; //comment this for normal operation
+training=false; //change to false for normal operation
 
 // Functions
 functions=require("./functions.js");
