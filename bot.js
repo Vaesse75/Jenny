@@ -17,6 +17,8 @@ const fs = require('fs');
 const Ch = require('./ch.js');
 //const Em = {};
 const Role = require('./role.js');
+
+// Set variables
 //Recs = {"list":[]};
 ticket=[];
 waitForCarl=false;
