@@ -1,5 +1,8 @@
 Change package.json line 3 to match the version listed, before restarting Jenny with final (Add new versions to the top of the list)
 
+1.5.41 [jasoncollege24]
+bugfix for all missing dates for Jenny
+
 1.5.4 [jasoncollege24]
 Minor bugfix for noproblemo that removed Jenny's missing date error.
 

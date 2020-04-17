@@ -55,6 +55,7 @@ module.exports=function(message) {
     if (message.channel==chan) {
         info=message.content.match(err?/^(🛑)?\s*(\S+)\s+\*\*(.*)\*\*\s+\((.*)\)\s*-?\s*S?(\d{2})?E?(\d{2})?(\s+\*(.*)\*)?$/:/^(🛑)?\s*(\S+)\s+\*\*(.*)\*\*\s+\((.*)\)(\s+on\s+(.+))?(\s+\*(.*)\*)?$/);
         if (info && info.length==9&&info[2]&&!err==!info[1]) {
+            var year=info[4].match(/^\S{4}$/);
             switch(info[2]) {
                 case "📺":
                     //:tv:   **TITLE** (DATE, STATUS [Upcoming, Ongoing, Ended]) on CHANNEL *OPTIONAL NOTES TO HELP DIFFERENTIATE*
@@ -67,6 +68,7 @@ module.exports=function(message) {
                     else if (err&&!info[6]) dmText="Oops! I need to know the "+type[1]+" episode number. (2 digits)";
                     else if (err&&!info[8]) dmText="Oops! You need to tell me what's wrong with this "+type[1]+".";
                     else if (!err&&!info[6]) dmText="I'm sorry, what channel is that "+type[1]+" on again?"; //Carl only
+                    else if (err&&!year) dmText="Oops! what's the release year?"; //re-added for Jenny, from previous bugfix
                     else {
                         deleteMsg=false;
                         dmText="Thanks for your "+mode+" about the "+(err?"":"`"+date[2].toLowerCase()+"` ")+type[1]+" `"+info[3]+"` from "+(err?"episode ":"")+"`"+info[6]+"` "+(err?"of season `"+info[5]+"` ":"")+"released in `"+(err?info[4]:date[1])+"`."+(!info[8]?"":" The following report was included: `"+info[8]+"`.");
@@ -81,7 +83,7 @@ module.exports=function(message) {
                     date=info[4].match(/^(.+), *(.*)$/);
                     if (!err&&!date) dmText="I'm sorry, I didn't understand your date and/or status."; //carl only
                     else if (!err&&!status.map(s=>s.toLowerCase()).includes(date[2].toLowerCase())) dmText="I'm sorry, that is not a valid status.\n\nValid statuses are: "+status.join(/, */)+"."; //carl only
-                    else if (err&&!date) dmText="Oops! what's the release year?"; //re-added for Jenny, from previous bugfix
+                    else if (err&&!year) dmText="Oops! what's the release year?"; //re-added for Jenny, from previous bugfix
                     else if (err&&!info[8]) dmText="Oops! You need to tell me what's wrong with this "+type[1]+".";
                     else {
                         deleteMsg=false;
@@ -98,7 +100,7 @@ module.exports=function(message) {
                     if (tags.length!=n.length) {
                         dmText="Oops! "+(tags.length>n.length?"You can't use space-hypen-space (` - `) in "+n.slice(0,-1).join(", ")+" or "+n[n.length-1]+".":"I need "+n.slice(0,-1).join(", ")+" and "+n[n.length-1]+" separated by space-hyphen-space (` - `) for me to take your "+mode+".");
                     }
-                    else if (!info[4].match(/^\S{4}$/)) dmText="Oops! what's the release year?";
+                    else if (err&&!year) dmText="Oops! what's the release year?"; //re-added for Jenny, from previous bugfix
 					else if (!info[8]&&err) dmText="Oops! You need to tell me what's wrong with this "+type[1]+".";
                     else {
                         deleteMsg=false;
@@ -114,7 +116,7 @@ module.exports=function(message) {
                     if (tags.length!=n.length) {
                         dmText="Oops! "+(tags.length>n.length?"You can't use space-hypen-space (` - `) in "+n.slice(0,-1).join(", ")+" or "+n[n.length-1]+".":"I need "+n.slice(0,-1).join(", ")+" and "+n[n.length-1]+" separated by space-hyphen-space (` - `) for me to take your "+mode+".");
                     }                
-                    else if (!info[4].match(/^\S{4}$/)) dmText="Oops! what's the release year?";
+                    else if (err&&!year) dmText="Oops! what's the release year?"; //re-added for Jenny, from previous bugfix
 					else if (!info[8]&&err) dmText="Oops! You need to tell me what's wrong with this "+type[1]+".";
                     else {
                         deleteMsg=false;
@@ -130,7 +132,7 @@ module.exports=function(message) {
                     if (tags.length!=n.length) {
                         dmText="Oops! "+(tags.length>n.length?"You can't use space-hypen-space (` - `) in "+n.slice(0,-1).join(", ")+" or "+n[n.length-1]+".":"I need "+n.slice(0,-1).join(", ")+" and "+n[n.length-1]+" separated by space-hyphen-space (` - `) for me to take your "+mode+".");
                     }                
-                    else if (!info[4].match(/^\S{4}$/)) dmText="Oops! what's the release year?";
+                    else if (err&&!year) dmText="Oops! what's the release year?"; //re-added for Jenny, from previous bugfix
 					else if (!info[8]&&err) dmText="Oops! You need to tell me what's wrong with this "+type[1]+".";
                     else {
                         deleteMsg=false;
@@ -146,7 +148,7 @@ module.exports=function(message) {
                     if (tags.length!=n.length) {
                         dmText="Oops! "+(tags.length>n.length?"You can't use space-hypen-space (` - `) in "+n.slice(0,-1).join(", ")+" or "+n[n.length-1]+".":"I need "+n.slice(0,-1).join(", ")+" and "+n[n.length-1]+" separated by space-hyphen-space (` - `) for me to take your "+mode+".");
                     }                
-                    else if (!info[4].match(/^\S{4}$/)) dmText="Oops! what's the release year?";
+                    else if (err&&!year) dmText="Oops! what's the release year?"; //re-added for Jenny, from previous bugfix
 					else if (!info[8]&&err) dmText="Oops! You need to tell me what's wrong with this "+type[1]+".";
                     else {
                         deleteMsg=false;
@@ -162,7 +164,7 @@ module.exports=function(message) {
                     if (tags.length!=n.length) {
                         dmText="Oops! "+(tags.length>n.length?"You can't use space-hypen-space (` - `) in "+n.slice(0,-1).join(", ")+" or "+n[n.length-1]+".":"I need "+n.slice(0,-1).join(", ")+" and "+n[n.length-1]+" separated by space-hyphen-space (` - `) for me to take your "+mode+".");
                     }                
-                    else if (!info[4].match(/^\S{4}$/)) dmText="Oops! what's the release year?";
+                    else if (err&&!year) dmText="Oops! what's the release year?"; //re-added for Jenny, from previous bugfix
 					else if (!info[8]&&err) dmText="Oops! You need to tell me what's wrong with this "+type[1]+".";
                     else {
                         deleteMsg=false;
