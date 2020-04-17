@@ -4,6 +4,9 @@
   "description": "Discord Plex Support Bot",
   "main": "bot.js",
   "readmeFilename": "changelog.txt",
+  "scripts": {
+    "start": "node ."
+  }
   "dependencies": {
     "@discordjs/uws": "^10.149.0",
     "discord": "^0.8.2",
