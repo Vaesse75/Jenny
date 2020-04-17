@@ -10,7 +10,8 @@
 	service2="everything seems to be working here. What device are you using?\r\n";
 	alloptions="You can also tell me to go **back**, **cancel** your ticket, or resolve your ticket by telling me it's **fixed**.";
 	question1="what are you trying to do?\r\nView the **library**, watch a **video**, listen to **music**, or look at **pictures**?";
-	libq1="is the library visible at all? You can say **yes**, or **no**.";
+	libq1="Have you requested access to Vaessa's Plex? You can say **yes**, or **no**.";
+	libq2="is the library visible at all? You can say **yes**, or **no**.";
 	browserq1="Which web browser are you using? You can say **IE** (Internet Explorer), **Edge**, **Chrome**, **Mozilla** (Firefox/Waterfox), **Safari**, or **other**.";
 
 //support Array
@@ -50,7 +51,10 @@
 	support["plex"]["yes"]["windows"][0]=question1+" "+alloptions;
 	support["plex"]["yes"]["windows"]["library"]=[];
 	support["plex"]["yes"]["windows"]["library"][0]=libq1+" "+alloptions;
-	support["plex"]["yes"]["windows"]["library"]["yes"]=breakpoint;
+	support["plex"]["yes"]["windows"]["library"]["yes"]=[];
+	support["plex"]["yes"]["windows"]["library"]["yes"][0]=libq2+" "+alloptions;
+	support["plex"]["yes"]["windows"]["library"]["yes"]["yes"]=breakpoint;
+	support["plex"]["yes"]["windows"]["library"]["yes"]["no"]=breakpoint;
 	support["plex"]["yes"]["windows"]["library"]["no"]=breakpoint;
 	support["plex"]["yes"]["windows"]["video"]=breakpoint;
 	support["plex"]["yes"]["windows"]["music"]=breakpoint;

@@ -1,6 +1,6 @@
 {
   "name": "jenny",
-  "version": "1.5.43",
+  "version": "1.5.44",
   "description": "Discord Plex Support Bot",
   "main": "bot.js",
   "readmeFilename": "changelog.txt",
