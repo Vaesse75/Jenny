@@ -25,7 +25,14 @@ watchReacts=function(m,f,l,k,cc) {
         log[f]=t;
         let pings="<@"+m.author.id+"> ";
         if (m.reactions.has("☝️")) m.reactions.get("☝️").users.forEach(u=>pings+="<@"+u.id+"> ");
-        cc.send(pings+l[2]+" is "+(err?"fixed":"up")+".");
+        if (type[0] == "tv") {
+            var se=index[4];
+            var ep=index[5];
+            cc.send(pings+l[2]+" S"+se+"E"+ep+" is "+(err?"fixed":"up")+".");
+        }
+        else {
+            cc.send(pings+l[2]+" is "+(err?"fixed":"up")+".");
+        }
         CSV.writeArraySync(filepath+f+"."+ext,log[f]);
         c.stop();
     })
