@@ -38,9 +38,9 @@ Jenny.once('ready', () => {
     // console.warn('Logged in as ${Jenny.user.tag)!');
     
     //define Ch and Role objects.
-//   Ch.set("welcome","581340165520359424");
-//   Ch.set("plex","581346715852865547");
-//   Ch.set("calibre","590195078765608961");
+    Ch.set("welcome","581340165520359424");
+    Ch.set("plex","581346715852865547");
+    Ch.set("calibre","590195078765608961");
     Ch.set("bot","675864898617606184");
     Ch.set("help","583979972578770945");
     Ch.set("test","681380531493142533");
@@ -99,20 +99,32 @@ Jenny.on('message', msg => {
         if (check(plex)) {
             var say1="Theater is open!";
         }
-        else {
+        else if (!check(plex)) {
             var say1="Theater is closed!";
+        }
+        else {
+            var say1=errs;
+            console.error("something in plex check is broken!");
         }
         if (check(calibre)) {
             var say2="Library is open!";
         }
-        else {
+        else if (!check(calibre)) {
             var say2="Library is closed!";
         }
-        if (check(ftp)) {
+        else {
+            var say2=errs;
+            console.error("something in calibre check is broken!");
+        }
+         if (check(ftp)) {
             var say3="FTP is up!";
         }
-        else {
+        else if (!check(ftp)) {
             var say3="FTP is down!";
+        }
+        else {
+            var say3=errs;
+            console.error("something in ftp check is broken!");
         }
         msg.channel.send(say1+" "+say2+" "+say3);
     }
