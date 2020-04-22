@@ -23,7 +23,7 @@ const Role = require('./role.js');
 ticket=[];
 waitForPing=false;
 errs="Oops! I dropped something!";
-training=false; //change to false for normal operation
+training=true; //change to false for normal operation
 
 // Functions
 functions=require("./functions.js");
