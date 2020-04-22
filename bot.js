@@ -93,9 +93,9 @@ Jenny.on('message', msg => {
  //// Programatic triggers
     //undocumented test trigger
     if (input.match(/^\?test ping/)) {
-        var plex=checkit("plexmediaserver");
-        var calibre=checkit("calibre-server");
-        var ftp=checkit("proftpd");
+        var plex=require("./servers.js")("plexmediaserver");
+        var calibre=require("./servers.js")("calibre-server");
+        var ftp=require("./servers.js")("proftpd");
         if (plex == true) {
             var t="open!";
         }
