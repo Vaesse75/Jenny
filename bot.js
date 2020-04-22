@@ -87,7 +87,7 @@ Jenny.on('message', msg => {
     var tag="<@"+msg.author.id+">";
 
     //response modules
-    require('./social.js')(input,reply,msg.channel); // Social responses (Plain text)
+    require('./social.js')(msg); // Social responses (Plain text)
     require('./tips.js')(input,underlay,msg.channel,msg.member); //tips module (Programmatic)
  
  //// Programatic triggers
@@ -145,12 +145,11 @@ Jenny.on('message', msg => {
                 keys+=key;
             }
             if (ticket[msg.author.id].length > 0 && keys.indexOf(ticket[msg.author.id][0]) >= 0) {
-                waitForPing=checkit(srvc);
-                /*
+                //waitForPing=true;
+                //Online=checkit(srvc);
                 waitForPing=ticket[msg.author.id][0];
                 suppconn.send(tag+", "+pingwarn);
                 suppconn.send("!ping "+ticket[msg.author.id][0]+" for "+tag);
-                */
             }
             else {
                 ticket[msg.author.id]=[];

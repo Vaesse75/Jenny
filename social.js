@@ -1,8 +1,11 @@
-module.exports=function(input,say,chan,member) {
+module.exports=function(msg) {
+	var input=msg.content.toLowerCase();
+	var tag=msg.author;
+	var say=msg.channel.send;
 	var text=[];
 	if (input.match(/^h(ey|ello|i)a?.* jenny.*/)) {
 		text=[
-			"Hi there, "+Mbr(member,0)+"! What's up?",
+			"Hi there, "+tag+"! What's up?",
 			"What's up?",
 			"Hi!",
 			"Hey there!",
@@ -12,14 +15,14 @@ module.exports=function(input,say,chan,member) {
 		text=[
 			"Later!",
 			"See ya later!",
-			"Come back soon, "+Mbr(member,0)+".",
+			"Come back soon, "+tag+".",
 		];
 	}
 	if (input.match(/^(good ?)?morning.* jenny.*/)) {
 		text=[
 			"Need coffee!",
 			"Morning.",
-			"Hey look! It's "+Mbr(member,0)+"!",
+			"Hey look! It's "+tag+"!",
 			"It's still morning? Why do I not have coffee?",
 		];
 	}
@@ -40,5 +43,5 @@ module.exports=function(input,say,chan,member) {
             "These are not the bots you're looking for."
 		];
 	}
-	say(text[Math.floor(Math.random()*say.length)],chan);
+	msg.channel.send(text[Math.floor(Math.random()*say.length)]);
 };
