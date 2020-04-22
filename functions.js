@@ -1,5 +1,5 @@
 //set constants
-//const Discord = require('discord.js');
+const Discord = require('discord.js');
 
 // Underlay function for support, and tips
 module.exports.underlay=function(say,cat) {
@@ -56,7 +56,7 @@ module.exports.reply=function(say,chan) {
 }
 //service check
 // usage: variable=require(filename)(<plexmediaserver>|<calibre-server>|<proftpd>);
-module.exports.check=function(args) {
+module.exports.checkit=function(args) {
     var shellCommand = require("linux-shell-command").shellCommand;
     var sc = shellCommand("systemctl status "+args+"|grep Active|while read a b c;do echo $b;done");
     sc.execute()
