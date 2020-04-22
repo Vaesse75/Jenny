@@ -1,7 +1,6 @@
 module.exports=function(msg) {
 	var input=msg.content.toLowerCase();
 	var tag=msg.author;
-	var say=msg.channel.send;
 	var text=[];
 	if (input.match(/^h(ey|ello|i)a?.* jenny.*/)) {
 		text=[
@@ -43,5 +42,5 @@ module.exports=function(msg) {
             "These are not the bots you're looking for."
 		];
 	}
-	msg.channel.send(text[Math.floor(Math.random()*say.length)]);
+	if (text && Array.isArray(text) && text.length > 0) msg.channel.send(text[Math.floor(Math.random()*say.length)]);
 };

@@ -129,7 +129,7 @@ Jenny.on('message', msg => {
 	if (input.match(/^\?support/)) {
         ticket[msg.author.id]=input.substr(9).split(" ");
         var level=support;
-        if (ticket[msg.author.id][0] == "plex") {
+        /*if (ticket[msg.author.id][0] == "plex") {
             var srvc="plexmediaserver";
         }
         if (ticket[msg.author.id][0] == "calibre") {
@@ -137,7 +137,7 @@ Jenny.on('message', msg => {
         }
         if (ticket[msg.author.id][0] == "ftp") {
             var srvc="proftpd";
-        }
+        }*/
         if (ticket[msg.author.id].length>0 && ticket[msg.author.id][0] != "") {
             var keys="";
             for (var key in level) {
@@ -204,12 +204,12 @@ Jenny.on('message', msg => {
 			ticket[msg.author.id]=null;
 		}
 		else if (ticket[msg.author.id].length==1 && said != "?support") {
-            waitForPing=checkit(srvc);
-            /*
+            //waitForPing=checkit(srvc);
+            
             waitForPing=ticket[msg.author.id][0];
             suppconn.send(tag+", "+pingwarn);
             suppconn.send("!ping "+ticket[msg.author.id][0]+" for "+tag);
-            */
+            
     }
         else if (typeof level == "string") {
             suppconn.send(tag+", "+level);
