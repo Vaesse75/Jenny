@@ -103,7 +103,12 @@ Jenny.on('message', msg => {
             var t="closed!";
         }
         else if (plex !=false && plex != true) {
-            var t=plex;
+            if (plex == '') {
+                var t="empty!";
+            }
+            else {
+                var t=plex;
+            }
         }
         if (calibre == true) {
             var c="open!";
@@ -111,8 +116,13 @@ Jenny.on('message', msg => {
         else if (calibre == false) {
             var c="closed!";
         }
-        else if (calibre !=false && plex != true) {
-            var c=calibre;
+        else if (calibre !=false && calibre != true) {
+            if (plex == '') {
+                var c="empty!";
+            }
+            else {
+                var c=calibre;
+            }
         }
         if (ftp == true) {
             var f="open!";
@@ -120,8 +130,13 @@ Jenny.on('message', msg => {
         else if (ftp == false) {
             var f="closed!";
         }
-        else if (ftp !=false && plex != true) {
-            var f=plex;
+        else if (ftp !=false && ftp != true) {
+            if (ftp == '') {
+                var f="empty!";
+            }
+            else {
+                var f=plex;
+            }
         }
         var say1="Theater is "+t;
         var say2="Library is "+c;
