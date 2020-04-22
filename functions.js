@@ -66,11 +66,19 @@ module.exports.checkit=function(args) {
         //}
         if (success === true && sc.stdout != "") {
             if (sc.stdout.slice(0,6) == "active") {
-                return sc.stdout; //true;
+                return true;
             }
             else if (sc.stdout.slice(0,6) != "active") {
-                return sc.stdout; //false;
+                return false;
             }
+        }
+        else if (success === true && sc.stdout =="") {
+            var erra="is not sc.stdout";
+            return erra;
+        }
+        else if (success === false) {
+            erra="wasn't successful!";
+            return erra;
         }
     })
     .catch(e => {
