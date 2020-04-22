@@ -80,6 +80,10 @@ module.exports.checkit=function(args) {
             var erra="wasn't successful!";
             return erra;
         }
+        else {
+            var erra="broken!";
+            return erra;
+        }
     })
     .catch(e => {
         console.error(e);
