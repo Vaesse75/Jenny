@@ -13,7 +13,7 @@
 const Discord = require('discord.js');
 const Jenny = bot = new Discord.Client();
 const auth = require('/home/plex/bots/authJenny.json');
-const fs = require('fs');
+//const fs = require('fs');
 const Ch = require('./ch.js');
 //const Em = {};
 const Role = require('./role.js');
@@ -31,6 +31,7 @@ underlay=functions.underlay;
 walkSupport=functions.walkSupport;
 Mbr=functions.Mbr;
 reply=functions.reply;
+check=functions.check;
 
 // acknowledge ready state
 Jenny.once('ready', () => {
@@ -90,18 +91,34 @@ Jenny.on('message', msg => {
     require('./tips.js')(input,underlay,msg.channel,msg.member); //tips module (Programmatic)
  
  //// Programatic triggers
+    //undocumented test trigger
+    if (input.match(/^\?test ping/)) {
+        if (check(plex)) {
+            var say1="Theater is open!";
+        }
+        else {
+            var say1="Theater is closed!";
+        }
+        if (check(calibre)) {
+            var say2="Library is open!";
+        }
+        else {
+            var say2="Library is closed!";
+        }
+        if (check(ftp)) {
+            var say3="FTP is up!";
+        }
+        else {
+            var say3="FTP is down!";
+        }
+        msg.channel.send(say1+" "+say2+" "+say3);
+    }
+ 
     // ping reply
 	if (input.match(/^\?ping/)) {
         var say=new Array("Yup! You're here!");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
-    
-    // Tips
-	//if (input.match(/^\?tip/)) {
-	//	tip=require('./tips.js')(input,underlay);
-	//	msg.channel.send( tip );
-	//}
-
 	// support text
 	if (input.match(/^\?support/)) {
         ticket[msg.author.id]=input.substr(9).split(" ");

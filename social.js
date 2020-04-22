@@ -42,28 +42,3 @@ module.exports=function(input,say,chan,member) {
 	}
 	say(text[Math.floor(Math.random()*say.length)],chan);
 };
-
- 
-   // old Plain text social responses
-   //if (input.match(/^h(ey|ello|i)a?.* jenny.*/)) {
-    //var say=new Array("Hi there, "+Mbr(msg.member,0)+"! What's up?");
-    //msg.channel.send(say[Math.floor(Math.random()*say.length)]);
-//}
-//if (input.match(/^(good ?)?(bye|n(ight|ite)).* jenny.*/)) {
-  //  var say=new Array("See ya later!","Come back soon, "+Mbr(msg.member,0)+".");
-   // msg.channel.send(say[Math.floor(Math.random()*say.length)]);
-//}
-//if(input.match(/morning.* jenny.*/)) {
-  //  var say=new Array("Need coffee!","Hey look! It's "+Mbr(msg.member,0)+"!","It's still morning? Why do I not have coffee?");
-   // msg.channel.send(say[Math.floor(Math.random()*say.length)]);
-//}
-//if(input.match(/thank(s.*| ?you.*) jenny.*/)) {
-  //  var say=new Array("Any time!","Not a problem!","It's what I'm here for!","You betcha!");
-   // msg.channel.send(say[Math.floor(Math.random()*say.length)]);
-//}
-
-// Bot banter
-//if (input=="was that star trek or star wars?") {
-  //  var say=new Array("Hmmm.... That's a really hard choice!","Why not both?","Today, I prefer the Firefly class!");
-   // msg.channel.send(say[Math.floor(Math.random()*say.length)]);
-//}

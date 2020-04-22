@@ -1,3 +1,7 @@
+/*
+
+}
+*/
 //Support breakpoints
 	pingwarn="hang on, while I check with Carl...";
 	cancelbreak="your ticket is closed. "+SupportRef+" will be with you soon.";
@@ -25,7 +29,7 @@
 	support["calibre"]["yes"]=breakpoint;
 
 	// FTP section
-	support["ftp"]=[];
+	support["ftp"]=[]; //!ping ftp, down=breakpoint2;
 	support["ftp"][0]="FTP is up, "+service1+" "+alloptions;
 	support["ftp"]["yes"]=breakpoint;
 	support["ftp"]["no"]=breakpoint;
@@ -36,7 +40,7 @@
     support["plex"]["no"]=breakpoint;
 	support["plex"]["yes"]=[];
     support["plex"]["yes"][0]=service2+"You can say **Windows**, **Web**, **Android**, **Apple** (for iPads, and iPhones), **Amazon** (for Fire Stick/TV), or **Console**. "+alloptions+"";
-	//web
+	//plex web
 	support["plex"]["yes"]["web"]=[];
 	support["plex"]["yes"]["web"][0]=question1+" "+alloptions;
 	support["plex"]["yes"]["web"]["library"]=[];
@@ -46,7 +50,7 @@
 	support["plex"]["yes"]["web"]["video"]=breakpoint;
 	support["plex"]["yes"]["web"]["music"]=breakpoint;
 	support["plex"]["yes"]["web"]["pictures"]=breakpoint;
-	//Windows
+	//plex Windows
 	support["plex"]["yes"]["windows"]=[];
 	support["plex"]["yes"]["windows"][0]=question1+" "+alloptions;
 	support["plex"]["yes"]["windows"]["library"]=[];
@@ -59,7 +63,7 @@
 	support["plex"]["yes"]["windows"]["video"]=breakpoint;
 	support["plex"]["yes"]["windows"]["music"]=breakpoint;
 	support["plex"]["yes"]["windows"]["pictures"]=breakpoint;
-	//android
+	//plex android
 	support["plex"]["yes"]["android"]=[];
 	support["plex"]["yes"]["android"][0]=question1+" "+alloptions;
 	support["plex"]["yes"]["android"]["library"]=[];
@@ -69,7 +73,7 @@
 	support["plex"]["yes"]["android"]["video"]=breakpoint;
 	support["plex"]["yes"]["android"]["music"]=breakpoint;
 	support["plex"]["yes"]["android"]["pictures"]=breakpoint;
-	//apple
+	//plex apple
 	support["plex"]["yes"]["apple"]=[];
 	support["plex"]["yes"]["apple"][0]=question1+" "+alloptions;
 	support["plex"]["yes"]["apple"]["library"]=[];
@@ -79,7 +83,7 @@
 	support["plex"]["yes"]["apple"]["video"]=breakpoint;
 	support["plex"]["yes"]["apple"]["music"]=breakpoint;
 	support["plex"]["yes"]["apple"]["pictures"]=breakpoint;
-	//Amazon
+	//plex Amazon
 	support["plex"]["yes"]["amazon"]=[];
 	support["plex"]["yes"]["amazon"][0]=question1+" "+alloptions;
 	support["plex"]["yes"]["amazon"]["library"]=[];
@@ -89,7 +93,7 @@
 	support["plex"]["yes"]["amazon"]["video"]=breakpoint;
 	support["plex"]["yes"]["amazon"]["pictures"]=breakpoint;
 	support["plex"]["yes"]["amazon"]["music"]=breakpoint;
-	//Console
+	//plex Console
 	support["plex"]["yes"]["console"]=[];
 	support["plex"]["yes"]["console"][0]=question1+" "+alloptions;
 	support["plex"]["yes"]["console"]["library"]=[];

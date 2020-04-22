@@ -10,12 +10,3 @@ module.exports=function(input,underlay,chan) {
 		chan.send(underlay(say[Math.floor(Math.random()*say.length)],"tips"));
 	}
 }
-
-
-
-
-    // Tips
-//	if (input.match(/^\?tip/)) {
-//		tip=require('./tips.js')(input,underlay);
-//		msg.channel.send( tip );
-//	}
