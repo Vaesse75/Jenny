@@ -66,10 +66,10 @@ module.exports.check=function(args) {
         //}
         if (success === true && sc.stdout != "") {
             if (sc.stdout.slice(0,6) == "active") {
-                return true;
+                return sc.stdout.slice(0,6); //true;
             }
             else if (sc.stdout.slice(0,6) != "active") {
-                return false;
+                return sc.stdout.slice(0,6); //false;
             }
         }
     })

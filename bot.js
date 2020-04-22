@@ -96,36 +96,9 @@ Jenny.on('message', msg => {
         var plex="plexmediaserver";
         var calibre="calibre-server";
         var ftp="proftpd";
-        if (check(plex)) {
-            var say1="Theater is open!";
-        }
-        else if (!check(plex)) {
-            var say1="Theater is closed!";
-        }
-        else {
-            var say1=errs;
-            console.error("something in plex check is broken!");
-        }
-        if (check(calibre)) {
-            var say2="Library is open!";
-        }
-        else if (!check(calibre)) {
-            var say2="Library is closed!";
-        }
-        else {
-            var say2=errs;
-            console.error("something in calibre check is broken!");
-        }
-         if (check(ftp)) {
-            var say3="FTP is up!";
-        }
-        else if (!check(ftp)) {
-            var say3="FTP is down!";
-        }
-        else {
-            var say3=errs;
-            console.error("something in ftp check is broken!");
-        }
+            var say1="Theater is "+check(plex);
+            var say2="Library is "+check(calibre);
+            var say3="FTP is "+check(ftp);
         msg.channel.send(say1+" "+say2+" "+say3);
     }
  
