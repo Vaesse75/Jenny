@@ -21,7 +21,7 @@ const Role = require('./role.js');
 // Set variables
 //Recs = {"list":[]};
 ticket=[];
-waitForCarl=false;
+waitForPing=false;
 errs="Oops! I dropped something!";
 training=false; //change to false for normal operation
 
@@ -129,6 +129,15 @@ Jenny.on('message', msg => {
 	if (input.match(/^\?support/)) {
         ticket[msg.author.id]=input.substr(9).split(" ");
         var level=support;
+        if (ticket[msg.author.id][0] == "plex") {
+            var srvc="plexmediaserver";
+        }
+        if (ticket[msg.author.id][0] == "calibre") {
+            var srvc="calibre-server";
+        }
+        if (ticket[msg.author.id][0] == "ftp") {
+            var srvc="proftpd";
+        }
         if (ticket[msg.author.id].length>0 && ticket[msg.author.id][0] != "") {
             var keys="";
             for (var key in level) {
@@ -136,9 +145,12 @@ Jenny.on('message', msg => {
                 keys+=key;
             }
             if (ticket[msg.author.id].length > 0 && keys.indexOf(ticket[msg.author.id][0]) >= 0) {
-                waitForCarl=ticket[msg.author.id][0];
+                waitForPing=checkit(srvc);
+                /*
+                waitForPing=ticket[msg.author.id][0];
                 suppconn.send(tag+", "+pingwarn);
-				suppconn.send("!ping "+ticket[msg.author.id][0]+" for "+tag);
+                suppconn.send("!ping "+ticket[msg.author.id][0]+" for "+tag);
+                */
             }
             else {
                 ticket[msg.author.id]=[];
@@ -157,6 +169,15 @@ Jenny.on('message', msg => {
         var said=input.split(" ")[0];
         var level=walkSupport(ticket[msg.author.id]);
         var keys="";
+        if (ticket[msg.author.id][0] == "plex") {
+            var srvc="plexmediaserver";
+        }
+        if (ticket[msg.author.id][0] == "calibre") {
+            var srvc="calibre-server";
+        }
+        if (ticket[msg.author.id][0] == "ftp") {
+            var srvc="proftpd";
+        }
         for (var key in level) {
             if (keys != "") keys+=",";
             keys+=key;
@@ -184,10 +205,13 @@ Jenny.on('message', msg => {
 			ticket[msg.author.id]=null;
 		}
 		else if (ticket[msg.author.id].length==1 && said != "?support") {
-            waitForCarl=ticket[msg.author.id][0];
+            waitForPing=checkit(srvc);
+            /*
+            waitForPing=ticket[msg.author.id][0];
             suppconn.send(tag+", "+pingwarn);
             suppconn.send("!ping "+ticket[msg.author.id][0]+" for "+tag);
-        }
+            */
+    }
         else if (typeof level == "string") {
             suppconn.send(tag+", "+level);
             ticket[msg.author.id]=null;
@@ -197,16 +221,16 @@ Jenny.on('message', msg => {
         }
  
     }
-    if (input.match(/^[^,]*, (\w* ){2}is .*\.$/) && waitForCarl) {
+    if (input.match(/^[^,]*, (\w* ){2}is .*\.$/) && waitForPing) {
         tag=input.split(",")[0];
         if (input.substr(input.length-5,4)=="open" || input.substr(input.length-3,2)=="up") {
-            suppconn.send(tag+", "+support[waitForCarl][0]);
+            suppconn.send(tag+", "+support[waitForPing][0]);
         }
         else if (input.substr(input.length-7,6)=="closed" || input.substr(input.length-5,4)=="down") {
             suppconn.send(tag+", "+breakpoint2);
       		ticket[msg.author.id]=null;
         }
-        waitForCarl=false;
+        waitForPing=false;
     }
     // help text
 	if (input.match(/^\?help/)||input.match(/^help.*jenny.*/)) {
