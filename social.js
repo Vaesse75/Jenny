@@ -1,9 +1,9 @@
 module.exports=function(msg) {
 	var input=msg.content.toLowerCase();
 	var tag=msg.author;
-	var text=[];
+	var say=[];
 	if (input.match(/^h(ey|ello|i)a?.* jenny.*/)) {
-		text=[
+		say=[
 			"Hi there, "+tag+"! What's up?",
 			"What's up?",
 			"Hi!",
@@ -11,14 +11,14 @@ module.exports=function(msg) {
 		];
 	}
 	if (input.match(/^(good ?)?(bye|n(ight|ite)).* jenny.*/)) {
-		text=[
+		say=[
 			"Later!",
 			"See ya later!",
 			"Come back soon, "+tag+".",
 		];
 	}
 	if (input.match(/^(good ?)?morning.* jenny.*/)) {
-		text=[
+		say=[
 			"Need coffee!",
 			"Morning.",
 			"Hey look! It's "+tag+"!",
@@ -26,7 +26,7 @@ module.exports=function(msg) {
 		];
 	}
 	if (input.match(/thank(s.*| ?you.*) jenny.*/)) {
-		text=[
+		say=[
 			"Any time!",
 			"Not a problem!",
 			"It's what I'm here for!",
@@ -34,7 +34,7 @@ module.exports=function(msg) {
 		];
 	}
 	if (input=="was that star trek or star wars?") {
-		text=[
+		say=[
 			"Hmmm.... That's a really hard choice!",
 			"Why not both?",
 			"Today, I prefer the Firefly class!",
@@ -42,5 +42,5 @@ module.exports=function(msg) {
             "These are not the bots you're looking for."
 		];
 	}
-	if (text && Array.isArray(text) && text.length > 0) msg.channel.send(text[Math.floor(Math.random()*say.length)]);
+	if (say && Array.isArray(say) && say.length > 0) msg.channel.send(say[Math.floor(Math.random()*say.length)]);
 };
