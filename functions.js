@@ -56,7 +56,7 @@ module.exports.reply=function(say,chan) {
 }
 //service check
 // usage: variable=require(filename)(<plexmediaserver>|<calibre-server>|<proftpd>);
-module.exports.check=function(args) {
+module.exports.check=function(args,Server) {
     var shellCommand = require("linux-shell-command").shellCommand;
     var sc = shellCommand("systemctl status "+args+"|grep Active|while read a b c;do echo $b;done");
     sc.execute()
