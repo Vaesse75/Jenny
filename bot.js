@@ -96,9 +96,9 @@ Jenny.on('message', msg => {
         var plex="plexmediaserver";
         var calibre="calibre-server";
         var ftp="proftpd";
-            var say1="Theater is "+check("plexmediaserver");
-            var say2="Library is "+check("calibre-server");
-            var say3="FTP is "+check("proftpd");
+            var say1="Theater is "+checkit("plexmediaserver");
+            var say2="Library is "+checkit("calibre-server");
+            var say3="FTP is "+checkit("proftpd");
         msg.channel.send(say1+" "+say2+" "+say3);
     }
  
