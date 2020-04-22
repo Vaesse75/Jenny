@@ -31,7 +31,7 @@ underlay=functions.underlay;
 walkSupport=functions.walkSupport;
 Mbr=functions.Mbr;
 reply=functions.reply;
-checkit=functions.checkit;
+check=functions.checkit;
 
 // acknowledge ready state
 Jenny.once('ready', () => {
