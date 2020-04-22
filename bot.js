@@ -93,12 +93,9 @@ Jenny.on('message', msg => {
  //// Programatic triggers
     //undocumented test trigger
     if (input.match(/^\?test 0001/)) {
-        var plex="plexmediaserver";
-        var calibre="calibre-server";
-        var ftp="proftpd";
-        checkit(plex).then(bool => plex = bool);
-        checkit(calibre).then(bool => calibre = bool);
-        checkit(ftp).then(bool => ftp = bool);
+        var plex=checkit("plexmediaserver");
+        var calibre=checkit("calibre-server");
+        var ftp=checkit("proftpd");
         if (plex) {
             var t="open!";
         }
