@@ -124,8 +124,8 @@ Jenny.on('message', msg => {
             var f=plex;
         }
         var say1="Theater is "+t;
-        var say2="Library is "+checkit(calibre);
-        var say3="FTP is "+checkit(ftp);
+        var say2="Library is "+c;
+        var say3="FTP is "+f;
         msg.channel.send(say1+" "+say2+" "+say3);
     }
  

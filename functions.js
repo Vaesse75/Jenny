@@ -77,7 +77,7 @@ module.exports.checkit=function(args) {
             return erra;
         }
         else if (success === false) {
-            erra="wasn't successful!";
+            var erra="wasn't successful!";
             return erra;
         }
     })
