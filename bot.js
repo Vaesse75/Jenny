@@ -93,19 +93,19 @@ Jenny.on('message', msg => {
  //// Programatic triggers
     //undocumented test trigger
     if (input.match(/^\?test ping/)) {
-        if (check(plex)) {
+        if (check("plex")) {
             var say1="Theater is open!";
         }
         else {
             var say1="Theater is closed!";
         }
-        if (check(calibre)) {
+        if (check("calibre")) {
             var say2="Library is open!";
         }
         else {
             var say2="Library is closed!";
         }
-        if (check(ftp)) {
+        if (check("ftp")) {
             var say3="FTP is up!";
         }
         else {
