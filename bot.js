@@ -93,12 +93,39 @@ Jenny.on('message', msg => {
  //// Programatic triggers
     //undocumented test trigger
     if (input.match(/^\?test ping/)) {
-        var plex="plexmediaserver";
-        var calibre="calibre-server";
-        var ftp="proftpd";
-            var say1="Theater is "+checkit(plex);
-            var say2="Library is "+checkit(calibre);
-            var say3="FTP is "+checkit(ftp);
+        var plex=checkit("plexmediaserver");
+        var calibre=checkit("calibre-server");
+        var ftp=checkit("proftpd");
+        if (plex == true) {
+            var t="open!";
+        }
+        else if (plex == false) {
+            var t="closed!";
+        }
+        else if (plex !=false && plex != true) {
+            var t=plex;
+        }
+        if (calibre == true) {
+            var c="open!";
+        }
+        else if (calibre == false) {
+            var c="closed!";
+        }
+        else if (calibre !=false && plex != true) {
+            var c=calibre;
+        }
+        if (ftp == true) {
+            var f="open!";
+        }
+        else if (ftp == false) {
+            var f="closed!";
+        }
+        else if (ftp !=false && plex != true) {
+            var f=plex;
+        }
+        var say1="Theater is "+t;
+        var say2="Library is "+checkit(calibre);
+        var say3="FTP is "+checkit(ftp);
         msg.channel.send(say1+" "+say2+" "+say3);
     }
  
