@@ -62,12 +62,7 @@ module.exports.checkit=function(args) {
     return sc.execute()
     .then(success => {
         if (success === true && sc.stdout != "") {
-            if (sc.stdout.slice(0,6) == "active") {
-                return true;
-            }
-            else if (sc.stdout.slice(0,6) != "active") {
-                return false;
-            }
+            return (sc.stdout.slice(0,6) == "active");
         }
     })
     .catch(e => {

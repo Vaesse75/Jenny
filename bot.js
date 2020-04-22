@@ -92,7 +92,7 @@ Jenny.on('message', msg => {
  
  //// Programatic triggers
     //undocumented test trigger
-    if (input.match(/^\?test ping/)) {
+    if (input.match(/^\?test 0001/)) {
         var plex="plexmediaserver";
         var calibre="calibre-server";
         var ftp="proftpd";
