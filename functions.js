@@ -59,11 +59,8 @@ module.exports.reply=function(say,chan) {
 module.exports.checkit=function(args) {
     var shellCommand = require("linux-shell-command").shellCommand;
     var sc = shellCommand("systemctl status "+args+"|grep Active|while read a b c;do echo $b;done");
-    sc.execute()
+    return sc.execute()
     .then(success => {
-        //for (var r in Server) {
-        //    if (args==Server[r]) s=r;
-        //}
         if (success === true && sc.stdout != "") {
             if (sc.stdout.slice(0,6) == "active") {
                 return true;
@@ -71,18 +68,6 @@ module.exports.checkit=function(args) {
             else if (sc.stdout.slice(0,6) != "active") {
                 return false;
             }
-        }
-        else if (success === true && sc.stdout =="") {
-            var erra="is not sc.stdout";
-            return erra;
-        }
-        else if (success === false) {
-            var erra="wasn't successful!";
-            return erra;
-        }
-        else {
-            var erra="broken!";
-            return erra;
         }
     })
     .catch(e => {

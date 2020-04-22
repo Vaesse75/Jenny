@@ -93,50 +93,26 @@ Jenny.on('message', msg => {
  //// Programatic triggers
     //undocumented test trigger
     if (input.match(/^\?test ping/)) {
-        var plex=require("./servers.js")("plexmediaserver");
-        var calibre=require("./servers.js")("calibre-server");
-        var ftp=require("./servers.js")("proftpd");
-        if (plex == true) {
+        checkit.then(bool => plex = bool);
+        checkit.then(bool => calibre = bool);
+        checkit.then(bool => ftp = bool);
+        if (plex) {
             var t="open!";
         }
-        else if (plex == false) {
+        else if (!plex) {
             var t="closed!";
         }
-        else if (plex !=false && plex != true) {
-            if (plex == '') {
-                var t="empty!";
-            }
-            else {
-                var t=plex;
-            }
-        }
-        if (calibre == true) {
+        if (calibre) {
             var c="open!";
         }
-        else if (calibre == false) {
+        else if (!calibre) {
             var c="closed!";
         }
-        else if (calibre !=false && calibre != true) {
-            if (plex == '') {
-                var c="empty!";
-            }
-            else {
-                var c=calibre;
-            }
+        if (ftp) {
+            var f="up!";
         }
-        if (ftp == true) {
-            var f="open!";
-        }
-        else if (ftp == false) {
-            var f="closed!";
-        }
-        else if (ftp !=false && ftp != true) {
-            if (ftp == '') {
-                var f="empty!";
-            }
-            else {
-                var f=plex;
-            }
+        else if (!ftp) {
+            var f="down!";
         }
         var say1="Theater is "+t;
         var say2="Library is "+c;
