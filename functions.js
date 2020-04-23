@@ -1,24 +1,6 @@
 //set constants
 const Discord = require('discord.js');
 
-// Underlay function for support, and tips
-module.exports.underlay=function(say,cat) {
-	var color='#000000';
-	if (!say) {
-		var say=errs+" (A1)";
-		console.error("Oops! There's no say! (A1)");
-	}
-	else if (cat == "tips") {
-		color='#C70039';
-	}
-	else if (cat == "support") {
-		color='#FFC300';
-	}
-	var embed = new Discord.RichEmbed()
-	.setColor(color)
-	.setDescription(say);
-	return embed;
-}
 
 // Walk the support tree
 module.exports.walkSupport=function(arr) {
