@@ -8,12 +8,25 @@
 	Known issues:
 		If Carl's service isn't running, Jenny doesn't timeout, waiting for his ping reply.
 */
+findCommands=function(client,command) {
+    if (Object.keys(command).includes("name") && Object.keys(command).includes("execute")) client.commands.set(command.name, command);
+    else Object.keys(command).forEach((c) => {findCommands(client,command[c]);});
+}
 // Set constants
+const fs=require('fs');
 const Discord = require('discord.js');
 const { prefix,token } = require('/home/plex/bots/authJenny.json');
 const Jenny = new Discord.Client();
-//const fs = require('fs');
-const Ch = require('./ch.js');
+Jenny.commands=new Discord.collection();
+const commandFiles=fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+for (const file of commandFiles) findCommands(Jenny,require('./commands/${file}'));
+const Ch = require('./commands/ch.js');
+const Em = require('./commands/em.js');
+const Role = require('./commands/role.js');
+
+
+
+
 //const Em = {};
 const Role = require('./role.js');
 
