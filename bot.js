@@ -68,17 +68,17 @@ Jenny.on('ready', () => {
     Role.set("support","692818837736915054");
     
     // define frequently used channels.
-    offconn = Ch.get("test");
+    offconn = Ch.get(Jenny,"test");
     if (training) {
         onconn=offconn;
         suppconn=offconn;
-        repconn=Ch.get("report"); //comment this to test report module
+        repconn=Ch.get(Jenny,"report"); //comment this to test report module
         //repconn=offconn; //uncomment this to test report module
     }
     else {
-        onconn = Ch.get("bot");
-        suppconn = Ch.get("help");
-        repconn = Ch.get("report");
+        onconn = Ch.get(Jenny,"bot");
+        suppconn = Ch.get(Jenny,"help");
+        repconn = Ch.get(Jenny,"report");
     }
         
     // Links to roles and channels.
