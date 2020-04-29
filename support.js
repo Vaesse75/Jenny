@@ -60,7 +60,7 @@
 	support["plex"]["yes"]["windows"]=[];
 	support["plex"]["yes"]["windows"][0]=question1+" "+alloptions;
 	support["plex"]["yes"]["windows"]["yes"]=[];
-	support["plex"]["yes"]["windows"]["yes"]=[0]=question2+" "+alloptions;
+	support["plex"]["yes"]["windows"]["yes"][0]=question2+" "+alloptions;
 	support["plex"]["yes"]["windows"]["yes"]["library"]=[];
 	support["plex"]["yes"]["windows"]["yes"]["library"][0]=libq1+" "+alloptions;
 	support["plex"]["yes"]["windows"]["yes"]["library"]["yes"]=[];
