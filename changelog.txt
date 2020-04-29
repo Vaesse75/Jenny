@@ -1,5 +1,8 @@
 Change package.json line 3 to match the version listed, before restarting Jenny with final (Add new versions to the top of the list)
 
+1.5.47 [jasoncollege24]
+Added more options to the support array.
+
 1.5.46 [jasoncollege24]
 began adding backend for Jenny's support service pings
 Added an undocumented test block
