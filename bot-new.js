@@ -49,7 +49,7 @@ underlay=function(say,cat) {
 	var color='#000000';
 	if (!say) {
 		var say=errs+" (A1)";
-		console.error("Oops! There's no say! (A1)");
+		console.error("There's no say for the underlay function! (A1)");
 	}
 	else if (cat == "tips") {
 		color='#C70039';

@@ -15,6 +15,7 @@ module.exports=function(msg) {
 			"Later!",
 			"See ya later!",
 			"Come back soon, "+tag+".",
+			"You're leaving already!?"
 		];
 	}
 	if (input.match(/^(good ?)?morning.* jenny.*/)) {
