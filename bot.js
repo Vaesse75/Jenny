@@ -22,7 +22,7 @@ const Role = require('./role.js');
 ticket=[];
 waitForPing=false;
 errs="Oops! I dropped something!";
-training=false; //change to false for normal operation
+training=true; //change to false for normal operation
 
 // Functions
 functions=require("./functions.js");
@@ -72,8 +72,8 @@ Jenny.on('ready', () => {
     if (training) {
         onconn=offconn;
         suppconn=offconn;
-        repconn=Ch.get(Jenny,"report"); //comment this to test report module
-        //repconn=offconn; //uncomment this to test report module
+        //repconn=Ch.get(Jenny,"report"); //comment this to test report module
+        repconn=offconn; //uncomment this to test report module
     }
     else {
         onconn = Ch.get(Jenny,"bot");

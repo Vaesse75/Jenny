@@ -3,7 +3,6 @@ const CSV=require("./csv.js");
 let reacts=false;
 /*
     Future plans:
-        Message in #words-words-words when request/report is filled/fixed tagging original author plus any who have :point_up:ed that message.
         Possibly make types object be able to handle the idiosyncrasies of different formats and scrap the switch/case block.
 */
 
@@ -19,7 +18,8 @@ var log={};
 Object.values(types).forEach(key=>log[key[0]]=CSV.readArraySync(filepath+key[0]+"."+ext));
 watchReacts=function(m,f,l,k,cc) {
     const filter=(reaction,user)=>reaction.emoji.name==='✨'&&(m.guild.members.get(user.id).roles.has("581334517151825920")||m.guild.members.get(user.id).roles.has("581538686265589772"));
-    m.createReactionCollector(filter).on('collect', (r,c) => {
+    //m.createReactionCollector(filter).on('collect', (r,c) => {
+	m.createReactionCollector().on('collect', (r,c) => {
         t=[];
         log[f].forEach((v,i)=>{if (i!==k) t.push(v)});
         log[f]=t;
