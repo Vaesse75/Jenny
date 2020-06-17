@@ -1,7 +1,7 @@
 // Bot usage: "require(filename)(msg);"
 const CSV=require("./csv.js");
 let reacts=false;
-const training=true; // change to false for normal operation
+const training=false; // change to false for normal operation
 /*
     Future plans:
         Message in #words-words-words when request/report is filled/fixed tagging original author plus any who have :point_up:ed that message.
