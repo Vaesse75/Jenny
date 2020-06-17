@@ -51,11 +51,12 @@ module.exports=function(message) {
 
         */
     if (training) {
-		const chatchan=message.client.guilds.get("581333387403329557").channels.get("681380531493142533");
+		rChat="681380531493142533";
 	}
 	else {
-		const chatchan=message.client.guilds.get("581333387403329557").channels.get("581340136374009856");
+		rChat="581340136374009856";
 	}
+	const chatchan=message.client.guilds.get("581333387403329557").channels.get("rChat");
     const chan=message.client.guilds.get("581333387403329557").channels.get((err?"581603029263056921":"581339870790680586"));
     const mode=err?"problem report":"request";
     let deleteMsg=true,type=undefined,dmText="Oops! This channel is for media problem "+mode+"s. Conversations go in "+chatchan+".";
