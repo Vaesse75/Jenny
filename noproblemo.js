@@ -1,6 +1,7 @@
 // Bot usage: "require(filename)(msg);"
 const CSV=require("./csv.js");
 let reacts=false;
+training=true; // change to false for normal operation
 /*
     Future plans:
         Message in #words-words-words when request/report is filled/fixed tagging original author plus any who have :point_up:ed that message.
@@ -49,7 +50,12 @@ module.exports=function(message) {
         console.log(type[info[2]]+" - "+info[3]+" ("+info[4]+") "+info[8]);
 
         */
-    const chatchan=message.client.guilds.get("581333387403329557").channels.get("581340136374009856");
+    if (training) {
+		const chatchan=message.client.guilds.get("581333387403329557").channels.get("681380531493142533");
+	}
+	else {
+		const chatchan=message.client.guilds.get("581333387403329557").channels.get("581340136374009856");
+	}
     const chan=message.client.guilds.get("581333387403329557").channels.get((err?"581603029263056921":"581339870790680586"));
     const mode=err?"problem report":"request";
     let deleteMsg=true,type=undefined,dmText="Oops! This channel is for media problem "+mode+"s. Conversations go in "+chatchan+".";
