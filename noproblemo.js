@@ -1,9 +1,9 @@
 // Bot usage: "require(filename)(msg);"
 const CSV=require("./csv.js");
 let reacts=false;
-training=true; // change to false for normal mode
 /*
     Future plans:
+        Message in #words-words-words when request/report is filled/fixed tagging original author plus any who have :point_up:ed that message.
         Possibly make types object be able to handle the idiosyncrasies of different formats and scrap the switch/case block.
 */
 
@@ -18,12 +18,8 @@ const types={"📺":["tv","TV show"],"🎞️":["movie","movie"],"🎵":["music"
 var log={};
 Object.values(types).forEach(key=>log[key[0]]=CSV.readArraySync(filepath+key[0]+"."+ext));
 watchReacts=function(m,f,l,k,cc) {
-	var rStaff = "676660602688765962";
-	var rPlex = "592574092922585097";
-	var rCalibre = "592574138829373441";
-    const filter=(reaction,user)=>reaction.emoji.name==='✨'&&(m.guild.members.get(user.id).roles.has(rStaff));
+    const filter=(reaction,user)=>reaction.emoji.name==='✨'&&(m.guild.members.get(user.id).roles.has("581334517151825920")||m.guild.members.get(user.id).roles.has("581538686265589772"));
     m.createReactionCollector(filter).on('collect', (r,c) => {
-	//m.createReactionCollector().on('collect', (r,c) => {
         t=[];
         log[f].forEach((v,i)=>{if (i!==k) t.push(v)});
         log[f]=t;
@@ -53,13 +49,6 @@ module.exports=function(message) {
         console.log(type[info[2]]+" - "+info[3]+" ("+info[4]+") "+info[8]);
 
         */
-	if (training) {
-		const chatchan=message.client.guilds.get("581333387403329557").channels.get("681380531493142533");
-	}
-	else {
-		const chatchan=message.client.guilds.get("581333387403329557").channels.get("581340136374009856");
-	}
-	var cChan = "581340136374009856"
     const chatchan=message.client.guilds.get("581333387403329557").channels.get("581340136374009856");
     const chan=message.client.guilds.get("581333387403329557").channels.get((err?"581603029263056921":"581339870790680586"));
     const mode=err?"problem report":"request";
