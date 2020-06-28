@@ -7,7 +7,7 @@ module.exports=async function(chan,staff) {	// Drive checking
 		fstb.execute()
 		.then(success=> {
 			console.log(
-				fstb.stdout=fstb.stdout.match(/-[^/]+$/g).match(/-\S+/g)
+				fstb.stdout=fstb.stdout.match(/-([^/])+$/g).slice(1).join("\n").match(/\S+/g).slice(1)
 			);
 			if (success === true && fstb.stdout != "") {
 				var mtb=shell("cat /etc/mtab|egrep -o '/media/plex/Plex-([^/])+$'|egrep -o '\-\S+'");
@@ -15,8 +15,8 @@ module.exports=async function(chan,staff) {	// Drive checking
 				.then(success => {
 					console.log("mtb:\n"+success+"\n"+mtb.stdout);
 					if (success === true && mtb.stdout != "") {
-						
-						fstb=fstb.stdout.split(/\s+/);
+						fstb=fstb.stdout;
+						//.split(/\s+/);
 						let msng=fstb.map(drv => {
 							if (mtb.includes(drv)) return drv.slice(1);
 						});
