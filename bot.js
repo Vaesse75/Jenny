@@ -12,17 +12,18 @@
 const Discord = require('discord.js');
 const auth = require('/home/plex/bots/authJenny.json');
 const Jenny = new Discord.Client();
-//const fs = require('fs');
+const fs = require('fs');
 const Ch = require('./ch.js');
 //const Em = {};
 const Role = require('./role.js');
+
 
 // Set variables
 //Recs = {"list":[]};
 ticket=[];
 waitForPing=false;
 errs="Oops! I dropped something!";
-training=false; //change to false for normal operation
+training=true; //change to false for normal operation
 
 // Functions
 functions=require("./functions.js");
@@ -91,8 +92,9 @@ Jenny.on('ready', () => {
 	require("./support.js");
 
     // Wakeup message.
-    var say=new Array("Ok ok! I'm up already!","Have no fear, Jenny's here!","Sorry, I was doing some uhh... nerdy stuff.");
-	onconn.send(say[Math.floor(Math.random()*say.length)]);
+    Jenny.setInterval(require('./drvchk.js'),60000);
+	
+
 
 });
 
