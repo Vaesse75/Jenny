@@ -1,9 +1,9 @@
 const shell = require('linux-shell-command');
 module.exports=async function(chan) {	// Drive checking
 	try {
-		let await fstb = shell.shellCommand("cat '!?!'", ["/etc/fstab|egrep -o '/media/plex/Plex-([^/])+$'|egrep -o '\-\S+'"]);
+		await let fstb = shell.shellCommand("cat '!?!'", ["/etc/fstab|egrep -o '/media/plex/Plex-([^/])+$'|egrep -o '\-\S+'"]);
 		await fstb=fstb.execute();
-		let await mtb = shell.shellCommand("cat '!?!'", ["/etc/mtab|egrep -o '/media/plex/Plex-([^/])+$'|egrep -o '\-\S+'"]);
+		await let mtb = shell.shellCommand("cat '!?!'", ["/etc/mtab|egrep -o '/media/plex/Plex-([^/])+$'|egrep -o '\-\S+'"]);
 		await mtb=mtb.execute();
 		fstb=fstb.stdout.split(/\s+/);
 		let msng=fstb.map(drv => {
