@@ -2,13 +2,13 @@ const shell = require('linux-shell-command').shellCommand;
 module.exports=async function(chan,staff) {	// Drive checking
 	try {
 		console.log(shell);
-		let fstb=shell("cat /etc/fstab|egrep -o '/media/plex/Plex-([^/])+$'|egrep -o '\-\S+'");
+		var fstb=shell("cat /etc/fstab|egrep -o '/media/plex/Plex-([^/])+$'|egrep -o '\-\S+'");
 		fstb.execute()
 		.then(success=> {
 			console.log("I'm checking the drive! :-p");
 			console.log("fstb:\n"+success+"\n"+fstb.stdout);
 			if (success === true && fstb.stdout != "") {
-				let mtb=shell("cat /etc/mtab|egrep -o '/media/plex/Plex-([^/])+$'|egrep -o '\-\S+'");
+				var mtb=shell("cat /etc/mtab|egrep -o '/media/plex/Plex-([^/])+$'|egrep -o '\-\S+'");
 				mtb.execute()
 				.then(success => {
 					console.log("mtb:\n"+success+"\n"+mtb.stdout);
