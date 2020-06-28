@@ -7,7 +7,7 @@ module.exports=async function(chan,staff) {	// Drive checking
 		fstb.execute()
 		.then(success=> {
 			console.log(
-				fstb.stdout=fstb.stdout.match(/\/media\/plex\/Plex(-[^/])+/g).slice(1).join("\n").match(/-\S+/g).slice(1)
+				fstb.stdout=fstb.stdout.match(/\/media\/plex\/Plex(-[^/]+)/g).slice(1).join("\n").match(/-\S+/g).slice(1)
 			);
 			if (success === true && fstb.stdout != "") {
 				var mtb=shell("cat /etc/mtab|egrep -o '/media/plex/Plex-([^/])+$'|egrep -o '\-\S+'");
