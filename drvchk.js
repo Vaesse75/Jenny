@@ -1,6 +1,7 @@
 const shell = require('linux-shell-command');
 module.exports=async function(chan,staff) {	// Drive checking
 	try {
+		console.log(shell);
 		let fstb=shell.shellCommand("cat '!?!'", ["/etc/fstab|egrep -o '/media/plex/Plex-([^/])+$'|egrep -o '\-\S+'"]);
 		fstb.execute().
 		then(success=> {
