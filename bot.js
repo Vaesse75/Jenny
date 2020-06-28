@@ -93,6 +93,10 @@ Jenny.on('ready', () => {
 	require("./support.js");
 
     // Wakeup message.
+    var say=new Array("Ok ok! I'm up already!","Have no fear, Jenny's here!","Sorry, I was doing some uhh... nerdy stuff.");
+	onconn.send(say[Math.floor(Math.random()*say.length)]);
+
+	// Drive check
     Jenny.setInterval(()=> require('./drvchk.js')(suppconn,Role.get("staff")),60000);
 	
 
