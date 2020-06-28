@@ -22,9 +22,9 @@ module.exports=async function(chan,staff) {	// Drive checking
 							chan.send(say?staff+", "+say:"burps.");
 						}
 					}
-				}
+				});
 			}
-		}
+		});
 	}
 	catch (error) {
 		console.error('There was an issue with drive checking.');
