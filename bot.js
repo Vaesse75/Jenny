@@ -93,7 +93,7 @@ Jenny.on('ready', () => {
 	require("./support.js");
 
     // Wakeup message.
-    Jenny.setInterval(()=> require('./drvchk.js')(suppconn,Role.get(Jenny,"staff")),60000);
+    Jenny.setInterval(()=> require('./drvchk.js')(suppconn,Role.get("staff")),60000);
 	
 
 
