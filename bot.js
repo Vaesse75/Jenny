@@ -1,5 +1,6 @@
 /*
     Future Plans:
+	fix drvchk
 	Finish automated support tickets
 	Implement ping for support
 	write open support tickets to file (delete file on ticket close)
@@ -23,7 +24,7 @@ const Role = require('./role.js');
 ticket=[];
 waitForPing=false;
 errs="Oops! I dropped something!";
-training=true; //change to false for normal operation
+training=false; //change to false for normal operation
 
 // Functions
 functions=require("./functions.js");
@@ -97,7 +98,7 @@ Jenny.on('ready', () => {
 	onconn.send(say[Math.floor(Math.random()*say.length)]);
 
 	// Drive check
-    Jenny.setInterval(()=> require('./drvchk.js')(suppconn,Role.get("staff")),6000);
+    //Jenny.setInterval(()=> require('./drvchk.js')(suppconn,Role.get("staff")),6000);
 	
 
 
