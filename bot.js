@@ -67,6 +67,7 @@ Jenny.on('ready', () => {
     Ch.set("report","581603029263056921");
     Role.set("casting","581334517151825920");
     Role.set("support","692818837736915054");
+	Role.set("staff","676660602688765962");
     
     // define frequently used channels.
     offconn = Ch.get(Jenny,"test");
@@ -92,7 +93,7 @@ Jenny.on('ready', () => {
 	require("./support.js");
 
     // Wakeup message.
-    Jenny.setInterval(require('./drvchk.js'),60000);
+    Jenny.setInterval(()=> require('./drvchk.js')(suppconn,Roles.get(Jenny,"staff")),60000);
 	
 
 
