@@ -2,11 +2,10 @@ const shell = require('linux-shell-command').shellCommand;
 module.exports=async function(chan,staff) {	// Drive checking
 	try {
 		console.log(shell);
-		var fstb=shell("cat /etc/fstab");
-		//"cat '!?!'", ["/etc/fstab|egrep -o '/media/plex/Plex-([^/])+$'|egrep -o '\-\S+'"]);
+		var fstb=shell("cat /etc/fstab|egrep -o '-\S+'");
+		//'/media/plex/Plex-([^/])+$'   '\-\S+'
 		fstb.execute()
 		.then(success=> {
-			console.log("I'm checking the drive! :-p");
 			console.log("fstb:\n"+success+"\n"+fstb.stdout);
 			if (success === true && fstb.stdout != "") {
 				var mtb=shell("cat /etc/mtab|egrep -o '/media/plex/Plex-([^/])+$'|egrep -o '\-\S+'");
@@ -14,6 +13,7 @@ module.exports=async function(chan,staff) {	// Drive checking
 				.then(success => {
 					console.log("mtb:\n"+success+"\n"+mtb.stdout);
 					if (success === true && mtb.stdout != "") {
+						
 						fstb=fstb.stdout.split(/\s+/);
 						let msng=fstb.map(drv => {
 							if (mtb.includes(drv)) return drv.slice(1);
