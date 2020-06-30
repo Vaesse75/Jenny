@@ -98,7 +98,7 @@ Jenny.on('ready', () => {
 	onconn.send(say[Math.floor(Math.random()*say.length)]);
 
 	// Drive check
-    Jenny.setInterval(()=> require('./drvchk.js')(suppconn,Role.ref("staff")),60000);
+    Jenny.setInterval(()=> require('./drvchk.js')(suppconn,Role.ref("staff")),350000);
 	
 
 
