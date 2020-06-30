@@ -12,7 +12,6 @@ module.exports=async function(chan,staff) {	// Drive checking
 				let mtb=shell("cat /etc/mtab");
 				mtb.execute()
 				.then(success => {
-					console.log("mtb:\n"+success+"\n"+mtb.stdout);
 					if (success === true && mtb.stdout != "") {
 						let m={};
 						mtb.stdout.match(/\/media\/plex\/Plex-([^\/]+?)\s/g).map(a=>{return a.slice(17,-1);}).forEach(a=>{m[a]=true;});
