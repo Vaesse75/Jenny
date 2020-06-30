@@ -19,12 +19,12 @@ module.exports=async function(chan,staff) {	// Drive checking
 						let msng=f.map(drv=>{
 							if (m.includes(drv)) return drv;
 						});
-						console.log("Missing drives: "+msng);
 						if (msng.length>0) {
 							msgs=[
 								msng[1]+" has been reported missing"+(msng.length>1?", it was last seen in the company of "+(msng.length>2?msng.slice(1,-1).join(", ")+", and ":"")+msng.slice(-1):"")+"."
 							];
 							let say=Math.floor(Math.random()*msgs.length)||"burps.";
+							console.log("Missing drives: "+msng+"\n"+say);
 							chan.send(say?staff+", "+say:"burps.");
 						}
 					}
