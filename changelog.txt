@@ -1,5 +1,8 @@
 Change package.json line 3 to match the version listed, before restarting Jenny with final (Add new versions to the top of the list)
 
+1.6.48 [caseyomah,jasoncollege24]
+Added check for missing drives
+
 1.5.48 [jasoncollege24]
 Updated Tips to reflect changes in the service
 Added new tips.
