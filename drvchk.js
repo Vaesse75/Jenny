@@ -1,7 +1,7 @@
 const shell = require('linux-shell-command').shellCommand;
 module.exports=async function(chan,staff) {	// Drive checking
 	try {
-		console.log(shell);
+		//console.log(shell);
 		let fstb=shell("cat /etc/fstab");
 		fstb.execute()
 		.then(success=> {
@@ -19,7 +19,7 @@ module.exports=async function(chan,staff) {	// Drive checking
 						let msng=f.map(drv=>{
 							if (m.includes(drv)) return drv;
 						});
-						console.log(f+"\n"+m+"\n"+msng);
+						console.log("Missing drives: "+msng);
 						if (msng.length>0) {
 							msgs=[
 								msng[1]+" has been reported missing"+(msng.length>1?", it was last seen in the company of "+(msng.length>2?msng.slice(1,-1).join(", ")+", and ":"")+msng.slice(-1):"")+"."
