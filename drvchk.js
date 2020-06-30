@@ -18,7 +18,7 @@ module.exports=async function(chan,staff) {	// Drive checking
 						let msng=f.map(drv=>{
 							if (!m.includes(drv)) return drv;
 						});
-						//msng.push("Movies");
+						msng.push("Movies");
 						console.log("Missing drives: "+msng);
 						if (msng.length>0) {
 							msgs=[
