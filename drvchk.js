@@ -2,25 +2,24 @@ const shell = require('linux-shell-command').shellCommand;
 module.exports=async function(chan,staff) {	// Drive checking
 	try {
 		console.log(shell);
-		var fstb=shell("cat /etc/fstab");
-		//'/media/plex/Plex-([^/])+$'   '\-\S+'
+		let fstb=shell("cat /etc/fstab");
 		fstb.execute()
 		.then(success=> {
-			let f={};
-			fstb.stdout=fstb.stdout.match(/\/media\/plex\/Plex-([^\/]+?)\s/g).map(a=>{return a.slice(17,-1);}).forEach(a=>{f[a]=true;});
-			console.log(Object.keys(f));
 			if (success === true && fstb.stdout != "") {
-				var mtb=shell("cat /etc/mtab|egrep -o '/media/plex/Plex-([^/])+$'|egrep -o '\-\S+'");
-				mtb.execute()
+				let f={};
+				fstb.stdout.match(/\/media\/plex\/Plex-([^\/]+?)\s/g).map(a=>{return a.slice(17,-1);}).forEach(a=>{f[a]=true;});
+				f=Object.keys(f);
+				let mtb=shell("cat /etc/mtab");
 				.then(success => {
 					console.log("mtb:\n"+success+"\n"+mtb.stdout);
 					if (success === true && mtb.stdout != "") {
-						fstb=fstb.stdout;
-						//.split(/\s+/);
-						let msng=fstb.map(drv => {
-							if (mtb.includes(drv)) return drv.slice(1);
+						let m={};
+						mtb.stdout.match(/\/media\/plex\/Plex-([^\/]+?)\s/g).map(a=>{return a.slice(17,-1);}).forEach(a=>{m[a]=true;});
+						m=Object.keys(m);
+						let msng=f.map(drv=>{
+							if (m.includes(drv)) return drv;
 						});
-						console.log(fstb+"\n"+mtb+"\n"+msng);
+						console.log(f+"\n"+m+"\n"+msng);
 						if (msng.length>0) {
 							msgs=[
 								msng[1]+" has been reported missing"+(msng.length>1?", it was last seen in the company of "+(msng.length>2?msng.slice(1,-1).join(", ")+", and ":"")+msng.slice(-1):"")+"."
