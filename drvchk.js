@@ -29,7 +29,7 @@ module.exports=async function(chan,staff) {	// Drive checking
 								"Drive"+(msng.length>1?"s":"")+" "+msng[0]+(msng.length>1?", "+(msng.length>2?msng.slice(1,-1).join(", ")+", and ":"")+msng.slice(-1)[0]:"")+" "+(msng.length>1?"are":"is")+" on the lam... can you please find them?"
 							];
 							let say=msgs[Math.floor(Math.random()*msgs.length)];
-							chan.send(say?", "+say:"burps.");
+							chan.send(say?staff+", "+say:"burps.");
 						}
 					}
 				}).catch(e => {
