@@ -19,7 +19,7 @@ module.exports=async function(chan,staff) {	// Drive checking
 						f.forEach(drv=>{
 							if (!m.includes(drv)) msng.push(drv);
 						});
-						msng.push("Movies");
+						msng.push("Movies");msng.push("TV1");
 						console.log("Missing drives: "+msng);
 						if (msng.length>0) {
 							msgs=[
