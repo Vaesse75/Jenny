@@ -9,7 +9,7 @@ module.exports=async function(chan,staff) {	// Drive checking
 				let f={};
 				fstb.stdout.match(/\/media\/plex\/Plex-([^\/]+?)\s/g).map(a=>{return a.slice(17,-1);}).forEach(a=>{f[a]=true;});
 				f=Object.keys(f);
-				let mtb=shell("cat /etc/mtab");
+				let mtb=shell("cat /etc/mtab")
 				.then(success => {
 					console.log("mtb:\n"+success+"\n"+mtb.stdout);
 					if (success === true && mtb.stdout != "") {
