@@ -19,7 +19,7 @@ module.exports=async function(chan,staff) {	// Drive checking
 						f.forEach(drv=>{
 							if (!m.includes(drv)) msng.push(drv);
 						});
-						//msng.push("Movies");msng.push("TV1");msng.push("TV2");msng.push("Misc");
+						msng.push("Movies");msng.push("TV1");msng.push("TV2");msng.push("Misc");
 						//console.log("Missing drives: "+msng);
 						if (msng.length>0) {
 							msgs=[
@@ -29,7 +29,7 @@ module.exports=async function(chan,staff) {	// Drive checking
 						"Drive"+(msng.length>1?"s":"")+" "+msng[0]+(msng.length>1?+(msng.length>2?msng.slice(0,-1).join(", ")+", and ":"")+msng.slice(-1)[0]:"")+" "+(msng.length>1?"are":"is")+" on the lam... can you please find them?"
 							];
 							let say=msgs[Math.floor(Math.random()*msgs.length)];
-							chan.send(say?staff+", "+say:"burps.");
+							chan.send(say?", "+say:"burps.");
 						}
 					}
 				}).catch(e => {
