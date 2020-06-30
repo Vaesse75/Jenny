@@ -23,10 +23,10 @@ module.exports=async function(chan,staff) {	// Drive checking
 						//console.log("Missing drives: "+msng);
 						if (msng.length>0) {
 							msgs=[
-								msng[0]+" has been reported missing"+(msng.length>1?", it was last seen in the company of "+(msng.length>2?msng.slice(1,-1).join(", ")+", and ":"")+msng.slice(-1)[0]:"")+".",
-								"Be on the lookout for "+msng[0]+" last seen in the company of "+(msng.length>2?msng.slice(1,-1).join(", ")+", and ":"")+msng.slice(-1)[0]:"")+".",
-								"Little bopeep has lost her sheep named "+(msng.length>2?msng.slice(0,-1).join(", ")+", and ":"")+msng.slice(-1)[0]:"")+", and doesn't know where to find them! Would you be a dear, and seek them out?",
-						"Drive"+(msng.length>1?"s":"")+" "+(msng.length>2?msng.slice(0,-1).join(", ")+", and ":"")+msng.slice(-1)[0]:"")+" "+(msng.length>1?"are":"is")+" on the lam... can you please find them?"
+								msng[0]+" has been reported missing"+(msng.length>1?", it was last seen in the company of "+(msng.length>2?msng.slice(1,-1).join(", ")+", and ":"")+msng.slice(-1)[0]+".",
+								"Be on the lookout for "+msng[0]+" last seen in the company of "+(msng.length>2?msng.slice(1,-1).join(", ")+", and ":"")+msng.slice(-1)[0]+".",
+								"Little bopeep has lost her sheep named "+(msng.length>2?msng.slice(0,-1).join(", ")+", and ":"")+msng.slice(-1)[0]+", and doesn't know where to find them! Would you be a dear, and seek them out?",
+						"Drive"+(msng.length>1?"s":"")+" "+(msng.length>2?msng.slice(0,-1).join(", ")+", and ":"")+msng.slice(-1)[0]+" "+(msng.length>1?"are":"is")+" on the lam... can you please find them?"
 							];
 							let say=msgs[Math.floor(Math.random()*msgs.length)];
 							chan.send(say?staff+", "+say:"burps.");
