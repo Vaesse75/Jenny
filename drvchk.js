@@ -19,8 +19,6 @@ module.exports=async function(chan,staff) {	// Drive checking
 						f.forEach(drv=>{
 							if (!m.includes(drv)) msng.push(drv);
 						});
-						msng.push("Movies");msng.push("TV1");msng.push("TV2");msng.push("Misc");
-						//console.log("Missing drives: "+msng);
 						if (msng.length>0) {
 							msgs=[
 								msng[0]+" has been reported missing"+(msng.length>1?", it was last seen in the company of "+(msng.length>2?msng.slice(1,-1).join(", ")+", and ":"")+msng.slice(-1)[0]:"")+".",
