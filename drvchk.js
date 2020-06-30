@@ -23,7 +23,7 @@ module.exports=async function(chan,staff) {	// Drive checking
 						console.log("Missing drives: "+msng);
 						if (msng.length>0) {
 							msgs=[
-								msng[1]+" has been reported missing"+(msng.length>1?", it was last seen in the company of "+(msng.length>2?msng.slice(1,-1).join(", ")+", and ":"")+msng.slice(-1):"")+"."
+								msng[0]+" has been reported missing"+(msng.length>1?", it was last seen in the company of "+(msng.length>2?msng.slice(1,-1).join(", ")+", and ":"")+msng.slice(-1)[0]:"")+"."
 							];
 							let say=msgs[Math.floor(Math.random()*msgs.length)];
 							chan.send(say?", "+say:"burps.");
