@@ -6,9 +6,9 @@ module.exports=async function(chan,staff) {	// Drive checking
 		//'/media/plex/Plex-([^/])+$'   '\-\S+'
 		fstb.execute()
 		.then(success=> {
-			console.log(
-				fstb.stdout=fstb.stdout.match(/\/media\/plex\/Plex-([^\/]+?)\s/g).map(a=>{return a.slice(17,-1);})
-			);
+			let f={};
+			fstb.stdout=fstb.stdout.match(/\/media\/plex\/Plex-([^\/]+?)\s/g).map(a=>{return a.slice(17,-1);}).forEach(a=>{f[a]=true;});
+			console.log(f);
 			if (success === true && fstb.stdout != "") {
 				var mtb=shell("cat /etc/mtab|egrep -o '/media/plex/Plex-([^/])+$'|egrep -o '\-\S+'");
 				mtb.execute()
