@@ -148,6 +148,15 @@ Jenny.on('message', msg => {
         var say=new Array("Yup! You're here!");
         msg.channel.send(say[Math.floor(Math.random()*say.length)]);
     }
+   // Bot banter
+	if (input=="my apologies, i was a bit distracted." && Math.floor(Math.random() * 10)==0) {
+		var say=[
+			"What's her name?",
+			"Umm... Do I really want to know?",
+			"At least somebody's having fun."
+		];
+		msg.channel.send(say[Math.floor(Math.random()*say.length)]);
+	}
 	// support text
 	if (input.match(/^\?support/)) {
         ticket[msg.author.id]=input.substr(9).split(" ");
