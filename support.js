@@ -14,9 +14,9 @@
 //Support questions
 	service1="so head on over to <https://vaesse.jasoncollege24.com/> to see if the host is up.\r\nIs the Host up? You can say **yes**, or **no**.";
 	service2="everything seems to be working here.";
-	device="What device are you using?\r\n";
+	device="What device are you using? ";
 	alloptions="You can also tell me to go **back**, **cancel** your ticket, or resolve your ticket by telling me it's **fixed**.";
-	question1="Can you get into the app/player at all?\r\nYou can say **yes**, or **no**.";
+	question1="Can you get into the app/player at all? You can say **yes**, or **no**.";
 	question2="what are you trying to do?\r\nView the **library**, watch a **video**, listen to **music**, or look at **pictures**?";
 	libq1="Have you previously requested access? You can say **yes**, or **no**.";
 	libq2="is the library visible at all? You can say **yes**, or **no**.";
@@ -24,7 +24,7 @@
 
 //support Array
 	support=[];
-    support[0]="the boss isn't here right now, but maybe I can help.\r\nIs your problem with **Plex**, **Calibre**, or **FTP**? You can also **cancel** your ticket, or tell me that it's **fixed** to close your trouble ticket.";
+    support[0]="the boss isn't here right now, but maybe I can help. Is your problem with **Plex**, **Calibre**, or **FTP**? You can also **cancel** your ticket, or tell me that it's **fixed** to close your trouble ticket.";
 
 	//Calibre section
 	support["calibre"]=[]; //!ping calibre, down=breakpoint2;
@@ -35,7 +35,7 @@
 	support["calibre"]["yes"]["no"]=breakpoint;
 	//Calibre has user
 	support["calibre"]["yes"]["yes"]=[];
-	support["calibre"]["yes"]["yes"][0]="Ok, so what are you trying to do?\r\n**Login**, open a **book**, or **other**? "+alloptions;
+	support["calibre"]["yes"]["yes"][0]="Ok, so what are you trying to do? **Login**, open a **book**, or **other**? "+alloptions;
 	support["calibre"]["yes"]["yes"]["book"]=breakpoint;
 	support["calibre"]["yes"]["yes"]["other"]=breakpoint;
 	//Calibre Login
