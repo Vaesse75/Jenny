@@ -256,8 +256,11 @@ Jenny.on('message', msg => {
 	if (waitForPing) {
 		var nCarl;
 		function noCarl() {
-			suppconn.send(tag+". "+breakpointCarl);
-			ticket[msg.author.id]=null;
+			if (tag != "<@"+msg.author.bot+">") {
+				suppconn.send(tag+". "+breakpointCarl);
+				ticket[msg.author.id]=null;
+				clearTimeout(nCarl);
+			}
 		}
 		if (input.match(/^[^,]*, (\w* ){2}is .*\.$/)) {
 			tag=input.split(",")[0];
@@ -273,7 +276,6 @@ Jenny.on('message', msg => {
 		else {
 			waitForPing=false;
 			nCarl=setTimeout(noCarl, 3000);
-			clearTimeout(nCarl);
 		}
 	}
     // help text
