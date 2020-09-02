@@ -10,7 +10,7 @@
 	breakpoint="I can't help you with this just yet. "+SupportRef+", someone needs your assistance! (Ticket closed)"; 
 	breakpoint2="the service is down, sorry. "+CastingRef+", service appears to be down! (Ticket closed)";
 	breakpoint3="It sounds like you need a password reset. "+breakpoint;
-	breakpointCarl="It looks like Carl isn't here. "+CastingRef+", Carl isn't here to ping services! (Ticket closed)";
+	breakpointCarl="It looks like Carl isn't here. Carl isn't here to ping services! (Ticket closed)";
 
 //Support questions
 	service1="so head on over to <https://vaesse.jasoncollege24.com/> to see if the host is up.\r\nIs the Host up? You can say **yes**, or **no**.";

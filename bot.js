@@ -272,6 +272,7 @@ Jenny.on('message', msg => {
 		}
 		else {
 			setTimeout(noCarl, 3000);
+			clearTimeout(timeout);
 		}
 	}
     // help text
