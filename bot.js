@@ -24,7 +24,7 @@ const Role = require('./role.js');
 ticket=[];
 waitForPing=false;
 errs="Oops! I dropped something!";
-training=true; //change to false for normal operation
+training=false; //change to false for normal operation
 
 // Functions
 functions=require("./functions.js");
@@ -98,7 +98,7 @@ Jenny.on('ready', () => {
 	onconn.send(say[Math.floor(Math.random()*say.length)]);
 
 	// Drive check
-    Jenny.setInterval(()=> require('./drvchk.js')(suppconn,Role.ref("staff")),350000);
+    //Jenny.setInterval(()=> require('./drvchk.js')(suppconn,Role.ref("staff")),350000);
 	
 
 
