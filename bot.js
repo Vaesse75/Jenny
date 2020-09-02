@@ -254,10 +254,12 @@ Jenny.on('message', msg => {
  
     }
 	if (waitForPing) {
+		var nCarl;
 		function noCarl() {
 			suppconn.send(tag+". "+breakpointCarl);
 			ticket[msg.author.id]=null;
 			waitForPing=false;
+			clearTimeout(nCarl);
 		}
 		if (input.match(/^[^,]*, (\w* ){2}is .*\.$/)) {
 			tag=input.split(",")[0];
@@ -271,8 +273,7 @@ Jenny.on('message', msg => {
 			waitForPing=false;
 		}
 		else {
-			setTimeout(noCarl, 3000);
-			clearTimeout(timeout);
+			nCarl=setTimeout(noCarl, 3000);
 		}
 	}
     // help text
