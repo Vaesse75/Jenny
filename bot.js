@@ -24,7 +24,7 @@ const Role = require('./role.js');
 ticket=[];
 waitForPing=false;
 errs="Oops! I dropped something!";
-training=false; //change to false for normal operation
+training=true; //change to false for normal operation
 
 // Functions
 functions=require("./functions.js");
@@ -256,11 +256,11 @@ Jenny.on('message', msg => {
 	if (waitForPing) {
 		var nCarl;
 		function noCarl() {
-			if (tag != "<@"+msg.author.bot+">") {
+			//if (tag != "<@"+msg.author.bot+">") {
 				suppconn.send(tag+". "+breakpointCarl);
 				ticket[msg.author.id]=null;
 				clearTimeout(nCarl);
-			}
+			//}
 		}
 		if (input.match(/^[^,]*, (\w* ){2}is .*\.$/)) {
 			tag=input.split(",")[0];
