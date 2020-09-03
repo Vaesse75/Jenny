@@ -113,6 +113,7 @@ Jenny.on('message', msg => {
 			console.log("Carl replied, during timeout!");
 			clearTimeout(nCarl);
 			console.log("Timeout should be clear. nCarl is "+nCarl);
+			waitForPing=false;
 		}
 		require('./noproblemo.js')(msg);
 		var input=msg.content.toLowerCase();
