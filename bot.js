@@ -24,6 +24,7 @@ const Role = require('./role.js');
 ticket=[];
 waitForPing=false;
 errs="Oops! I dropped something!";
+var nCarl;
 training=true; //change to false for normal operation
 
 // Functions
@@ -258,7 +259,6 @@ Jenny.on('message', msg => {
 	 
 		}
 		if (waitForPing) {
-			var nCarl;
 			function noCarl() {
 					suppconn.send(tag+". "+breakpointCarl);
 					ticket[msg.author.id]=null;
