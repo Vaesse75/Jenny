@@ -280,10 +280,11 @@ Jenny.on('message', msg => {
 				console.log("noCarl Function called!");
 				if (input.match(/^[^,]*, (\w* ){2}is .*\.$/)) {
 					yesCarl(input, waitForPing);
+					nCarl=null;
 				}
 				else {
-					console.log("this should be a breakpoint!");
-					suppconn.send(tag+". "+breakpointCarl);
+					console.log(breakpointCarl);
+					//suppconn.send(tag+". "+breakpointCarl);
 					ticket[msg.author.id]=null;
 				}
 				waitForPing=false;
