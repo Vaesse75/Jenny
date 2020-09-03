@@ -113,7 +113,7 @@ Jenny.on('message', msg => {
 			console.log("Carl replied, during timeout!");
 			clearTimeout(nCarl);
 			console.log("Timeout should be clear. nCarl is "+nCarl);
-			waitForPing=false;
+			//waitForPing=false;
 		}
 		require('./noproblemo.js')(msg);
 		var input=msg.content.toLowerCase();
@@ -280,7 +280,6 @@ Jenny.on('message', msg => {
 				console.log("noCarl Function called!");
 				if (input.match(/^[^,]*, (\w* ){2}is .*\.$/)) {
 					yesCarl(input, waitForPing);
-					clearTimeout(nCarl);
 				}
 				else {
 					console.log("this should be a breakpoint!");
@@ -288,6 +287,7 @@ Jenny.on('message', msg => {
 					ticket[msg.author.id]=null;
 				}
 				waitForPing=false;
+				clearTimeout(nCarl);
 			}
 			console.log("Carl's reply not detected! Setting timeout");
 			//nCarl=setTimeout(noCarl, 3000);
