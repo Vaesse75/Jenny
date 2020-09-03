@@ -111,7 +111,7 @@ Jenny.on('message', msg => {
 	if (Jenny.user.id !== msg.author.id) {
 		if (msg.author.id == "675406803567378512" && nCarl) {
 			console.log("Carl replied, during timeout! nCarl is "+nCarl);
-			clearTimout(nCarl);
+			clearTimeout(nCarl);
 			console.log("Timeout should be clear. nCarl is "+nCarl);
 		}
 		require('./noproblemo.js')(msg);
