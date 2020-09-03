@@ -24,8 +24,6 @@ const Role = require('./role.js');
 ticket=[];
 waitForPing=false;
 errs="Oops! I dropped something!";
-var nCarl;
-console.log("nCarl variable declared!");
 training=true; //change to false for normal operation
 
 // Functions
