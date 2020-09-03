@@ -107,12 +107,6 @@ Jenny.on('ready', () => {
 // Reply to messages
 Jenny.on('message', msg => {
 	if (Jenny.user.id !== msg.author.id) {
-		if (msg.author.id == "675406803567378512" && nCarl) {
-			console.log("Carl replied, during timeout!");
-			clearTimeout(nCarl);
-			console.log("Timeout should be clear. nCarl is "+nCarl);
-			//waitForPing=false;
-		}
 		require('./noproblemo.js')(msg);
 		var input=msg.content.toLowerCase();
 		var tag="<@"+msg.author.id+">";
@@ -189,7 +183,6 @@ Jenny.on('message', msg => {
 					waitForPing=ticket[msg.author.id][0];
 					suppconn.send(tag+", "+pingwarn);
 					suppconn.send("!ping "+ticket[msg.author.id][0]+" for "+tag);
-					
 				}
 				else {
 					ticket[msg.author.id]=[];
@@ -260,37 +253,16 @@ Jenny.on('message', msg => {
 			}
 	 
 		}
-		if (waitForPing) {
-			console.log("waitForPing is true");
-			function yesCarl(input, waitForPing) {
-				console.log("yesCarl function call");
-				tag=input.split(",")[0];
-				if (input.substr(input.length-5,4)=="open" || input.substr(input.length-3,2)=="up") {
-					suppconn.send(tag+", "+support[waitForPing][0]);
-				}
-				else if (input.substr(input.length-7,6)=="closed" || input.substr(input.length-5,4)=="down") {
-					suppconn.send(tag+", "+breakpoint2);
-					ticket[msg.author.id]=null;
-				}
-				waitForPing=false;
+		if (input.match(/^[^,]*, (\w* ){2}is .*\.$/) && waitForPing) {
+			tag=input.split(",")[0];
+			if (input.substr(input.length-5,4)=="open" || input.substr(input.length-3,2)=="up") {
+				suppconn.send(tag+", "+support[waitForPing][0]);
 			}
-			function noCarl(input, waitForPing) {
-				console.log("noCarl Function called!");
-				if (input.match(/^[^,]*, (\w* ){2}is .*\.$/)) {
-					yesCarl(input, waitForPing);
-					nCarl=null;
-				}
-				else {
-					console.log(breakpointCarl);
-					//suppconn.send(tag+". "+breakpointCarl);
-					ticket[msg.author.id]=null;
-				}
-				waitForPing=false;
-				clearTimeout(nCarl);
+			else if (input.substr(input.length-7,6)=="closed" || input.substr(input.length-5,4)=="down") {
+				suppconn.send(tag+", "+breakpoint2);
+				ticket[msg.author.id]=null;
 			}
-			console.log("Carl's reply not detected! Setting timeout");
-			//nCarl=setTimeout(noCarl, 3000);
-			nCarl=setTimeout(() => {noCarl(input, waitForPing);},3000);
+			waitForPing=false;
 		}
 		// help text
 		if (input.match(/^\?help/)||input.match(/^help.*jenny.*/)) {
