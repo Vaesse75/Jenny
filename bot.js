@@ -25,6 +25,7 @@ ticket=[];
 waitForPing=false;
 errs="Oops! I dropped something!";
 var nCarl;
+console.log("nCarl variable declared!");
 training=true; //change to false for normal operation
 
 // Functions
@@ -109,7 +110,9 @@ Jenny.on('ready', () => {
 Jenny.on('message', msg => {
 	if (Jenny.user.id !== msg.author.id) {
 		if (msg.author.id == "675406803567378512" && nCarl) {
+			console.log("Carl replied, during timeout! nCarl is "+nCarl);
 			clearTimout(nCarl);
+			console.log("Timeout should be clear. nCarl is "+nCarl);
 		}
 		require('./noproblemo.js')(msg);
 		var input=msg.content.toLowerCase();
@@ -259,11 +262,14 @@ Jenny.on('message', msg => {
 	 
 		}
 		if (waitForPing) {
+			console.log("waitForPing is true");
 			function noCarl() {
-					suppconn.send(tag+". "+breakpointCarl);
-					ticket[msg.author.id]=null;
+				console.log("noCarl Function called!");
+				suppconn.send(tag+". "+breakpointCarl);
+				ticket[msg.author.id]=null;
 			}
 			if (input.match(/^[^,]*, (\w* ){2}is .*\.$/)) {
+				console.log("Carl's reply was detected!");
 				tag=input.split(",")[0];
 				if (input.substr(input.length-5,4)=="open" || input.substr(input.length-3,2)=="up") {
 					suppconn.send(tag+", "+support[waitForPing][0]);
@@ -272,12 +278,12 @@ Jenny.on('message', msg => {
 					suppconn.send(tag+", "+breakpoint2);
 					ticket[msg.author.id]=null;
 				}
-				waitForPing=false;
 			}
 			else {
-				waitForPing=false;
+				console.log("Carl's reply not detected! Setting timeout");
 				nCarl=setTimeout(noCarl, 3000);
 			}
+			waitForPing=false;
 		}
 		// help text
 		if (input.match(/^\?help/)||input.match(/^help.*jenny.*/)) {
