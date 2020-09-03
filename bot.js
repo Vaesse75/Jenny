@@ -112,7 +112,7 @@ Jenny.on('message', msg => {
 		if (msg.author.id == "675406803567378512" && nCarl) {
 			console.log("Carl replied, during timeout!");
 			clearTimeout(nCarl);
-			//console.log("Timeout should be clear. nCarl is "+nCarl);
+			console.log("Timeout should be clear. nCarl is "+nCarl);
 		}
 		require('./noproblemo.js')(msg);
 		var input=msg.content.toLowerCase();
@@ -273,6 +273,7 @@ Jenny.on('message', msg => {
 					suppconn.send(tag+", "+breakpoint2);
 					ticket[msg.author.id]=null;
 				}
+				waitForPing=false;
 			}
 			function noCarl(input, waitForPing) {
 				console.log("noCarl Function called!");
