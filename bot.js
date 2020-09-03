@@ -290,7 +290,7 @@ Jenny.on('message', msg => {
 			}
 			console.log("Carl's reply not detected! Setting timeout");
 			//nCarl=setTimeout(noCarl, 3000);
-			nCarl=setTimeout((input, waitForPing) => {noCarl(input, waitForPing);},3000);
+			nCarl=setTimeout(() => {noCarl(input, waitForPing);},3000);
 		}
 		// help text
 		if (input.match(/^\?help/)||input.match(/^help.*jenny.*/)) {
