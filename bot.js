@@ -107,7 +107,7 @@ Jenny.on('ready', () => {
 // Reply to messages
 Jenny.on('message', msg => {
 	if (Jenny.user.id !== msg.author.id) {
-		if (msg.author.id === "675406803567378512" && nCarl) {
+		if (msg.author.id == "675406803567378512" && nCarl) {
 			clearTimout(nCarl);
 		}
 		require('./noproblemo.js')(msg);
