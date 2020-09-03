@@ -263,7 +263,7 @@ Jenny.on('message', msg => {
 		}
 		if (waitForPing) {
 			console.log("waitForPing is true");
-			function yesCarl(input) {
+			function yesCarl(input, waitForPing) {
 				if (input.match(/^[^,]*, (\w* ){2}is .*\.$/)) {
 					console.log("Carl's reply was detected!");
 					tag=input.split(",")[0];
@@ -278,7 +278,7 @@ Jenny.on('message', msg => {
 			}
 			function noCarl() {
 				if (input.match(/^[^,]*, (\w* ){2}is .*\.$/)) {
-					yesCarl(input);
+					yesCarl(input, waitForPing);
 					clearTimeout(nCarl);
 				}
 				else {
