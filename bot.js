@@ -110,7 +110,7 @@ Jenny.on('ready', () => {
 Jenny.on('message', msg => {
 	if (Jenny.user.id !== msg.author.id) {
 		if (msg.author.id == "675406803567378512" && nCarl) {
-			console.log("Carl replied, during timeout! nCarl is "+nCarl);
+			console.log("Carl replied, during timeout!");
 			//clearTimeout(nCarl);
 			//console.log("Timeout should be clear. nCarl is "+nCarl);
 		}
@@ -264,16 +264,14 @@ Jenny.on('message', msg => {
 		if (waitForPing) {
 			console.log("waitForPing is true");
 			function yesCarl(input, waitForPing) {
-				if (input.match(/^[^,]*, (\w* ){2}is .*\.$/)) {
-					console.log("Carl's reply was detected!");
-					tag=input.split(",")[0];
-					if (input.substr(input.length-5,4)=="open" || input.substr(input.length-3,2)=="up") {
-						suppconn.send(tag+", "+support[waitForPing][0]);
-					}
-					else if (input.substr(input.length-7,6)=="closed" || input.substr(input.length-5,4)=="down") {
-						suppconn.send(tag+", "+breakpoint2);
-						ticket[msg.author.id]=null;
-					}
+				console.log("Carl's reply was detected!");
+				tag=input.split(",")[0];
+				if (input.substr(input.length-5,4)=="open" || input.substr(input.length-3,2)=="up") {
+					suppconn.send(tag+", "+support[waitForPing][0]);
+				}
+				else if (input.substr(input.length-7,6)=="closed" || input.substr(input.length-5,4)=="down") {
+					suppconn.send(tag+", "+breakpoint2);
+					ticket[msg.author.id]=null;
 				}
 			}
 			function noCarl(input, waitForPing) {
