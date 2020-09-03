@@ -111,7 +111,7 @@ Jenny.on('message', msg => {
 	if (Jenny.user.id !== msg.author.id) {
 		if (msg.author.id == "675406803567378512" && nCarl) {
 			console.log("Carl replied, during timeout!");
-			//clearTimeout(nCarl);
+			clearTimeout(nCarl);
 			//console.log("Timeout should be clear. nCarl is "+nCarl);
 		}
 		require('./noproblemo.js')(msg);
@@ -264,7 +264,7 @@ Jenny.on('message', msg => {
 		if (waitForPing) {
 			console.log("waitForPing is true");
 			function yesCarl(input, waitForPing) {
-				console.log("Carl's reply was detected!");
+				console.log("yesCarl function call");
 				tag=input.split(",")[0];
 				if (input.substr(input.length-5,4)=="open" || input.substr(input.length-3,2)=="up") {
 					suppconn.send(tag+", "+support[waitForPing][0]);
@@ -275,12 +275,13 @@ Jenny.on('message', msg => {
 				}
 			}
 			function noCarl(input, waitForPing) {
+				console.log("noCarl Function called!");
 				if (input.match(/^[^,]*, (\w* ){2}is .*\.$/)) {
 					yesCarl(input, waitForPing);
 					clearTimeout(nCarl);
 				}
 				else {
-					console.log("noCarl Function called!");
+					console.log("this should be a breakpoint!");
 					suppconn.send(tag+". "+breakpointCarl);
 					ticket[msg.author.id]=null;
 				}
