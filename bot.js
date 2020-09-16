@@ -31,6 +31,7 @@ plugins.forEach(plg=>{
     for (const file of tmp) findPlugins(Jenny,require(`./${plg[0]}/`+file),plg);
 });
 
+
 // Set variables
 //Recs = {"list":[]};
 let carl=true;
@@ -118,6 +119,10 @@ Jenny.on('ready', () => {
 
 });
 
+function shutdown() {
+	onconn = Ch.get(Jenny,"bot");
+	onconn.send("I need a break! Be back in five!");
+}
 // Reply to messages
 Jenny.on('message', msg => {
 	if (Jenny.user.id !== msg.author.id) {
@@ -295,5 +300,7 @@ Jenny.on('message', msg => {
 		}
 	}
 });
+
+process.on('SIGTERM', shutdown());
 
 Jenny.login(token);
