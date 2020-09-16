@@ -128,6 +128,25 @@ Jenny.on('message', msg => {
 		require('./social.js')(msg); // Social responses (Plain text)
 		require('./tips.js')(msg,underlay); //tips module (Programmatic)
 	 
+		const args = msg.content.slice(prefix.length).split(/ +/);
+		const commandName = args.shift().toLowerCase();
+		if (msg.content.startsWith(prefix+commandName) && Jenny.commands.has(commandName)) {
+			const command=Jenny.commands.get(commandName);
+			if (command.args && !args.length) {
+				let reply = `You didn't provide any arguments, ${message.author}!`;
+				if (command.usage) {
+					reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
+				}
+				return message.channel.send(reply);
+			}
+			else command.execute(msg, args);
+		}
+
+		//Plain text social responses
+		else {
+			client.socials.forEach(social => {if (social.trigger(msg)) social.execute(msg);});
+		}
+
 	 //// Programatic triggers
 		//undocumented test trigger
 		if (input.match(/^\?test 0001/)) {
