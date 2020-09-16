@@ -24,9 +24,9 @@ const Ch = require('./ch.js');
 //const Em = {};
 const Role = require('./role.js');
 
-let plugins=[["commands","name"],["socials","trigger"]];
+let plugins=[["commands","name"],["socials","trigger"]]; // Array setup is ["folder-type","key"]
 plugins.forEach(plg=>{
-    Jenny[plg[0]]=new Discord.Collection();
+    Jenny[plg[0]]=new Discord.Collection(); //Jenny.commands=new Discord.Collection();
     let tmp=fs.readdirSync("./"+plg[0]).filter(file => file.endsWith(".js"));
     for (const file of tmp) findPlugins(Jenny,require(`./${plg[0]}/`+file),plg);
 });
@@ -125,7 +125,6 @@ Jenny.on('message', msg => {
 		var input=msg.content.toLowerCase();
 		var tag="<@"+msg.author.id+">";
 		//response modules
-		require('./social.js')(msg); // Social responses (Plain text)
 		require('./tips.js')(msg,underlay); //tips module (Programmatic)
 	 
 		const args = msg.content.slice(prefix.length).split(/ +/);
@@ -144,54 +143,14 @@ Jenny.on('message', msg => {
 
 		//Plain text social responses
 		else {
-			Jenny.socials.forEach(social => {if (social.trigger(msg)) social.execute(msg);});
+			Jenny.socials.forEach(social => {if (social.trigger(msg)) let say=social.execute(msg);});
+			if (say && say.length > 0) {
+				if (Array.isArray(say)) msg.channel.send(say[Math.floor(Math.random()*say.length)]);
+				else if (typeof say == "string") msg.channel.send(say);
+			}
 		}
 
 	 //// Programatic triggers
-		//undocumented test trigger
-		if (input.match(/^\?test 0001/)) {
-			var plex=checkit("plexmediaserver");
-			var calibre=checkit("calibre-server");
-			var ftp=checkit("proftpd");
-			if (plex) {
-				var t="open!";
-			}
-			else if (!plex) {
-				var t="closed!";
-			}
-			if (calibre) {
-				var c="open!";
-			}
-			else if (!calibre) {
-				var c="closed!";
-			}
-			if (ftp) {
-				var f="up!";
-			}
-			else if (!ftp) {
-				var f="down!";
-			}
-			var say1="Theater is "+t;
-			var say2="Library is "+c;
-			var say3="FTP is "+f;
-			msg.channel.send(say1+" "+say2+" "+say3);
-		}
-	 
-		/* ping reply
-		if (input.match(/^\?ping/)) {
-			var say=new Array("Yup! You're here!");
-			msg.channel.send(say[Math.floor(Math.random()*say.length)]);
-		}
-		// end ping */
-	   // Bot banter
-		if (input=="my apologies, i was a bit distracted." && Math.floor(Math.random() * 10)==0) {
-			var say=[
-				"What's her name?",
-				"Umm... Do I really want to know?",
-				"At least somebody's having fun."
-			];
-			msg.channel.send(say[Math.floor(Math.random()*say.length)]);
-		}
 		// support text
 		if (input.match(/^\?support/)) {
 			ticket[msg.author.id]=input.substr(9).split(" ");
