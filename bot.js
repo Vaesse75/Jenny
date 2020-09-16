@@ -38,7 +38,7 @@ let nCarl;
 ticket=[];
 waitForPing=false;
 errs="Oops! I dropped something!";
-training=true; //change to false for normal operation
+training=false; //change to false for normal operation
 
 // Functions
 functions=require("./functions.js");
