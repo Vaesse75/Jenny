@@ -305,7 +305,10 @@ process.on('SIGTERM', () => {
 		if (!kill) {
 			kill=true;
 			onconn.send("I need a break! Be back in five!");
-			process.exit();
+			setTimeout(() => {
+				console.log("Waited for exit");
+				process.exit(0);
+			},2000).unref();
 		}
 	}
 	catch(e) {
