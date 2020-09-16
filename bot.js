@@ -26,7 +26,7 @@ let nCarl;
 ticket=[];
 waitForPing=false;
 errs="Oops! I dropped something!";
-training=false; //change to false for normal operation
+training=true; //change to false for normal operation
 
 // Functions
 functions=require("./functions.js");
@@ -255,6 +255,7 @@ Jenny.on('message', msg => {
 			}
 	 
 		}
+		/*
 		if (input.match(/^[^,]*, (\w* ){2}is .*\.$/) && waitForPing) {
 			tag=input.split(",")[0];
 			if (input.substr(input.length-5,4)=="open" || input.substr(input.length-3,2)=="up") {
@@ -266,34 +267,34 @@ Jenny.on('message', msg => {
 			}
 			waitForPing=false;
 		}
-/* Carl timeout code
-if (waitForPing) {
-	function waitCarl(carl) {
-		console.log("Oops! Carl's not here!");
-		carl=false;
-	}
-	nCarl=setTimeout(waitCarl, 3000, carl);
-	if (input.match(/^[^,]*, (\w* ){2}is .*\.$/)) {
-		clearTimeout(waitCarl);
-		tag=input.split(",")[0];
-		if (input.substr(input.length-5,4)=="open" || input.substr(input.length-3,2)=="up") {
-			suppconn.send(tag+", "+support[waitForPing][0]);
+		*/
+		// Carl timeout code
+		if (waitForPing) {
+			function waitCarl(carl) {
+				console.log("Oops! Carl's not here!");
+				carl=false;
+			}
+			nCarl=setTimeout(waitCarl, 3000, carl);
+			if (input.match(/^[^,]*, (\w* ){2}is .*\.$/)) {
+				clearTimeout(waitCarl);
+				tag=input.split(",")[0];
+				if (input.substr(input.length-5,4)=="open" || input.substr(input.length-3,2)=="up") {
+					suppconn.send(tag+", "+support[waitForPing][0]);
+				}
+				else if (input.substr(input.length-7,6)=="closed" || input.substr(input.length-5,4)=="down") {
+					suppconn.send(tag+", "+breakpoint2);
+					ticket[msg.author.id]=null;
+				}
+				waitForPing=false;
+			}
+			if (!carl) {
+				clearTimeout(waitCarl);
+				nCarl=null;
+				ticket[msg.author.id]=null;
+				waitForPing=false;
+			}
 		}
-		else if (input.substr(input.length-7,6)=="closed" || input.substr(input.length-5,4)=="down") {
-			suppconn.send(tag+", "+breakpoint2);
-			ticket[msg.author.id]=null;
-		}
-		waitForPing=false;
-	}
-	if (!carl) {
-		clearTimeout(waitCarl);
-		nCarl=null;
-		ticket[msg.author.id]=null;
-		waitForPing=false;
-	}
-}
-
-*/		
+		//End timeout */		
 		// help text
 		if (input.match(/^\?help/)||input.match(/^help.*jenny.*/)) {
 			var say=new Array(Mbr(msg.member,0)+", here's a quick help list!\n\n?ping - Asks me to check if you're online.\n?support - Opens a trouble ticket (Automated support is in Beta, and requires Carl to be online.).\n?tip - tells me to give you a random support tip. (New!)\n?help - Tells me to display this message.\n\nNeed help from Carl? type !help to see what he can do!\n\nIf you need assistance or have feedback about my service, let a member of our Casting staff know in "+HelpRef+".");
