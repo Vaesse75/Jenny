@@ -292,6 +292,7 @@ Jenny.on('message', msg => {
 				nCarl=null;
 				ticket[msg.author.id]=null;
 				waitForPing=false;
+				console.log("Carl is slacking!");
 			}
 		}
 		//End timeout */		
