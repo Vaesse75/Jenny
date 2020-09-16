@@ -308,7 +308,7 @@ process.on('SIGTERM', () => {
 			setTimeout(() => {
 				console.log("Waited for exit");
 				process.exit(0);
-			},2000).unref();
+			},500).unref();
 		}
 	}
 	catch(e) {
