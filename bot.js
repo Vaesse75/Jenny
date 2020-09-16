@@ -120,6 +120,7 @@ Jenny.on('ready', () => {
 });
 
 function shutdown() {
+    Ch.set("bot","675864898617606184");
 	onconn = Ch.get(Jenny,"bot");
 	onconn.send("I need a break! Be back in five!");
 }
