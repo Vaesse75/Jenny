@@ -144,7 +144,7 @@ Jenny.on('message', msg => {
 
 		//Plain text social responses
 		else {
-			client.socials.forEach(social => {if (social.trigger(msg)) social.execute(msg);});
+			Jenny.socials.forEach(social => {if (social.trigger(msg)) social.execute(msg);});
 		}
 
 	 //// Programatic triggers
