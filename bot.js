@@ -10,14 +10,26 @@
 		If Carl's service isn't running, Jenny doesn't timeout, waiting for his ping reply.
 */
 // Set constants
-const Discord = require('discord.js');
-const auth = require('/home/plex/bots/authJenny.json');
+const findPlugins=function(client,command,plg) {
+    let [prop,key]=plg;
+    if (Object.keys(command).includes("execute") && Object.keys(command).includes(key)) client[prop].set(command[key],command);
+    else Object.keys(command).forEach((c) => {findPlugins(client,command[c],plg);});
+}
+
+const fs=require('fs');
+const Discord=require('discord.js');
+const {prefix,token}=require('/home/plex/bots/authJenny.json');
 const Jenny = new Discord.Client();
-const fs = require('fs');
 const Ch = require('./ch.js');
 //const Em = {};
 const Role = require('./role.js');
 
+let plugins=[["commands","name"],["socials","trigger"]];
+plugins.forEach(plg=>{
+    Jenny[plg[0]]=new Discord.Collection();
+    let tmp=fs.readdirSync("./"+plg[0]).filter(file => file.endsWith(".js"));
+    for (const file of tmp) findPlugins(Jenny,require(`./${plg[0]}/`+file),plg);
+});
 
 // Set variables
 //Recs = {"list":[]};
@@ -146,11 +158,12 @@ Jenny.on('message', msg => {
 			msg.channel.send(say1+" "+say2+" "+say3);
 		}
 	 
-		// ping reply
+		/* ping reply
 		if (input.match(/^\?ping/)) {
 			var say=new Array("Yup! You're here!");
 			msg.channel.send(say[Math.floor(Math.random()*say.length)]);
 		}
+		// end ping */
 	   // Bot banter
 		if (input=="my apologies, i was a bit distracted." && Math.floor(Math.random() * 10)==0) {
 			var say=[
@@ -255,7 +268,7 @@ Jenny.on('message', msg => {
 			}
 	 
 		}
-		/*
+		//Original waitForPing
 		if (input.match(/^[^,]*, (\w* ){2}is .*\.$/) && waitForPing) {
 			tag=input.split(",")[0];
 			if (input.substr(input.length-5,4)=="open" || input.substr(input.length-3,2)=="up") {
@@ -267,8 +280,8 @@ Jenny.on('message', msg => {
 			}
 			waitForPing=false;
 		}
-		*/
-		// Carl timeout code
+		// End original waitForPing */
+		/* Carl timeout code
 		if (waitForPing) {
 			function waitCarl(carl) {
 				console.log("Oops! Carl's not here!");
@@ -304,4 +317,4 @@ Jenny.on('message', msg => {
 	}
 });
 
-Jenny.login(auth.token);
+Jenny.login(token);
