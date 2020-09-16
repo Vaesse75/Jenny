@@ -143,7 +143,8 @@ Jenny.on('message', msg => {
 
 		//Plain text social responses
 		else {
-			Jenny.socials.forEach(social => {if (social.trigger(msg)) let say=social.execute(msg);});
+			let say;
+			Jenny.socials.forEach(social => {if (social.trigger(msg)) say=social.execute(msg);});
 			if (say && say.length > 0) {
 				if (Array.isArray(say)) msg.channel.send(say[Math.floor(Math.random()*say.length)]);
 				else if (typeof say == "string") msg.channel.send(say);
