@@ -115,15 +115,13 @@ Jenny.on('ready', () => {
 	// Drive check
     //Jenny.setInterval(()=> require('./drvchk.js')(suppconn,Role.ref("staff")),350000);
 	
+	function shutdown() {
+		onconn.send("I need a break! Be back in five!");
+	}
 
 
 });
 
-function shutdown() {
-    Ch.set("bot","675864898617606184");
-	onconn = Ch.get(Jenny,"bot");
-	onconn.send("I need a break! Be back in five!");
-}
 // Reply to messages
 Jenny.on('message', msg => {
 	if (Jenny.user.id !== msg.author.id) {
