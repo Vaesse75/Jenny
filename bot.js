@@ -36,6 +36,7 @@ plugins.forEach(plg=>{
 //Recs = {"list":[]};
 let carl=true;
 let nCarl;
+let kill;
 ticket=[];
 waitForPing=false;
 errs="Oops! I dropped something!";
