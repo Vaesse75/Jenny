@@ -13,7 +13,7 @@ module.exports={
 	},
 	followUp1:{
 		trigger(msg) {
-			return !!(msg.content.toLowerCase()=="was that Star Trek or Star Wars?")
+			return !!(msg.content.toLowerCase()=="was that star trek or star wars?")
 		},
 		execute(msg) {
 			return [
