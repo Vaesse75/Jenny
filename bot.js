@@ -305,6 +305,7 @@ process.on('SIGTERM', () => {
 		if (!kill) {
 			kill=true;
 			onconn.send("I need a break! Be back in five!");
+			process.exit();
 		}
 	}
 	catch(e) {
