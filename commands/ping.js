@@ -1,5 +1,3 @@
-// this file is a test
-
 module.exports={
     name:"ping",
     description:"Make the bot respond to you",
