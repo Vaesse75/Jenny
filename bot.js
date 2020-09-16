@@ -301,7 +301,10 @@ Jenny.login(token);
 
 process.on('SIGTERM', () => {
 	try {
-		onconn.send("I need a break! Be back in five!");
+		if (!kill) {
+			kill=true;
+			onconn.send("I need a break! Be back in five!");
+		}
 	}
 	catch(e) {
 		console.error(e);
