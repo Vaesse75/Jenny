@@ -115,9 +115,6 @@ Jenny.on('ready', () => {
 	// Drive check
     //Jenny.setInterval(()=> require('./drvchk.js')(suppconn,Role.ref("staff")),350000);
 	
-	function shutdown() {
-		onconn.send("I need a break! Be back in five!");
-	}
 
 
 });
@@ -300,6 +297,14 @@ Jenny.on('message', msg => {
 	}
 });
 
-process.on('SIGTERM', shutdown());
-
 Jenny.login(token);
+
+process.on('SIGTERM', () => {
+	try {
+		onconn.send("I need a break! Be back in five!");
+	}
+	catch(e) {
+		console.error(e);
+		return;
+	}
+});
