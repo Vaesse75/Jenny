@@ -87,16 +87,16 @@ module.exports={
             return (msg.content.match(/^[^,]*, (\w* ){2}is .*\.$/i) && msg.client.waitForPing);
         },
         execute(msg) {
-            tag=msg.content.split(",")[0];
+            tag=msg.content.split(",")[0].slice(2,-1);
             if (msg.content.substr(msg.content.length-5,4)=="open" || msg.content.substr(msg.content.length-3,2)=="up") {
-                console.log(tag.slice(2,-1));
-				suppconn.send(tag+", "+msg.client.support[tag.slice(2,-1)][0]);
+                console.log(tag);
+				suppconn.send("<@"+tag+">, "+msg.client.support[tag][0]);
             }
             else if (msg.content.substr(msg.content.length-7,6)=="closed" || msg.content.substr(msg.content.length-5,4)=="down") {
-                suppconn.send(tag+", "+breakpoint2);
-                msg.client.ticket[tag.id]=null;
+                suppconn.send("<@"+tag+">, "+breakpoint2);
+                msg.client.ticket[tag]=null;
             }
-            clearTimeout(msg.client.timers[tag.id]);
+            clearTimeout(msg.client.timers[tag]);
             msg.client.waitForPing=false;
         }
     }
