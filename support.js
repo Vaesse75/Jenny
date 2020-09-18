@@ -1,7 +1,3 @@
-/*
-
-}
-*/
 //Support breakpoints
 	plexwarn1=""
 	pingwarn="hang on, while I check with Carl... (If Carl is offline, support will continue without him, after a few seconds.)";
