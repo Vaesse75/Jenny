@@ -8,6 +8,7 @@ module.exports={
 			msg.client.noCarl=function(id) {
 				console.log("Carl's being lazy again...");
 				suppconn.send(tag+", Sorry, Carl isn't around right now. Let's continue without him.");
+				console.log(msg.client.waitForPing);
 				suppconn.send(msg.client.ticket[msg.client.waitForPing][0]);
 				msg.client.waitForPing=false;
 			}
