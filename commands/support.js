@@ -6,9 +6,7 @@ module.exports={
 		let tag=msg.author;
 		if (typeof msg.client.noCarl == "undefined") {
 			msg.client.noCarl=function(id) {
-				console.log("Carl's being lazy again...");
-				suppconn.send(tag+", Sorry, Carl isn't around right now. Let's continue without him.");
-				console.log(msg.client.waitForPing);
+				suppconn.send(tag+", Sorry, Carl isn't around right now. Let's continue without him. "+CastingRef+", Carl's slacking off again!");
 				suppconn.send(msg.client.support[msg.client.waitForPing]["yes"][0]);
 				msg.client.waitForPing=false;
 			}

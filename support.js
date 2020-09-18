@@ -10,17 +10,16 @@
 	breakpoint="I can't help you with this just yet. "+SupportRef+", someone needs your assistance! (Ticket closed)"; 
 	breakpoint2="the service is down, sorry. "+CastingRef+", service appears to be down! (Ticket closed)";
 	breakpoint3="It sounds like you need a password reset. "+breakpoint;
-	breakpointCarl="It looks like Carl isn't here. CastingRef, Carl's slacking off! (Ticket closed)";
 
 //Support questions
 	service1="so head on over to <https://vaesse.jasoncollege24.com/> to see if the host is up.\r\nIs the Host up? You can say **yes**, or **no**.";
-	service2="everything seems to be working here.";
+	service2="Okay.";
 	device="What device are you using? ";
 	alloptions="You can also tell me to go **back**, **cancel** your ticket, or resolve your ticket by telling me it's **fixed**.";
 	question1="Can you get into the app/player at all? You can say **yes**, or **no**.";
-	question2="what are you trying to do?\r\nView the **library**, watch a **video**, listen to **music**, or look at **pictures**?";
+	question2="What are you trying to do?\r\nView the **library**, watch a **video**, listen to **music**, or look at **pictures**?";
 	libq1="Have you previously requested access? You can say **yes**, or **no**.";
-	libq2="is the library visible at all? You can say **yes**, or **no**.";
+	libq2="Is the library visible at all? You can say **yes**, or **no**.";
 	browserq1="Which web browser are you using? You can say **IE** (Internet Explorer), **Edge**, **Chrome**, **Mozilla** (Firefox/Waterfox), **Safari**, or **other**.";
 
 //support Array
