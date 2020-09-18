@@ -9,7 +9,7 @@ module.exports={
 				console.log("Carl's being lazy again...");
 				suppconn.send(tag+", Sorry, Carl isn't around right now. Let's continue without him.");
 				console.log(msg.client.waitForPing);
-				suppconn.send(msg.client.ticket[msg.client.waitForPing][0]);
+				suppconn.send(msg.client.support[msg.client.waitForPing]["yes"][0]);
 				msg.client.waitForPing=false;
 			}
 		}
