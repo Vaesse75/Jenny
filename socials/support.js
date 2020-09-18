@@ -82,21 +82,21 @@ module.exports={
 		}
 	},
 	pingCarl:{
-		//Original waitForPing
-		trigger(msg) {
-			return (msg.content.match(/^[^,]*, (\w* ){2}is .*\.$/i) && msg.client.waitForPing);
-		},
-		execute(msg) {
-			tag=msg.content.split(",")[0];
-			if (msg.content.substr(msg.content.length-5,4)=="open" || msg.content.substr(msg.content.length-3,2)=="up") {
-				suppconn.send(tag+", "+msg.client.support[msg.client.waitForPing][0]);
-			}
-			else if (msg.content.substr(msg.content.length-7,6)=="closed" || msg.content.substr(msg.content.length-5,4)=="down") {
-				suppconn.send(tag+", "+breakpoint2);
-				msg.client.ticket[msg.author.id]=null;
-			}
-			clearTimeout(msg.client.timers[msg.author.id]);
-			msg.client.waitForPing=false;
-		}
-	}
+        //Original waitForPing
+        trigger(msg) {
+            return (msg.content.match(/^[^,]*, (\w* ){2}is .*\.$/i) && msg.client.waitForPing);
+        },
+        execute(msg) {
+            tag=msg.content.split(",")[0];
+            if (msg.content.substr(msg.content.length-5,4)=="open" || msg.content.substr(msg.content.length-3,2)=="up") {
+                suppconn.send(tag+", "+msg.client.support[tag.id][0]);
+            }
+            else if (msg.content.substr(msg.content.length-7,6)=="closed" || msg.content.substr(msg.content.length-5,4)=="down") {
+                suppconn.send(tag+", "+breakpoint2);
+                msg.client.ticket[tag.id]=null;
+            }
+            clearTimeout(msg.client.timers[tag.id]);
+            msg.client.waitForPing=false;
+        }
+    }
 }
