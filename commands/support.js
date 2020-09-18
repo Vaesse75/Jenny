@@ -7,6 +7,9 @@ module.exports={
 		if (typeof msg.client.noCarl == "undefined") {
 			msg.client.noCarl=function(id) {
 				console.log("Carl's being lazy again...");
+				suppconn.send(tag+", Sorry, Carl isn't around right now. Let's continue without him.");
+				suppconn.send(msg.client.ticket(msg.client.waitForPing)[0]);
+				msg.client.waitForPing=false;
 			}
 		}
 		input=msg.content.toLowerCase();
