@@ -24,62 +24,59 @@ module.exports={
 		},
 		execute(msg) {
 			// If author has an open msg.client.ticket
-			if  {
-				var arr=msg.client.ticket[msg.author.id];
-				var said=msg.content.split(" ")[0];
-				var level=walkSupport(msg.client,msg.client.ticket[msg.author.id]);
+			var arr=msg.client.ticket[msg.author.id];
+			var said=msg.content.split(" ")[0];
+			var level=walkSupport(msg.client,msg.client.ticket[msg.author.id]);
+			var keys="";
+			if (msg.client.ticket[msg.author.id][0] == "plex") {
+				var srvc="plexmediaserver";
+			}
+			if (msg.client.ticket[msg.author.id][0] == "calibre") {
+				var srvc="calibre-server";
+			}
+			if (msg.client.ticket[msg.author.id][0] == "ftp") {
+				var srvc="proftpd";
+			}
+			for (var key in level) {
+				if (keys != "") keys+=",";
+				keys+=key;
+			}
+			if (keys.indexOf(said) >= 0) {
+				arr.push(said);
+				level=walkSupport(msg.client,arr);
 				var keys="";
-				if (msg.client.ticket[msg.author.id][0] == "plex") {
-					var srvc="plexmediaserver";
-				}
-				if (msg.client.ticket[msg.author.id][0] == "calibre") {
-					var srvc="calibre-server";
-				}
-				if (msg.client.ticket[msg.author.id][0] == "ftp") {
-					var srvc="proftpd";
-				}
 				for (var key in level) {
 					if (keys != "") keys+=",";
 					keys+=key;
 				}
-				if (keys.indexOf(said) >= 0) {
-					arr.push(said);
-					level=walkSupport(msg.client,arr);
-					var keys="";
-					for (var key in level) {
-						if (keys != "") keys+=",";
-						keys+=key;
-					}
-				}
-				if (said=="back") {
-					msg.client.ticket[msg.author.id].pop();
-					level=walkSupport(msg.client,msg.client.ticket[msg.author.id]);
-					suppconn.send(tag+", "+level[0]);
-				}
-				else if (said=="fixed") {
-				 suppconn.send(tag+", "+fixedbreak);
-				 msg.client.ticket[msg.author.id]=null;
-				}
-				else if (said=="cancel") {
-					suppconn.send(tag+", "+cancelbreak);
-					msg.client.ticket[msg.author.id]=null;
-				}
-				else if (msg.client.ticket[msg.author.id].length==1 && said != prefix+"support") {
-					//waitForPing=checkit(srvc);
-					msg.client.timers[msg.author.id]=setTimeout(()=>{msg.client.noCarl(msg.author.id);},3000);
-					msg.client.waitForPing=msg.client.ticket[msg.author.id][0];
-					suppconn.send(tag+", "+pingwarn);
-					suppconn.send("!ping "+msg.client.ticket[msg.author.id][0]+" for "+tag);
-					
 			}
-				else if (typeof level == "string") {
-					suppconn.send(tag+", "+level);
-					msg.client.ticket[msg.author.id]=null;
-				}
-				else  {
-					suppconn.send(tag+", "+level[0]);
-				}
-		 
+			if (said=="back") {
+				msg.client.ticket[msg.author.id].pop();
+				level=walkSupport(msg.client,msg.client.ticket[msg.author.id]);
+				suppconn.send(tag+", "+level[0]);
+			}
+			else if (said=="fixed") {
+			 suppconn.send(tag+", "+fixedbreak);
+			 msg.client.ticket[msg.author.id]=null;
+			}
+			else if (said=="cancel") {
+				suppconn.send(tag+", "+cancelbreak);
+				msg.client.ticket[msg.author.id]=null;
+			}
+			else if (msg.client.ticket[msg.author.id].length==1 && said != prefix+"support") {
+				//waitForPing=checkit(srvc);
+				msg.client.timers[msg.author.id]=setTimeout(()=>{msg.client.noCarl(msg.author.id);},3000);
+				msg.client.waitForPing=msg.client.ticket[msg.author.id][0];
+				suppconn.send(tag+", "+pingwarn);
+				suppconn.send("!ping "+msg.client.ticket[msg.author.id][0]+" for "+tag);
+				
+			}
+			else if (typeof level == "string") {
+				suppconn.send(tag+", "+level);
+				msg.client.ticket[msg.author.id]=null;
+			}
+			else  {
+				suppconn.send(tag+", "+level[0]);
 			}
 		}
 	},
