@@ -64,7 +64,7 @@ module.exports={
 				suppconn.send(tag+", "+cancelbreak);
 				msg.client.ticket[msg.author.id]=null;
 			}
-			else if (msg.client.ticket[msg.author.id].length==1 && said != prefix+"support") {
+			else if (msg.client.ticket[msg.author.id].length==1 && !said.match(/.support/i)) {
 				//waitForPing=checkit(srvc);
 				msg.client.timers[msg.author.id]=setTimeout(()=>{msg.client.noCarl(msg.author.id);},3000);
 				msg.client.waitForPing=msg.client.ticket[msg.author.id][0];
