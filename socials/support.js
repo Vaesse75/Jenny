@@ -23,7 +23,7 @@ module.exports={
 			return (msg.client.ticket[msg.author.id] && !msg.content.match(' '));
 		},
 		execute(msg) {
-			let tag=msg.author.id;
+			let tag=msg.author;
 			// If author has an open msg.client.ticket
 			var arr=msg.client.ticket[msg.author.id];
 			var said=msg.content.split(" ")[0];

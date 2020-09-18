@@ -3,6 +3,7 @@ module.exports={
 	name:"support",
 	description:"Get automated support for related servers.",
 	execute(msg,args) {
+		let tag=msg.author;
 		if (typeof msg.client.noCarl == "undefined") {
 			msg.client.noCarl=function(id) {
 				console.log("Carl's being lazy again...");
