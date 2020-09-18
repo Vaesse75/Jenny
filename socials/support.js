@@ -89,7 +89,8 @@ module.exports={
         execute(msg) {
             tag=msg.content.split(",")[0];
             if (msg.content.substr(msg.content.length-5,4)=="open" || msg.content.substr(msg.content.length-3,2)=="up") {
-                suppconn.send(tag+", "+msg.client.support[tag.id][0]);
+                console.log(tag);
+				suppconn.send(tag+", "+msg.client.support[tag.id][0]);
             }
             else if (msg.content.substr(msg.content.length-7,6)=="closed" || msg.content.substr(msg.content.length-5,4)=="down") {
                 suppconn.send(tag+", "+breakpoint2);
