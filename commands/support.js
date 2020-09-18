@@ -37,7 +37,7 @@ module.exports={
 			}
 			else {
 				msg.client.ticket[msg.author.id]=[];
-				//suppconn.send(support[0]);
+				suppconn.send(support[0]);
 			}
 		}
 		else {
