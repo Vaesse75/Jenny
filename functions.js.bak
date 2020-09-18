@@ -1,6 +1,26 @@
 //set constants
 const Discord = require('discord.js');
 
+
+// Walk the support tree
+module.exports.walkSupport=function(arr) {
+    var level=support;
+    for (var a in arr) {
+        var keys="";
+        for (var key in level) {
+            if (keys != "") keys+=",";
+            keys+=key;
+        }
+        if (keys.indexOf(arr[a]) >= 0) {
+            level=level[arr[a]];
+        }
+        else {
+            console.log(a+" is invalid.");
+            return level;
+        }
+    }
+    return level;
+}
 // returns "Friend" if name can't be resolved
 module.exports.Mbr=function(mem,leadcap) {
     return leadcap?mem||"Friend":mem||"friend";

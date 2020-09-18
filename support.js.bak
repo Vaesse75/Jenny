@@ -140,4 +140,3 @@
 	support["plex"]["yes"]["console"]["yes"]["pictures"]=breakpoint;
 	support["plex"]["yes"]["console"]["no"]=breakpoint;
 // End support array
-module.exports=support;
