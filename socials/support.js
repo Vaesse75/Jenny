@@ -89,7 +89,7 @@ module.exports={
         execute(msg) {
             tag=msg.content.split(",")[0];
             if (msg.content.substr(msg.content.length-5,4)=="open" || msg.content.substr(msg.content.length-3,2)=="up") {
-                console.log(tag);
+                console.log(tag.slice(2,-1));
 				suppconn.send(tag+", "+msg.client.support[tag.slice(2,-1)][0]);
             }
             else if (msg.content.substr(msg.content.length-7,6)=="closed" || msg.content.substr(msg.content.length-5,4)=="down") {
