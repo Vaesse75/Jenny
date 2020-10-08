@@ -70,7 +70,7 @@ underlay=function(say,cat) {
 
 // acknowledge ready state
 Jenny.on('ready', () => {
-    console.log('Logged in as ${Jenny.user.tag), and ready to go!');
+    console.log('Logged in as Jenny, and ready to go!');
     
     //define Ch and Role objects.
     Ch.set("welcome","581340165520359424");
