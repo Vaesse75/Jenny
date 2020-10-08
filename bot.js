@@ -70,7 +70,7 @@ underlay=function(say,cat) {
 
 // acknowledge ready state
 Jenny.on('ready', () => {
-    // console.warn('Logged in as ${Jenny.user.tag)!');
+    console.log('Logged in as ${Jenny.user.tag), and ready to go!');
     
     //define Ch and Role objects.
     Ch.set("welcome","581340165520359424");
@@ -119,6 +119,33 @@ Jenny.on('ready', () => {
 
 });
 
+// Check for Carl's online status
+/*
+const carlID = Jenny.users.cache.get('675406803567378512'); // in constants area
+Jenny.on('presenceUpdate', (oldPresence, newPresence) => {
+    let member = newPresence.member;
+    // User id of the user you're tracking status.
+    if (member.id === '<userId>') {
+        if (oldPresence.status !== newPresence.status) {
+            // Your specific channel to send a message in.
+            let channel = member.guild.channels.cache.get('<channelId>');
+            // You can also use member.guild.channels.resolve('<channelId>');
+
+            let text = "";
+
+            if (newPresence.status === "online") {
+                text = "Our special member is online!";
+            } else if (newPresence.status === "offline") {
+                text = "Oh no! Our special member is offline.";
+            }
+            // etc...
+
+            channel.send(text);
+        }
+    }
+});
+*/
+
 // Reply to messages
 Jenny.on('message', msg => {
 	if (Jenny.user.id !== msg.author.id) {
@@ -155,7 +182,7 @@ Jenny.on('message', msg => {
 	 //// Programatic triggers
 		// help text
 		if (input.match(/^\?help/)||input.match(/^help.*jenny.*/)) {
-			var say=new Array(Mbr(msg.member,0)+", here's a quick help list!\n\n?ping - Asks me to check if you're online.\n?support - Opens a trouble ticket (Automated support is in Beta, and requires Carl to be online.).\n?tip - tells me to give you a random support tip. (New!)\n?help - Tells me to display this message.\n\nNeed help from Carl? type !help to see what he can do!\n\nIf you need assistance or have feedback about my service, let a member of our Casting staff know in "+HelpRef+".");
+			var say=new Array(Mbr(msg.member,0)+", here's a quick help list!\n\n?ping - Asks me to check if you're online.\n?support - Opens a trouble ticket (Automated support is in Beta.).\n?tip - tells me to give you a random support tip.\n?help - Tells me to display this message.\n\nNeed help from Carl? type !help to see what he can do!\n\nIf you need assistance or have feedback about my service, let a member of our Casting staff know in "+HelpRef+".");
 			msg.channel.send(say[Math.floor(Math.random()*say.length)]);
 		}
 	}
