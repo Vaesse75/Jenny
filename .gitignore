@@ -5,3 +5,4 @@ test.js
 .eslintrc.json
 data/
 screenlog.*
+errorlog.txt
