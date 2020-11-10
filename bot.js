@@ -21,8 +21,8 @@ Jenny.chanMan = require('./ch.js');
 Jenny.roleMan = require('./role.js');
 Jenny.ticket=[];
 Jenny.waitForPing=false;
-Jenny.training=true; //change to false for normal operation
-Jenny.trainRep=true; //change to false for normal problem reports
+Jenny.training=false; //change to false for normal operation
+Jenny.trainRep=false; //change to false for normal problem reports
 // Functions
 plugins.forEach(plg=>{
     Jenny[plg[0]]=new Discord.Collection(); //Jenny.commands=new Discord.Collection();
