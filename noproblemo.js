@@ -116,7 +116,7 @@ module.exports=function(message) {
 					else {
                         deleteMsg=false;
                         dmText=`Thanks for your ${mode} about the ${type[1]} \`${tags[1]}\` performed by \`${tags[0]}\` in \`${info[4]}\`.${(info[8]?" The following report was included: \'"+info[8]+"\'.":"")}`;
-                        log[type[0]].push([message.author.id,message.id,tags[1],tags[2],info[4],(info[8]?info[8]:"")]);
+                        log[type[0]].push([message.author.id,message.id,tags[0],tags[1],tags[2],info[4],(info[8]?info[8]:"")]);
                     }
                     break;
                 case "📖":
@@ -133,7 +133,7 @@ module.exports=function(message) {
 					else {
                         deleteMsg=false;
                         dmText=`Thanks for your ${mode} about the ${type[1]} \`${tags[2]}\` written by \`${tags[0]}\` in \`${info[4]}\` in the \`${tags[1]}\` series.${(info[8]?" The following report was included: \'"+info[8]+"\'.":"")}`;
-                        log[type[0]].push([message.author.id,message.id,tags[1],tags[2],tags[3],info[4],(info[8]?info[8]:"")]);
+                        log[type[0]].push([message.author.id,message.id,tags[0],tags[1],tags[2],tags[3],info[4],(info[8]?info[8]:"")]);
                     }
                     break;
                 case "📚":
@@ -150,7 +150,7 @@ module.exports=function(message) {
 					else {
                         deleteMsg=false;
                         dmText=`Thanks for your ${mode} about the ${type[1]} \`${tags[2]}\` written by \`${tags[0]}\` in \`${info[4]}\` in the \`${tags[1]}\` series.${(info[8]?" The following report was included: \'"+info[8]+"\'.":"")}`;
-                        log[type[0]].push([message.author.id,message.id,tags[1],tags[2],tags[3],info[4],(info[8]?info[8]:"")]);
+                        log[type[0]].push([message.author.id,message.id,tags[0],tags[1],tags[2],tags[3],info[4],(info[8]?info[8]:"")]);
                     }
                     break;
                 case "🎲":
@@ -167,7 +167,7 @@ module.exports=function(message) {
 					else {
                         deleteMsg=false;
                         dmText=`Thanks for your ${mode} about the ${type[1]} \`${tags[2]}\` published by \`${tags[0]}\` in \`${info[4]}\` in the \`${tags[1]}\` series.${(!info[8]?"":" The following report was included: \'"+info[8]+"\'.")}`;
-                        log[type[0]].push([message.author.id,message.id,tags[1],tags[2],tags[3],info[4],(info[8]?info[8]:"")]);
+                        log[type[0]].push([message.author.id,message.id,tags[0],tags[1],tags[2],tags[3],info[4],(info[8]?info[8]:"")]);
                     }
                     break;
                 case "💥":
@@ -184,7 +184,7 @@ module.exports=function(message) {
 					else {
                         deleteMsg=false;
                         dmText=`Thanks for your ${mode} about the ${type[1]} \`${tags[2]}\` published by \`${tags[0]}\` in \`${info[4]}\` in the \`${tags[1]}\` series.${(!info[8]?"":" The following report was included: \'"+info[8]+"\'.")}`;
-                        log[type[0]].push([message.author.id,message.id,tags[1],tags[2],tags[3],info[4],(info[8]?info[8]:"")]);
+                        log[type[0]].push([message.author.id,message.id,tags[0],tags[1],tags[2],tags[3],info[4],(info[8]?info[8]:"")]);
                     }
                     break;
                 default:
