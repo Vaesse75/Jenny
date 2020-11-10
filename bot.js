@@ -1,58 +1,48 @@
 /*
     Future Plans:
-	fix drvchk
 	Finish automated support tickets
-	Implement ping for support
 	write open support tickets to file (delete file on ticket close)
 	Add underlay for support
 	
 	Known issues:
-		If Carl's service isn't running, Jenny doesn't timeout, waiting for his ping reply.
+		None
 */
 // Set constants
+const Discord=require('discord.js'),fs=require('fs'),{prefix,token}=require('/home/plex/bots/authJenny.json'),Jenny=new Discord.Client();
 const findPlugins=function(client,command,plg) {
     let [prop,key]=plg;
     if (Object.keys(command).includes("execute") && Object.keys(command).includes(key)) client[prop].set(command[key],command);
     else Object.keys(command).forEach((c) => {findPlugins(client,command[c],plg);});
 }
-
-const fs=require('fs');
-const Discord=require('discord.js');
-const {prefix,token}=require('/home/plex/bots/authJenny.json');
-const Jenny = new Discord.Client();
-const Ch = require('./ch.js');
-//const Em = {};
-const Role = require('./role.js');
-
-let plugins=[["commands","name"],["socials","trigger"]]; // Array setup is ["folder-type","key"]
-plugins.forEach(plg=>{
-    Jenny[plg[0]]=new Discord.Collection(); //Jenny.commands=new Discord.Collection();
-    let tmp=fs.readdirSync("./"+plg[0]).filter(file => file.endsWith(".js"));
-    for (const file of tmp) findPlugins(Jenny,require(`./${plg[0]}/`+file),plg);
-});
-
-
 // Set variables
-//Recs = {"list":[]};
-let carl=true;
-let nCarl;
-let kill;
+let logging=true,carl,nCarl,kill,plugins=[["commands","name"],["socials","trigger"]]/* Plugins array setup is ["folder-type","key"] */;
+Jenny.errs="Oops! I dropped something!";
+Jenny.chanMan = require('./ch.js');
+Jenny.roleMan = require('./role.js');
 Jenny.ticket=[];
 Jenny.waitForPing=false;
-errs="Oops! I dropped something!";
-training=false; //change to false for normal operation
-
+Jenny.training=true; //change to false for normal operation
+Jenny.trainRep=true; //change to false for normal problem reports
 // Functions
-functions=require("./functions.js");
-Mbr=functions.Mbr;
-reply=functions.reply;
-checkit=functions.checkit;
-
-// Underlay function for support, and tips
-underlay=function(say,cat) {
+plugins.forEach(plg=>{
+    Jenny[plg[0]]=new Discord.Collection(); //Jenny.commands=new Discord.Collection();
+    let tmp=fs.readdirSync(`./${plg[0]}`).filter(file => file.endsWith(".js"));
+    for (const file of tmp) findPlugins(Jenny,require(`./${plg[0]}/${file}`),plg);
+});
+reply=function(say,chan) { // use for social replies
+    if (say) {
+        if (!chan) {
+            chan=onconn;
+            console.error("No channel was sent! (A2)");
+            say=`${say} ${errs} (A2)`;
+        }
+        return chan.send(say);
+    }
+}
+Jenny.underlay=function(say,cat) { // Underlay function for support, and tips
 	var color='#000000';
 	if (!say) {
-		var say=errs+" (A1)";
+		var say=`${errs} (A1)`;
 		console.error("Oops! There's no say! (A1)");
 	}
 	else if (cat == "tips") {
@@ -61,88 +51,88 @@ underlay=function(say,cat) {
 	else if (cat == "support") {
 		color='#FFC300';
 	}
-	var embed = new Discord.RichEmbed()
+	var embed = new Discord.MessageEmbed()
 	.setColor(color)
 	.setDescription(say);
 	return embed;
 }
-
-
+Jenny.warn=Jenny.error=function(txt, error){ // logging console errors to disk
+	console.error(error);
+	if (logging) {
+		fs.appendFileSync('./errorlog.txt', `\n****\nERROR: ${txt}`);
+		fs.appendFileSync('./errorlog.txt', `${error.stack}\n****`);
+	}
+}
+Jenny.log=function(txt) { // logging console logs to disk
+	console.log(txt);
+	if (logging) {
+		fs.appendFileSync('./errorlog.txt', txt);
+	}
+}
 // acknowledge ready state
 Jenny.on('ready', () => {
-    console.log('Logged in as Jenny, and ready to go!');
-    
-    //define Ch and Role objects.
-    Ch.set("welcome","581340165520359424");
-    Ch.set("plex","581346715852865547");
-    Ch.set("calibre","590195078765608961");
-    Ch.set("bot","675864898617606184");
-    Ch.set("help","583979972578770945");
-    Ch.set("test","681380531493142533");
-    Ch.set("rules","581352180355694603");
-    Ch.set("report","581603029263056921");
-    Role.set("casting","581334517151825920");
-    Role.set("support","692818837736915054");
-	Role.set("staff","676660602688765962");
-    
+	/*
+	Jenny.guilds.cache.get("581333387403329557").members.fetch("231506627654582272").then(Carl=>{
+		carl=Carl.presence.status=="offline"?false:true;
+		Jenny.log(Carl.presence);
+	});
+	*/
+	fs.createWriteStream('./errorlog.txt');
+	Jenny.log('Logged in as Jenny, and ready to go!');
+    //define Jenny.chanMan and Jenny.roleMan objects.
+    Jenny.chanMan.set("welcome","581340165520359424");
+    Jenny.chanMan.set("plex","581346715852865547");
+    Jenny.chanMan.set("calibre","590195078765608961");
+    Jenny.chanMan.set("bot","675864898617606184");
+    Jenny.chanMan.set("help","583979972578770945");
+    Jenny.chanMan.set("test","681380531493142533");
+    Jenny.chanMan.set("rules","581352180355694603");
+    Jenny.chanMan.set("report","581603029263056921");
+    Jenny.roleMan.set("casting","581334517151825920");
+    Jenny.roleMan.set("support","692818837736915054");
+	Jenny.roleMan.set("staff","676660602688765962");
     // define frequently used channels.
-    offconn = Ch.get(Jenny,"test");
-    repconn = Ch.get(Jenny,"report");
-    if (training) {
+    offconn = Jenny.chanMan.get(Jenny,"test");
+    repconn = Jenny.chanMan.get(Jenny,"report");
+	suppchan = Jenny.chanMan.get(Jenny,"help");
+    if (Jenny.training) {
         onconn=offconn;
         suppconn=offconn;
     }
     else {
-        onconn = Ch.get(Jenny,"bot");
-        suppconn = Ch.get(Jenny,"help");
+        onconn = Jenny.chanMan.get(Jenny,"bot");
+        suppconn = Jenny.chanMan.get(Jenny,"help");
     }
-        
     // Links to roles and channels.
-    CastingRef=Role.ref("casting");
-    RulesRef=Ch.ref("rules");
-    CalibreRef=Ch.ref("calibre");
-    PlexRef=Ch.ref("plex");
-	HelpRef=Ch.ref("help");
-    SupportRef=Role.ref("support");
-
+    CastingRef=Jenny.roleMan.ref("casting");
+    RulesRef=Jenny.chanMan.ref("rules");
+    CalibreRef=Jenny.chanMan.ref("calibre");
+    PlexRef=Jenny.chanMan.ref("plex");
+	HelpRef=Jenny.chanMan.ref("help");
+    SupportRef=Jenny.roleMan.ref("support");
 	// Support Array
 	Jenny.support=require("./support.js");
 	Jenny.timers=[];
     // Wakeup message.
-    var say=new Array("Ok ok! I'm up already!","Have no fear, Jenny's here!","Sorry, I was doing some uhh... nerdy stuff.");
-	onconn.send(say[Math.floor(Math.random()*say.length)]);
-
-	// Drive check
-    //Jenny.setInterval(()=> require('./drvchk.js')(suppconn,Role.ref("staff")),350000);
-	
-
-
+    var say=[
+		"Ok ok! I'm up already!",
+		"Have no fear, Jenny's here!",
+		"Sorry, I was doing some uhh... nerdy stuff."
+	];
+	onconn.send(say[Math.floor(Math.random()*say.length)]).catch(error => {
+		Jenny.error("There was an issue waking up. [A1]\n", error);
+		onconn.send(`${Jenny.errs} [A1]`);
+	});
 });
 
 // Check for Carl's online status
 /*
-const carlID = Jenny.users.cache.get('675406803567378512'); // in constants area
 Jenny.on('presenceUpdate', (oldPresence, newPresence) => {
-    let member = newPresence.member;
-    // User id of the user you're tracking status.
-    if (member.id === '<userId>') {
-        if (oldPresence.status !== newPresence.status) {
-            // Your specific channel to send a message in.
-            let channel = member.guild.channels.cache.get('<channelId>');
-            // You can also use member.guild.channels.resolve('<channelId>');
-
-            let text = "";
-
-            if (newPresence.status === "online") {
-                text = "Our special member is online!";
-            } else if (newPresence.status === "offline") {
-                text = "Oh no! Our special member is offline.";
-            }
-            // etc...
-
-            channel.send(text);
-        }
-    }
+    if (newPresence.member.id === '675406803567378512'){
+		if (newPresence.status == 'offline') offconn.send(`Carl is ${newPresence.status}!`);
+		carl=newPresence.status=="offline"?false:true;
+		Jenny.log(carl);
+	}
 });
 */
 
@@ -150,21 +140,21 @@ Jenny.on('presenceUpdate', (oldPresence, newPresence) => {
 Jenny.on('message', msg => {
 	if (Jenny.user.id !== msg.author.id) {
 		require('./noproblemo.js')(msg);
-		var input=msg.content.toLowerCase();
-		var tag="<@"+msg.author.id+">";
+		let input=msg.content.toLowerCase();
+		let tag=`${msg.author}`;
 		//response modules
-		require('./tips.js')(msg,underlay); //tips module (Programmatic)
+		//require('./tips.js')(msg,underlay); //tips module (Programmatic)
 	 
-		const args = msg.content.slice(prefix.length).split(/ +/);
-		const commandName = args.shift().toLowerCase();
+		let args = msg.content.slice(prefix.length).split(/ +/);
+		let commandName = args.shift().toLowerCase();
 		if (msg.content.startsWith(prefix+commandName) && Jenny.commands.has(commandName)) {
 			const command=Jenny.commands.get(commandName);
 			if (command.args && !args.length) {
-				let reply = `You didn't provide any arguments, ${message.author}!`;
+				let reply = `You didn't provide any arguments, ${msg.author}!`;
 				if (command.usage) {
-					reply += `\nThe proper usage would be: \`${prefix}${command.name} ${command.usage}\``;
+					reply += `\nUsage: \`${prefix}${command.name} ${command.usage}\``;
 				}
-				return message.channel.send(reply);
+				return msg.channel.send(reply);
 			}
 			else command.execute(msg, args);
 		}
@@ -182,27 +172,10 @@ Jenny.on('message', msg => {
 	 //// Programatic triggers
 		// help text
 		if (input.match(/^\?help/)||input.match(/^help.*jenny.*/)) {
-			var say=new Array(Mbr(msg.member,0)+", here's a quick help list!\n\n?ping - Asks me to check if you're online.\n?support - Opens a trouble ticket (Automated support is in Beta.).\n?tip - tells me to give you a random support tip.\n?help - Tells me to display this message.\n\nNeed help from Carl? type !help to see what he can do!\n\nIf you need assistance or have feedback about my service, let a member of our Casting staff know in "+HelpRef+".");
+			var say=new Array(`${msg.author}, here's a quick help list!\n\n?ping - Asks me to check if you're online.\n?support - Opens a trouble ticket (Automated support is in Beta.).\n?tip - tells me to give you a random support tip.\n?help - Tells me to display this message.\n\nNeed help from Carl? type !help to see what he can do!\n\nIf you need assistance or have feedback about my service, let a member of our Casting staff know in ${HelpRef}.`);
 			msg.channel.send(say[Math.floor(Math.random()*say.length)]);
 		}
 	}
 });
 
 Jenny.login(token);
-
-process.on('SIGTERM', () => {
-	try {
-		if (!kill) {
-			kill=true;
-			onconn.send("I need a break! Be back in five!");
-			setTimeout(() => {
-				console.log("Waited for exit");
-				process.exit(0);
-			},500).unref();
-		}
-	}
-	catch(e) {
-		console.error(e);
-		return;
-	}
-});

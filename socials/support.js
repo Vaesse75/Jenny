@@ -11,7 +11,7 @@ walkSupport=function(client,arr) {
             level=level[arr[a]];
         }
         else {
-            console.log(a+" is invalid.");
+            console.log(`${a} is invalid.`);
             return level;
         }
     }
@@ -54,30 +54,30 @@ module.exports={
 			if (said=="back") {
 				msg.client.ticket[msg.author.id].pop();
 				level=walkSupport(msg.client,msg.client.ticket[msg.author.id]);
-				suppconn.send(tag+", "+level[0]);
+				suppconn.send(`${tag}, ${level[0]}`);
 			}
 			else if (said=="fixed") {
-			 suppconn.send(tag+", "+fixedbreak);
+			 suppconn.send(`${tag}, ${fixedbreak}`);
 			 msg.client.ticket[msg.author.id]=null;
 			}
 			else if (said=="cancel") {
-				suppconn.send(tag+", "+cancelbreak);
+				suppconn.send(`${tag}, ${cancelbreak}`);
 				msg.client.ticket[msg.author.id]=null;
 			}
 			else if (msg.client.ticket[msg.author.id].length==1 && !said.match(/.support/i)) {
 				//waitForPing=checkit(srvc);
 				msg.client.timers[msg.author.id]=setTimeout(()=>{msg.client.noCarl(msg.author.id);},3000);
 				msg.client.waitForPing=msg.client.ticket[msg.author.id][0];
-				suppconn.send(tag+", "+pingwarn);
-				suppconn.send("!ping "+msg.client.ticket[msg.author.id][0]+" for "+tag);
+				suppconn.send(`${tag}, ${pingwarn}`);
+				suppconn.send(`!ping ${msg.client.ticket[msg.author.id][0]} for ${tag}`);
 				
 			}
 			else if (typeof level == "string") {
-				suppconn.send(tag+", "+level);
+				suppconn.send(`${tag}, ${level}`);
 				msg.client.ticket[msg.author.id]=null;
 			}
 			else  {
-				suppconn.send(tag+", "+level[0]);
+				suppconn.send(`${tag}, ${level[0]}`);
 			}
 		}
 	},
@@ -90,10 +90,10 @@ module.exports={
             tag=msg.content.split(",")[0];
 			id=tag.slice(2,-1);
             if (msg.content.substr(msg.content.length-5,4)=="open" || msg.content.substr(msg.content.length-3,2)=="up") {
-				suppconn.send(tag+", "+msg.client.support[msg.client.waitForPing][0]);
+				suppconn.send(`${tag}, ${msg.client.support[msg.client.waitForPing][0]}`);
             }
             else if (msg.content.substr(msg.content.length-7,6)=="closed" || msg.content.substr(msg.content.length-5,4)=="down") {
-                suppconn.send(tag+", "+breakpoint2);
+                suppconn.send(`${tag}, ${breakpoint2}`);
                 msg.client.ticket[id]=null;
             }
             clearTimeout(msg.client.timers[id]);

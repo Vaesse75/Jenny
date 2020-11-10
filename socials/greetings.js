@@ -5,7 +5,7 @@ module.exports={
 		},
 		execute(msg) {
 			return [
-				"Hi there, "+msg.author+"! What's up?",
+				`Hi there, ${msg.author}! What's up?`,
 				"What's up?",
 				"Hi!",
 				"Hey there!",
@@ -20,7 +20,7 @@ module.exports={
 			return [
 				"Need coffee!",
 				"Morning.",
-				"Hey look! It's "+msg.author+"!",
+				`Hey look! It's ${msg.author}!`,
 				"It's still morning? Why do I not have coffee?",
 			];
 		}
@@ -33,7 +33,7 @@ module.exports={
 			return [
 				"Later!",
 				"See ya later!",
-				"Come back soon, "+msg.author+".",
+				`Come back soon, ${msg.author}.`,
 				"You're leaving already!?"
 			];
 		}
