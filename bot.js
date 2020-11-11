@@ -5,7 +5,8 @@
 	Add underlay for support
 	
 	Known issues:
-		None
+		Doesn't parse existing reports on startup, unless a message is sent first
+		
 */
 // Set constants
 const Discord=require('discord.js'),fs=require('fs'),{prefix,token}=require('/home/plex/bots/authJenny.json'),Jenny=new Discord.Client();
