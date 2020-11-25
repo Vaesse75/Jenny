@@ -30,7 +30,7 @@ module.exports={
 					msg.client.timers[msg.author.id]=setTimeout(()=>{msg.client.noCarl(msg.author.id);},3000);
 					msg.client.waitForPing=msg.client.ticket[msg.author.id][0];
 					suppconn.send(`${tag}, ${pingwarn}`);
-					suppconn.send(`!ping ${msg.client.ticket[msg.author.is][0]} for ${tag}`);
+					suppconn.send(`!ping ${msg.client.ticket[msg.author.id][0]} for ${tag}`);
 				}
 				else {
 					msg.client.ticket[msg.author.id]=[];
