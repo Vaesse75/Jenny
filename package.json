@@ -7,6 +7,10 @@
   "scripts": {
     "start": "node ."
   },
+  "repository": {
+	"type": "git",
+	"url": "git://github.com/jasoncollege24/Jenny.git"
+  }
   "dependencies": {
     "@discordjs/uws": "^10.149.0",
     "cron": "^1.8.2",
