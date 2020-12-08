@@ -9,7 +9,7 @@
 		
 */
 // Set constants
-const Discord=require('discord.js'),fs=require('fs'),{prefix,token}=require('/home/plex/bots/authJenny.json'),Jenny=new Discord.Client();
+Discord=require('discord.js'),fs=require('fs'),{prefix,token}=require('/home/plex/bots/authJenny.json'),Jenny=new Discord.Client();
 const findPlugins=function(client,command,plg) {
     let [prop,key]=plg;
     if (Object.keys(command).includes("execute") && Object.keys(command).includes(key)) client[prop].set(command[key],command);

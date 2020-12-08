@@ -1,7 +1,8 @@
 module.exports={
     timer:{
         name:"timer",
-        description:"Cancelable timer for testing",
+        description:"Cancelable timer for testing (Admin only)",
+		perms: 'admin',
         execute(msg,args) {
             if (args[0].match(/set/i)) {
                 if (args[1]!=NaN) {
