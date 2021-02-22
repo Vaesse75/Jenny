@@ -9,7 +9,7 @@
 		
 */
 // Set constants
-Discord=require('discord.js'),Jenny=new Discord.Client(),fs=require('fs'),{prefix,token,training}=require('../authJenny.json'),Jenny.training=training,Jenny.trainRep=false;
+Discord=require('discord.js'),Jenny=client=new Discord.Client(),fs=require('fs'),{prefix,token,training}=require('../authJenny.json'),Jenny.training=training,Jenny.trainRep=false;
 
 const findPlugins=function(client,command,plg) {
     let [prop,key]=plg;
@@ -69,7 +69,7 @@ Jenny.log=function(txt) { // logging console logs to disk
 		fs.appendFileSync('./errorlog.txt', txt);
 	}
 }
-//service check (to be added to Luna)
+//service check
 // usage: variable=require(filename)(<plexmediaserver>|<calibre-server>|<proftpd>);
 checkit=async function(args) {
 	var shellCommand = require("linux-shell-command").shellCommand;
@@ -82,7 +82,7 @@ checkit=async function(args) {
 		else return false;
 	})
 	.catch(e => {
-		Luna.error(e);
+		Jenny.error(e);
 		return false;
 	});
 }
