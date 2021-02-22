@@ -29,11 +29,7 @@ module.exports={
 			msg.client.ticket[msg.author.id]=input.substr(9).split(" ");
 			var level=support;
 			if (msg.client.ticket[msg.author.id].length>0 && msg.client.ticket[msg.author.id][0] != "") {
-				var keys="";
-				for (var key in level) {
-					if (keys != "") keys+=",";
-					keys+=key;
-				}
+				var keys=level.keys().join(",");
 				if (msg.client.ticket[msg.author.id].length > 0 && keys.indexOf(msg.client.ticket[msg.author.id][0]) >= 0) {
 					msg.client.timers[msg.author.id]=setTimeout(()=>{msg.client.noCarl(msg.author.id);},3000);
 					msg.client.waitForPing=msg.client.ticket[msg.author.id][0];
