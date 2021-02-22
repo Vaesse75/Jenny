@@ -2,10 +2,11 @@
 	plexwarn1=""
 	pingwarn="hang on, while I check with Carl... (If Carl is offline, support will continue without him, after a few seconds.)";
 	cancelbreak=`your ticket is closed. ${SupportRef} will be with you soon.`;
-	fixedbreak="I'll close your ticket, and mark it as resolved. If you need more help, come see me again!";
+	fixedbreak="I'll close your ticket, and consider it resolved. If you need more help, come see me again!";
 	breakpoint=`I can't help you with this just yet. ${SupportRef}, someone needs your assistance! (Ticket closed)`; 
 	breakpoint2=`the service is down, sorry. ${CastingRef}, service appears to be down! (Ticket closed)`;
 	breakpoint3=`It sounds like you need a password reset. ${breakpoint}`;
+	featureDisabled='This feature is currently unsupported.';
 
 //Support questions
 	service1="so head on over to <https://vaesse.jasoncollege24.com/> to see if the host is up.\r\nIs the Host up? You can say **yes**, or **no**.";
@@ -43,8 +44,8 @@
 	// FTP section
 	support["ftp"]=[]; //!ping ftp, down=breakpoint2;
 	support["ftp"][0]=`FTP is up, ${service1} ${alloptions}`;
-	support["ftp"]["yes"]=breakpoint;
-	support["ftp"]["no"]=breakpoint;
+	support["ftp"]["yes"]=featureDisabled;
+	support["ftp"]["no"]=featureDisabled;
 
 	//Plex section
     support["plex"]=[]; //!ping plex, down=breakpoint2;
