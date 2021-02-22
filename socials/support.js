@@ -11,7 +11,7 @@ walkSupport=function(client,arr) {
             level=level[arr[a]];
         }
         else {
-            console.log(`${a} is invalid.`);
+            Jenny.error(`${a} is invalid.`);
             return level;
         }
     }

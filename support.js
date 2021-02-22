@@ -51,7 +51,7 @@
     support["plex"][0]=`the theater is open, ${service1} ${alloptions}`;
     support["plex"]["no"]=breakpoint;
 	support["plex"]["yes"]=[];
-    support["plex"]["yes"][0]=`${service2} ${device}You can say **Windows**, **Web**, **Android**, **Apple** (for iPads, and iPhones), **Amazon** (for Fire Stick/TV), or **Console**. ${alloptions}`;
+    support["plex"]["yes"][0]=`${service2} ${device}You can say **Web**, **Windows**, **Android**, **Apple** (for iPads, and iPhones), **Amazon** (for Fire Stick/TV), or **Console**. ${alloptions}`;
 	//plex web
 	support["plex"]["yes"]["web"]=[];
 	support["plex"]["yes"]["web"][0]=`${question1} ${alloptions}`;

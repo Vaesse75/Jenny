@@ -13,8 +13,16 @@ module.exports={
 			if (typeof msg.client.noCarl == "undefined") {
 				msg.client.noCarl=function(id) {
 					suppconn.send(`${tag}, Sorry, Carl isn't around right now. Let's continue without him. ${CastingRef}, Carl's slacking off again!"`);
-					suppconn.send(msg.client.support[msg.client.waitForPing]["yes"][0]);
-					msg.client.waitForPing=false;
+					svc={"plex":"plexmediaserver","ftp":"proftpd","calibre":"calibre-server"};
+					checkit(svc[msg.client.waitForPing]).then(a => {
+						if (a) {
+							suppconn.send(msg.client.support[msg.client.waitForPing][0]);
+						}
+						else {
+							suppconn.send(breakpoint2);
+						}
+						msg.client.waitForPing=false;
+					});
 				}
 			}
 			input=msg.content.toLowerCase();

@@ -9,7 +9,8 @@
 		
 */
 // Set constants
-Discord=require('discord.js'),fs=require('fs'),{prefix,token}=require('/home/plex/bots/authJenny.json'),Jenny=new Discord.Client();
+Discord=require('discord.js'),Jenny=new Discord.Client(),fs=require('fs'),{prefix,token,training}=require('../authJenny.json'),Jenny.training=training,Jenny.trainRep=false;
+
 const findPlugins=function(client,command,plg) {
     let [prop,key]=plg;
     if (Object.keys(command).includes("execute") && Object.keys(command).includes(key)) client[prop].set(command[key],command);
@@ -22,8 +23,6 @@ Jenny.chanMan = require('./ch.js');
 Jenny.roleMan = require('./role.js');
 Jenny.ticket=[];
 Jenny.waitForPing=false;
-Jenny.training=false; //change to false for normal operation
-Jenny.trainRep=false; //change to false for normal problem reports
 // Functions
 plugins.forEach(plg=>{
     Jenny[plg[0]]=new Discord.Collection(); //Jenny.commands=new Discord.Collection();
@@ -70,6 +69,25 @@ Jenny.log=function(txt) { // logging console logs to disk
 		fs.appendFileSync('./errorlog.txt', txt);
 	}
 }
+//service check (to be added to Luna)
+// usage: variable=require(filename)(<plexmediaserver>|<calibre-server>|<proftpd>);
+checkit=async function(args) {
+	var shellCommand = require("linux-shell-command").shellCommand;
+	var sc = shellCommand(`../bin/botssh systemctl status ${args} --no-pager|head -n 3|tail -n 1|while read a b c;do echo $b;done`);
+	return sc.execute()
+	.then(success => {
+		if (success === true && sc.stdout != "") {
+			return (sc.stdout == "active");
+		}
+		else return false;
+	})
+	.catch(e => {
+		Luna.error(e);
+		return false;
+	});
+}
+
+
 // acknowledge ready state
 Jenny.on('ready', () => {
 	/*

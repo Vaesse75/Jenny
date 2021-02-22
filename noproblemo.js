@@ -191,7 +191,14 @@ module.exports=function(message) {
                     dmText=`Oops! That's not the right emoji for this ${mode}! Try another one.`
             }
         }
-        if (dmText) message.author.send(dmText).catch(error => {
+		if (Jenny.training) {
+			message.author.send("Sorry, but I can't help you while I'm training with the boss. Try again in a little bit.").catch(error => {
+				Jenny.error("There was a problem with sending a DM. [A2]\n", error);
+				sChat.send(`${Jenny.errs} [A2]`);
+			});
+			deleteMsg=true;
+		}
+		else if (dmText) message.author.send(dmText).catch(error => {
 			Jenny.error("There was a problem with sending a DM. [A2]\n", error);
 			sChat.send(`${Jenny.errs} [A2]`);
 		});
