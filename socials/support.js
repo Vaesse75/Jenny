@@ -25,8 +25,9 @@ module.exports={
 		execute(msg) {
 			let tag=msg.author;
 			// If author has an open msg.client.ticket
+			var input=msg.content.toLowerCase();
 			var arr=msg.client.ticket[msg.author.id];
-			var said=msg.content.split(" ")[0];
+			var said=input.split(" ")[0];
 			var level=walkSupport(msg.client,msg.client.ticket[msg.author.id]);
 			var keys="";
 			if (msg.client.ticket[msg.author.id][0] == "plex") {

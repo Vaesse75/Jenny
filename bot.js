@@ -115,6 +115,18 @@ Jenny.on('ready', () => {
     repconn = Jenny.chanMan.get(Jenny,"report");
 	suppchan = Jenny.chanMan.get(Jenny,"help");
     if (Jenny.training) {
+		var shellCommand = require("linux-shell-command").shellCommand;
+		var sc = shellCommand(`cd ../bin;./botsudo systemctl stop jenny --no-pager`);
+		sc.execute()
+		.then(success => {
+			if (success === true) {
+				Jenny.log('Main bot stopped!');
+			}
+		})
+		.catch(e => {
+			Jenny.error('There was an error stopping main bot process!')
+			Jenny.error(e);
+		});
         onconn=offconn;
         suppconn=offconn;
     }
