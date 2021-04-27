@@ -15,8 +15,14 @@ module.exports={
 			"TIP #6: Did you pause your video for a time, only to find that it stops playback a few seconds after being resumed? This is a recently discovered issue. To get around it, refresh the page, or reload the app, then click or tap on your video to resume playback from where you left off."
 		];
 		if (args.length) {
-			args=args-1;
-			msg.channel.send(Jenny.underlay(say[args],"tips"));
+			client.log(`say[args] is ${args}`);
+			if (isNaN(args) || args == 0 || args > say.length) {
+				msg.channel.send(client.underlay(`ERROR: Argument must be a tip number between 1-${say.length}.	(eg ${prefix}tip 3)`,"tips"));
+			}
+			else {
+				args=args-1;
+				msg.channel.send(client.underlay(say[args],"tips"));
+			}
 		}
 		else {
 			msg.channel.send(Jenny.underlay(say[Math.floor(Math.random()*say.length)],"tips"));
