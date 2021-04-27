@@ -10,7 +10,8 @@ module.exports=function(msg,underlay) {
 			"TIP: Did you know? Plex libraries always default to show 'Recommended' items on first use. To show the entire library, change that to 'Library', and you should be good to go.",
 			"TIP: Did you know? Each device uses Plex a bit differently, so what works on one, may not always work on another.",
 			"TIP: Did you know? Plex, Calibre, and other relevent services automatically get restarted around 3am (Eastern), for continued stability, and updates. In some cases, the entire server restarts.",
-			"TIP: Still see the episode, movie, or other item you just finished playing in 'On Deck', or 'Continue watching'? This is a known Plex bug! Click on another menu item, then back to the server's home, or refresh the page, and it will update."
+			"TIP: Still see the episode, movie, or other item you just finished playing in 'On Deck', or 'Continue watching'? This is a known Plex bug! Click on another menu item, then back to the server's home, or refresh the page, and it will update.",
+			"TIP: Did you pause your video for a time, only to find that it stops playback a few seconds after being resumed? This is a recently discovered issue. To get around it, refresh the page, or reload the app, then click or tap on your video to resume playback from where you left off."
 		];
 		msg.channel.send(underlay(say[Math.floor(Math.random()*say.length)],"tips"));
 	}
